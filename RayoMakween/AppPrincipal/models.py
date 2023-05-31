@@ -10,7 +10,7 @@ class EstadoPublicacion(models.Model):
     
 class CategoriaTrabajo(models.Model):
     id_categtrabajo = models.IntegerField(db_column = 'id_categtrabajo', primary_key = True)
-    nombre_categtrabajo = models.CharField(db_column = 'nombre_categtrabajo', max_length = 50, blank = False, null = False)
+    nombre_categtrabajo = models.CharField(db_column = 'nombre_categtrabajo', max_length = 150, blank = False, null = False)
 
     def _str_(self):
         return str(self.nombre_categtrabajo)
