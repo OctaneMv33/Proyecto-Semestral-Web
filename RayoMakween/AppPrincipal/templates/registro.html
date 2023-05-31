@@ -11,7 +11,74 @@
     <link rel="stylesheet" href="../static/css/estilo.css">
 </head>
 <body>
-    
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="{{'index'}}">
+                <img src="../static/img/disneys-cars-lightning-mcqueen-logo-6C17AB748F-seeklogo.com.png" alt="" width="65px" height="40px">
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{'busqueda'}}">Búsqueda de Mantenciones</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="{{'solicitud'}}">Solicitud</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="{{'login'}}">Iniciar sesión</a>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Ej: Frenos" aria-label="Buscar">
+                  <button class="btn btn-outline-light" type="submit">Buscar</button>
+                </form>
+              </div>
+            </div>
+        </nav>
+    </header>
+    <br><br>
+    <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+
+                        <center><h2>Formulario de Registro</h2></center>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Rut</span>
+                            <input type="text" class="form-control" placeholder="" aria-label="Username">
+                            <span class="input-group-text">Dv rut</span>
+                            <input type="text" class="form-control" placeholder="" aria-label="Server">
+                          </div>
+
+                        <label for="text">Nombres</label>
+                        <input type="text" class="form-control" id="NomId">
+                        <br>
+                        <label for="text">Apellido</label>
+                        <input type="text" class="form-control" id="ApelId">
+                        <br>
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="EmailId">
+                        <br>
+                        <label for="text">Telefono</label>
+                        <input type="text" class="form-control" id="TelId">
+                        <br>
+                        <button type="submit" class="btn btn-primary">Registar</button>
+
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+            </div>
+    </main>
+    <footer>
+
+    </footer>
+    <!--JQuery
+    </header>
     <!--JQuery-->
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <!--JS Bootstrap-->
