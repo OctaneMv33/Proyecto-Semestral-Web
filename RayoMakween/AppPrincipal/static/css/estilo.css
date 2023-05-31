@@ -1,6 +1,7 @@
 body{
     background-image: url(../img/62cee2297842d8811cfc2ad5_buen-servicio-en-taller-mecanico.jpeg);
     background-repeat: no-repeat;
+    background-size: cover;
     background-position-x: center;
     color: white; /*letras*/
 }
@@ -35,4 +36,31 @@ body{
 
 .nav-link:hover{
     background-color: rgb(100, 100, 100);
+}
+
+.cuadro-form{
+    background-color: 	#931f1f;
+    width: auto;
+    height: auto;
+    padding: 2rem;
+    box-sizing: border-box;
+    border: solid rgb(0, 0, 0) 5px;
+    border-radius: 5%;
+    padding-bottom: 4rem;
+    margin-bottom: 4rem;
+}
+
+.cuadro-form h1{
+    color: white;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+.cuadro-form label{
+    color:white;
+    margin-bottom: 0.25rem;
+}
+
+.cuadro-form .form-control{
+    margin-bottom: 3rem;
 }
