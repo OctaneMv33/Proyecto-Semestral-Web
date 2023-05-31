@@ -5,6 +5,7 @@ from .views import crearTrabajo, revisionTrabajo, solicitud, trabajo, cantidadTr
 
 urlpatterns = [
     path('', index,name='index'),
+    path('index', index, name='index'),
     path('login', login,name='login'),
     path('registro', registro,name='registro'),
     path('busqueda', busqueda,name='busqueda'),
