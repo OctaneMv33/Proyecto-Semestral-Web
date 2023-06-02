@@ -1,3 +1,4 @@
+/*validar P nombre*/
 $("#PnomId").keyup(function(){
     var caracteres = $("#PnomId").val();
     var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
@@ -15,6 +16,7 @@ $("#PnomId").keyup(function(){
     
 });
 
+/*validar S nombre*/
 $("#SnomId").keyup(function(){
     var caracteres = $("#SnomId").val();
     var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
@@ -32,7 +34,7 @@ $("#SnomId").keyup(function(){
     
 });
 
-
+/*validar P apellido*/
 $("#PapelId").keyup(function(){
     var caracteres = $("#PapelId").val();
     var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
@@ -50,7 +52,7 @@ $("#PapelId").keyup(function(){
     
 });
 
-
+/*validar S apellido*/
 $("#SapelId").keyup(function(){
     var caracteres = $("#SapelId").val();
     var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
@@ -68,7 +70,7 @@ $("#SapelId").keyup(function(){
     
 });
 
-
+/*validar Email*/
 $("#EmailId").keyup(function(){
     var patronCorreo = /^[a-zA-Z0-9.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
     var correo = $.trim($("#EmailId").val());
@@ -87,7 +89,7 @@ $("#EmailId").keyup(function(){
     }
 
 });
-
+/*validar telefono*/
 $("#TelId").keyup(function() {
     var telefono = $("#TelId").val();
     var regexNumeros = /^[0-9]+$/;
@@ -107,7 +109,7 @@ $("#TelId").keyup(function() {
     }
   });
 
-
+/*validar contraseña y repetir contraseña*/
   $(document).ready(function() {
     $('#passId').keyup(function() {
       var password = $('#passId').val();
@@ -143,7 +145,7 @@ $("#TelId").keyup(function() {
     }
   });
 
-
+/*validar rut*/
   $("#runId, #dvrutId").keyup(function() {
     var rut = $("#rutId").val().replace(/\./g, '');
     var dv = $("#dvrutId").val();
@@ -182,9 +184,4 @@ $("#TelId").keyup(function() {
   
   });
   
-  $("#Idpassword").keyup(function(){
-      var largo = $("#Idpassword").val().length;
-      if(largo == 0){
-        $("#message").text("Este campo no puede quedar vacío");
-      }
-  });
+ 

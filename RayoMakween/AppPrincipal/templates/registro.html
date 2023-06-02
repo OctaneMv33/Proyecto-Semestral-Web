@@ -46,18 +46,18 @@
                 <div class="row">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
+
                       <div class="formulario">
                         <center><h2>Formulario de Registro</h2></center>
+                        <form action="">
                         <div class="input-group mb-3">
-                            <span class="input-group-text">Rut</span>
-                            <input type="text" class="form-control" placeholder="" aria-label="Username">
-                            <p id="idrut"></p>
-                            <span class="input-group-text">Dv rut</span>
-                            <input type="text" class="form-control" placeholder="" aria-label="Server">
-                            <p id="idrut"></p>
-
+                            <span class="input-group-text">Rut:</span>
+                            <input type="text" class="form-control" placeholder="12345678" aria-label="run" id="rutId" name="rut">
+                            <span class="input-group-text">Dv rut:</span>
+                            <input type="text" class="form-control" placeholder="K" aria-label="dvrun" id="dvrutId" name="dvrut">
                         </div>
-
+                        <p id="idrut"></p>
+                        <br>
                         <label for="text">Primer Nombre </label>
                         <input type="text" class="form-control" id="PnomId" name="nombre">
                         <p id="PnombreId"></p>
@@ -78,8 +78,8 @@
                         <input type="email" class="form-control" id="EmailId">
                         <p id="EId"></p>
                         <br>
-                        <label for="text">Telefono</label>
-                        <input type="text" class="form-control" id="TelId">
+                        <label for="NUMBER">Telefono</label>
+                        <input type="number" class="form-control" id="TelId">
                         <p id="teleId"></p>
                         <br>
                         <label for="password">Crear contraseña</label>
@@ -92,6 +92,7 @@
                         <br>
                         <button type="submit" class="btn btn-primary">Registrar</button>
                       </div>
+                      </form>
                     </div>
                     <div class="col-md-3"></div>
                 </div>
