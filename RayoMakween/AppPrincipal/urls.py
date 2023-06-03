@@ -1,12 +1,12 @@
 
 from django.urls import path
-from .views import index, login, registro, busqueda
+from .views import index, auth_login, registro, busqueda
 from .views import crearTrabajo, revisionTrabajo, solicitud, trabajo, cantidadTrabajos, estadoPublicacion
 
 urlpatterns = [
     path('', index,name='index'),
     path('index', index, name='index'),
-    path('login', login,name='login'),
+    path('auth_login', auth_login,name='auth_login'),
     path('registro', registro,name='registro'),
     path('busqueda', busqueda,name='busqueda'),
     path('crearTrabajo', crearTrabajo,name='crearTrabajo'),
