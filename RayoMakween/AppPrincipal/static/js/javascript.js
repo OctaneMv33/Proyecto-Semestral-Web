@@ -10,7 +10,7 @@ $("#PnomId").keyup(function(){
         $("#PnombreId").text("Sólo puede ingresar letras");
         var vnombre = false;
     }else{
-        $("#PnombreId").text("");
+        $("#PnombreId").text("Ingreso correcto");
         var vnombre = false;
     }
     
@@ -28,7 +28,7 @@ $("#SnomId").keyup(function(){
         $("#SnombreId").text("Sólo puede ingresar letras");
         var vnombre = false;
     }else{
-        $("#SnombreId").text("");
+        $("#SnombreId").text("Ingreso correcto");
         var vnombre = false;
     }
     
@@ -46,7 +46,7 @@ $("#PapelId").keyup(function(){
         $("#PapellidoId").text("Sólo puede ingresar letras");
         var vnombre = false;
     }else{
-        $("#PapellidoId").text("");
+        $("#PapellidoId").text("Ingreso correcto");
         var vnombre = false;
     }
     
@@ -64,7 +64,7 @@ $("#SapelId").keyup(function(){
         $("#MapellidoId").text("Sólo puede ingresar letras");
         var vnombre = false;
     }else{
-        $("#MapellidoId").text("");
+        $("#MapellidoId").text("Ingreso correcto");
         var vnombre = false;
     }
     
@@ -79,7 +79,7 @@ $("#EmailId").keyup(function(){
         
         email = false;
     }else if(!patronCorreo.test(correo)){
-        $("#EId").text("Este campo no puede quedar vacío");
+        $("#EId").text("Correo incompleto");
     
         email= false;
     }else{
@@ -103,7 +103,7 @@ $("#TelId").keyup(function() {
         $("#teleId").text("cantidad de caracteres inválida");
         vtelefono = false;
       } else {
-        $("#teleId").text("BIEN, ingreso correctamente");
+        $("#teleId").text("Ingreso correcto");
         vtelefono = true;
       }
     }
@@ -145,6 +145,8 @@ $("#TelId").keyup(function() {
     }
   });
 
+  
+
 /*validar rut*/
   $("#runId, #dvrutId").keyup(function() {
     var rut = $("#rutId").val().replace(/\./g, '');
@@ -177,7 +179,7 @@ $("#TelId").keyup(function() {
         $("#dvrutId").css("color", "white");
         vrut = false;
       } else {
-        $("#dvrutId").text("");
+        $("#dvrutId").text("Ingreso correcto");
         vrut = true;
       }
     }
