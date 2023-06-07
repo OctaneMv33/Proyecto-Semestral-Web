@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .models import User
 
 # Create your views here.
 def index(request):
@@ -9,7 +10,6 @@ def auth_login(request):
     if  request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        email = request.POST['username']
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -33,5 +33,6 @@ def trabajo(request):
     return (render(request,'trabajo.html'))
 def cantidadTrabajos(request):
     return (render(request,'ver_cantidad_trabajos.html'))
+@login_required
 def estadoPublicacion(request):
     return (render(request,'ver_estado_publicacion.html'))
