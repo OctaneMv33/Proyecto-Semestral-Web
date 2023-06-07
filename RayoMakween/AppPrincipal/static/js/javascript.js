@@ -146,42 +146,45 @@ $("#TelId").keyup(function() {
   });
 
 /*validar rut*/                                           
- $("#rutId, #dvrutId").keyup(function() {
-    var rut = $("#rutId").val().replace(/\./g, '');
-    var dv = $("#dvrutId").val();
-    
-    if (rut.length < 7) {
-      $("#idrut").text("Ingrese un RUT válido");
-      $("#idrut").css("color", "white");
-      vrut = false;
-    } else if (dv.length == 0) {
-      $("#idrut").text("Ingrese un dígito verificador");
+$("#rutId, #dvrutId").keyup(function() {
+  var rut = $("#rutId").val().replace(/./g, '');
+  var dv = $("#dvrutId").val();
+
+  if (rut.length < 7) {
+    $("#idrut").text("Ingrese un RUT válido");
+    $("#idrut").css("color", "white");
+    vrut = false;
+  } else if (dv.length == 0) {
+    $("#idrut").text("Ingrese un dígito verificador");
+    $("#idrut").css("color", "white");
+    vrut = false;
+  } else {
+    var suma = 0;
+    var multiplo = 2;
+    for (var i = rut.length - 1; i >= 0; i--) {
+      suma += rut.charAt(i) * multiplo;
+      if (multiplo < 7) {
+        multiplo += 1;
+      } else {
+        multiplo = 2;
+      }
+    }
+    var dvEsperado = 11 - (suma % 11);
+    dv = (dv == 'K') ? 10 : dv;
+    dv = (dv == 0) ? 11 : dv;
+    if (dvEsperado != dv) {
+      $("#idrut").text("RUT inválido");
       $("#idrut").css("color", "white");
       vrut = false;
     } else {
-      var suma = 0;
-      var multiplo = 2;
-      for (var i = rut.length - 1; i >= 0; i--) {
-        suma += rut.charAt(i) * multiplo;
-        if (multiplo < 7) {
-          multiplo += 1;
-        } else {
-          multiplo = 2;
-        }
-      }
-      var dvEsperado = 11 - (suma % 11);
-      dv = (dv == 'K') ? 10 : dv;
-      dv = (dv == 0) ? 11 : dv;
-      if (dvEsperado != dv) {
-        $("#idrut").text("RUT inválido");
-        $("#idrut").css("color", "white");
-        vrut = false;
-      } else {
-        $("#idrut").text("");
-        vrut = true;
-      }
+      $("#idrut").text("RUT válido");
+      vrut = true;
     }
-  
-  });
+  }
 
- 
+  if(vnombre && vsnombre && vappaterno && vapmaterno && vmail && vrut && vtelefono && vpass && vcpass){
+    $("#btnRegistrarId").attr("disabled", false);
+  }else{
+    $("#btnRegistrarId").attr("disabled", true);
+  }
+});
