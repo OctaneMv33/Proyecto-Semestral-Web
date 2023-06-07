@@ -1,6 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+class User(AbstractUser):
+    second_name = models.CharField(max_length=40)
+    second_last_name = models.CharField(max_length=40)
+    run = models.IntegerField(blank = False, unique = True)
+    dv_run = models.CharField(max_length=1)
+
 class EstadoPublicacion(models.Model):
     id_estpub = models.IntegerField(db_column = 'id_estpub', primary_key= True)
     nombre_estpub = models.CharField(db_column = 'nombre_estpub', max_length = 30, blank = False, null = False)
