@@ -120,17 +120,23 @@
               type="email"
               class="form-control"
               name="correo"
-              id="correoId"
+              id="EmailId"
               placeholder="Ej: nombrecorreo@direccion.cl"
             />
-            <label for="correoId">Escríba su descripción</label>
+            <div id="EId"></div>
+            <label for="TelId">Ingrese su teléfono</label>
+            <input type="number" name="telefono" id="TelId" class="form-control">
+            <div id="teleId"></div>
+            <label for="descripcionId">Escríba su descripción</label>
             <textarea
               class="form-control"
               name="descripcion"
               id="descripcionId"
               cols="30"
-              rows="8"
+              rows="4"
             ></textarea>
+            <br>
+            <center><button type="submit" id="enviarContactoId" class="btn btn-success">Envíar Contacto</button></center>
           </form>
         </div>
       </div>

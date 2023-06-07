@@ -68,10 +68,9 @@ body{
     margin-bottom: 0.25rem;
 }
 
-.cuadro-form .form-control{
-    margin-bottom: 3rem;
+.cuadro-form div{
+    margin-bottom: 2rem;
 }
-
 
 .formulario{
     background-color: 	#931f1f;

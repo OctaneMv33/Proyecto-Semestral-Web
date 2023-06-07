@@ -238,7 +238,57 @@ $("#RepId").keyup(function(){
   }
 });
 
+/* En Index */
+$(document).ready(function(){
+  $("#enviarContactoId").attr('disabled', true);
+});
 
+/* validar email */
+$("#EmailId").keyup(function(){
+  var patronCorreo = /^[a-zA-Z0-9.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
+  var correo = $.trim($("#EmailId").val());
+  if(correo === ""){
+      $("#EId").text("Este campo no puede quedar vacío");
+      vmail = false;
+  }else if(!patronCorreo.test(correo)){
+      $("#EId").text("Formato de correo electrónico incorrecto");
+      vmail = false;
+  }else{
+      $("#EId").text("Ingreso Correcto");
+      vmail = true;
+  }
+
+  if(vmail && vtelefono){
+    $("#enviarContactoId").attr("disabled", false);
+  }else{
+    $("#enviarContactoId").attr("disabled", true);
+  }
+});
+
+/* validar telefono */
+$("#TelId").keyup(function() {
+  var telefono = $("#TelId").val();
+  var regexNumeros = /^[0-9]+$/;
+
+  if (!regexNumeros.test(telefono)) {
+    $("#teleId").text("Ingresa solo números");
+    vtelefono = false;
+  } else {
+    if (telefono < 900000000 || telefono > 999999999) {
+      $("#teleId").text("Número inválido");
+      vtelefono = false;
+    } else {
+      $("#teleId").text("Ingreso correcto");
+      vtelefono = true;
+    }
+  }
+
+  if(vmail && vtelefono){
+    $("#enviarContactoId").attr("disabled", false);
+  }else{
+    $("#enviarContactoId").attr("disabled", true);
+  }
+});
 
 /*
 
