@@ -1,4 +1,4 @@
-var vnombre = false, vsnombre = false, vappaterno = false, vapmaterno = false, vmail = false, vrut = false, vtelefono = false, vpass = false, vcpass = false
+var vnombre = false, vsnombre = true, vappaterno = false, vapmaterno = true, vmail = false, vrut = false, vtelefono = false, vpass = false, vcpass = false
 
 $(document).ready(function(){
   $("#btnRegistrarId").attr('disabled', true)
@@ -77,7 +77,10 @@ $("#SnomId").keyup(function(){
   var caracteres = $("#SnomId").val();
   var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
   var largo = $("#SnomId").val().length;
-  if(largo < 3 || largo > 15){
+  if(largo == 0){
+    $("#SnombreId").text("No ingresará nada");
+    vsnombre = true;
+  }else if(largo < 3 || largo > 15){
       $("#SnombreId").text("El nombre no puede ser menor a 3 caractéres o mayor a 15.");
       vsnombre = false;
   }else if(!patronNombre.test(caracteres)){
@@ -123,14 +126,17 @@ $("#SapelId").keyup(function(){
   var caracteres = $("#SapelId").val();
   var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
   var largo = $("#SapelId").val().length;
-  if(largo < 3 || largo > 15){
-      $("#MapellidoId").text("El apellido no puede ser menor a 3 caractéres o mayor a 15.");
+  if(largo == 0){
+    $("#MappellidoId").text("No ingresará nada.");
+    vapmaterno = true;
+  }else if(largo < 3 || largo > 15){
+      $("#MappellidoId").text("El apellido no puede ser menor a 3 caractéres o mayor a 15.");
       vapmaterno = false;
   }else if(!patronNombre.test(caracteres)){
-      $("#MapellidoId").text("Sólo puede ingresar letras");
+      $("#MappellidoId").text("Sólo puede ingresar letras");
       vapmaterno = false;
   }else{
-      $("#MapellidoId").text("Ingreso correcto");
+      $("#MappellidoId").text("Ingreso correcto");
       vapmaterno = true;
   }
   
@@ -231,6 +237,8 @@ $("#RepId").keyup(function(){
     $("#btnRegistrarId").attr("disabled", true);
   }
 });
+
+
 
 /*
 

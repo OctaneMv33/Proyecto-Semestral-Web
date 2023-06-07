@@ -20,7 +20,7 @@
                     id="usernome"
                     name="username"
                     required
-                    placeholder="username"
+                    placeholder="Username"
                   />
                   <label for="password" class="form-label"
                     >Ingrese su contraseña</label
@@ -34,18 +34,14 @@
                     placeholder="Password"
                   />
                 </div>
-                <div class="col-md-1"></div>
+                <div class="col-md-3"></div>
               </div>
             </div>
-            <div class="container align-content-center">
-              <div class="row">
-                <div class="col-md-5 offset-4">
-                  <button type="submit" class="btn btn-danger boton1">
-                    Iniciar sesión
-                  </button>
-                </div>
-              </div>
-            </div>
+            <center><p>¿Aún no tiene cuenta? <a href="{% url 'auth_register' %}">Regístrese</a></p></center>
+            <br>
+            <center><button type="submit" class="btn btn-success">
+              Iniciar sesión
+            </button></center>
           </form>
         </div>
       </div>
