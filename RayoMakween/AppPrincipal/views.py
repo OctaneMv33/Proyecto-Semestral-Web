@@ -1,10 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from .models import User
 
 # Create your views here.
 def index(request):
     return (render(request,'index.html'))
-def login(request):
-    return (render(request,'login.html'))
+def auth_login(request):
+    if  request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            error_message= 'Nombre de usuario o contraseña incorrecto'
+            return render(request, 'login.html', {'error_message': error_message})
+    else:
+        return(render(request,'login.html'))
 def registro(request):
     return (render(request,'registro.html'))
 def busqueda(request):
@@ -19,5 +33,6 @@ def trabajo(request):
     return (render(request,'trabajo.html'))
 def cantidadTrabajos(request):
     return (render(request,'ver_cantidad_trabajos.html'))
+@login_required
 def estadoPublicacion(request):
     return (render(request,'ver_estado_publicacion.html'))

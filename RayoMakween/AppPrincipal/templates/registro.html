@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Cuenta</title>
-    <!--CSS Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!--CSS-->
-    <link rel="stylesheet" href="../static/css/estilo.css">
-</head>
+{% extends 'navbar.html' %} {% block content %}
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -52,41 +41,41 @@
                         <form action="">
                         <div class="input-group mb-3">
                             <span class="input-group-text">Rut:</span>
-                            <input type="text" class="form-control" placeholder="12345678" aria-label="run" id="rutId" name="rut" >
+                            <input type="text" class="form-control" placeholder="12345678" aria-label="run" id="rutId" name="rut">
                             <span class="input-group-text">Dv rut:</span>
                             <input type="text" class="form-control" placeholder="K" aria-label="dvrun" id="dvrutId" name="dvrut">
                         </div>
                         <p id="idrut"></p>
                         <br>
-                        <label for="text">Primer Nombre: </label>
-                        <input type="text" class="form-control" id="PnomId" name="nombre" placeholder="Juan">
+                        <label for="text">Primer Nombre </label>
+                        <input type="text" class="form-control" id="PnomId" name="nombre">
                         <p id="PnombreId"></p>
                         <br>
-                        <label for="text">Segundo Nombre: </label>
-                        <input type="text" class="form-control" id="SnomId" placeholder="Ramon">
+                        <label for="text">Segundo Nombre </label>
+                        <input type="text" class="form-control" id="SnomId">
                         <p id="SnombreId"></p>
                         <br>
-                        <label for="text">Apellido Paterno: </label>
-                        <input type="text" class="form-control" id="PapelId" placeholder="Soto">
+                        <label for="text">Apellido Paterno </label>
+                        <input type="text" class="form-control" id="PapelId">
                         <p id="PapellidoId"></p>
                         <br>
-                        <label for="text">Apellido Materno: (Campo opcional)</label>
-                        <input type="text" class="form-control" id="SapelId" placeholder="Perez">
+                        <label for="text">Apellido Materno (Campo opcional)</label>
+                        <input type="text" class="form-control" id="SapelId">
                         <p id="MapellidoId"></p>
                         <br>
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="EmailId" placeholder="duocuc@gmail.com">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="EmailId">
                         <p id="EId"></p>
                         <br>
-                        <label for="NUMBER">Telefono:</label>
-                        <input type="number" class="form-control" id="TelId" placeholder="9 12457896">
+                        <label for="NUMBER">Telefono</label>
+                        <input type="number" class="form-control" id="TelId">
                         <p id="teleId"></p>
                         <br>
-                        <label for="password">Crear contraseña:</label>
+                        <label for="password">Crear contraseña</label>
                         <input type="password" class="form-control" id="passId">
                         <p id="passid"></p>
                         <br>
-                        <label for="password">Repetir contraseña:</label>
+                        <label for="password">Repetir contraseña</label>
                         <input type="password" class="form-control" id="RepId">
                         <p id="repId"></p>
                         <br>
@@ -101,13 +90,4 @@
     <footer>
 
     </footer>
-    <!--JQuery
-    </header>
-    <!--JQuery-->
-    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-    <!--JS Bootstrap-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <!--JS-->
-    <script src="../static/js/javascript.js"></script>
-</body>
-</html>
+    {% endblock %}

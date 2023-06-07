@@ -2,29 +2,12 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class UsuarioPersonalizado(AbstractUser):
-    rut = models.IntegerField(db_column = 'rut', null=False, blank=False, unique=True)
-    dvrut = models.CharField(db_column = 'dvrut', null=False, blank=False, max_length=1)
-    second_name = models.CharField(db_column = 'second_name', max_length=40, null=True, blank=True)
-    second_last_name = models.CharField(db_column = 'second_last_name', max_length=40, null=True, blank=True)
-    phone_number = models.IntegerField(db_column = 'phone_number', null=False, blank=False)
-
-    groups = models.ManyToManyField(
-    'auth.Group',
-    related_name='custom_groups',
-    blank=True,
-    help_text='The groups this user belongs to. A user will get all permissions '
-              'granted to each of their groups.',
-    verbose_name='groups',
-    )
-    
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='custom_user_permissions',
-        blank=True,
-        help_text='Specific permissions for this user.',
-        verbose_name='user permissions',
-    )
+class User(AbstractUser):
+    second_name = models.CharField(max_length=40)
+    second_last_name = models.CharField(max_length=40)
+    run = models.IntegerField(null=True)
+    dv_run = models.CharField(max_length=1)
+    phone = models.IntegerField(null=True)
 
 class EstadoPublicacion(models.Model):
     id_estpub = models.IntegerField(db_column = 'id_estpub', primary_key= True)
