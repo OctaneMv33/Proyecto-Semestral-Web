@@ -45,12 +45,6 @@
               </li>
               {% if request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link active">Hola {{ user.username | upper }}</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="{{ 'logout' }}">Salir</a>
-              </li>
-              <li class="nav-item">
                 <a
                   class="nav-link active"
                   aria-current="page"
@@ -60,6 +54,12 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="{{'solicitud'}}">Solicitud</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active">Hola {{ user.username | upper }}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ 'logout' }}">Salir</a>
               </li>
               {% else %}
               <li class="nav-item">
