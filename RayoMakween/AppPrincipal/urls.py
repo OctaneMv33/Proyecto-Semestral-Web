@@ -1,7 +1,7 @@
 
 from django.urls import path
 from .views import index, auth_login, auth_register, busqueda
-from .views import crearTrabajo, revisionTrabajo, solicitud, trabajo, cantidadTrabajos, estadoPublicacion
+from .views import crearTrabajo, revisionTrabajo, solicitud, trabajo, cantidadTrabajos, estadoPublicacion,exit
 
 urlpatterns = [
     path('', index,name='index'),
@@ -15,4 +15,5 @@ urlpatterns = [
     path('trabajo', trabajo,name='trabajo'),
     path('cantidadTrabajos', cantidadTrabajos,name='cantidadTrabajos'),
     path('estadoPublicacion', estadoPublicacion,name='estadoPublicacion'),   
+    path('logout',exit,name='exit'),
 ]

@@ -58,3 +58,7 @@ def cantidadTrabajos(request):
 @login_required
 def estadoPublicacion(request):
     return (render(request,'ver_estado_publicacion.html'))
+
+def exit(request):
+    logout(request)
+    return redirect('auth_login')
