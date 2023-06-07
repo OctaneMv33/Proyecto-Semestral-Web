@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     second_name = models.CharField(max_length=40)
     second_last_name = models.CharField(max_length=40)
-    run = models.IntegerField(blank = False, unique = True)
+    run = models.IntegerField(null=True)
     dv_run = models.CharField(max_length=1)
 
 class EstadoPublicacion(models.Model):
