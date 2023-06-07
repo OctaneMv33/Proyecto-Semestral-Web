@@ -1,155 +1,14 @@
-/*validar P nombre*/
-$("#PnomId").keyup(function(){
-    var caracteres = $("#PnomId").val();
-    var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
-    var largo = $("#PnomId").val().length;
-    if(largo < 3 || largo > 15){
-        $("#PnombreId").text("El nombre no puede ser menor a 3 caractéres o mayor a 15.");
-        var vnombre = false;
-    }else if(!patronNombre.test(caracteres)){
-        $("#PnombreId").text("Sólo puede ingresar letras");
-        var vnombre = false;
-    }else{
-        $("#PnombreId").text("");
-        var vnombre = false;
-    }
-    
+var vnombre = false, vsnombre = false, vappaterno = false, vapmaterno = false, vmail = false, vrut = false, vtelefono = false, vpass = false, vcpass = false
+
+$(document).ready(function(){
+  $("#btnRegistrarId").attr('disabled', true)
 });
 
-/*validar S nombre*/
-$("#SnomId").keyup(function(){
-    var caracteres = $("#SnomId").val();
-    var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
-    var largo = $("#SnomId").val().length;
-    if(largo < 3 || largo > 15){
-        $("#SnombreId").text("El nombre no puede ser menor a 3 caractéres o mayor a 15.");
-        var vnombre = false;
-    }else if(!patronNombre.test(caracteres)){
-        $("#SnombreId").text("Sólo puede ingresar letras");
-        var vnombre = false;
-    }else{
-        $("#SnombreId").text("");
-        var vnombre = false;
-    }
-    
-});
-
-/*validar P apellido*/
-$("#PapelId").keyup(function(){
-    var caracteres = $("#PapelId").val();
-    var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
-    var largo = $("#PapelId").val().length;
-    if(largo < 3 || largo > 15){
-        $("#PapellidoId").text("El apellido no puede ser menor a 3 caractéres o mayor a 15.");
-        var vnombre = false;
-    }else if(!patronNombre.test(caracteres)){
-        $("#PapellidoId").text("Sólo puede ingresar letras");
-        var vnombre = false;
-    }else{
-        $("#PapellidoId").text("");
-        var vnombre = false;
-    }
-    
-});
-
-/*validar S apellido*/
-$("#SapelId").keyup(function(){
-    var caracteres = $("#SapelId").val();
-    var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
-    var largo = $("#SapelId").val().length;
-    if(largo < 3 || largo > 15){
-        $("#MapellidoId").text("El apellido no puede ser menor a 3 caractéres o mayor a 15.");
-        var vnombre = false;
-    }else if(!patronNombre.test(caracteres)){
-        $("#MapellidoId").text("Sólo puede ingresar letras");
-        var vnombre = false;
-    }else{
-        $("#MapellidoId").text("");
-        var vnombre = false;
-    }
-    
-});
-
-/*validar Email*/
-$("#EmailId").keyup(function(){
-    var patronCorreo = /^[a-zA-Z0-9.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
-    var correo = $.trim($("#EmailId").val());
-    if(correo === ""){
-        $("#EId").text("Este campo no puede quedar vacío");
-        
-        email = false;
-    }else if(!patronCorreo.test(correo)){
-        $("#EId").text("Este campo no puede quedar vacío");
-    
-        email= false;
-    }else{
-        $("#EId").text("Ingreso Correcto");
-       
-        email = true;
-    }
-
-});
-/*validar telefono*/
-$("#TelId").keyup(function() {
-    var telefono = $("#TelId").val();
-    var regexNumeros = /^[0-9]+$/;
-  
-    if (!regexNumeros.test(telefono)) {
-      $("#teleId").text("ingresa solo números");
-      vtelefono = false;
-    } else {
-      var cantidad = telefono.length;
-      if (cantidad < 3 || cantidad > 12) {
-        $("#teleId").text("cantidad de caracteres inválida");
-        vtelefono = false;
-      } else {
-        $("#teleId").text("BIEN, ingreso correctamente");
-        vtelefono = true;
-      }
-    }
-  });
-
-/*validar contraseña y repetir contraseña*/
-  $(document).ready(function() {
-    $('#passId').keyup(function() {
-      var password = $('#passId').val();
-      var confirmPassword = $('#confirmPasswordId').val();
-  
-      if (validatePassword(password)) {
-        $('#passid').text('Contraseña válida.');
-      } else {
-        $('#passid').text('Contraseña inválida. Asegúrate de incluir al menos una letra mayúscula, dos números y un carácter especial.');
-      }
-  
-      if (password === confirmPassword) {
-        $('#confirmMessage').text('Las contraseñas coinciden.');
-      } else {
-        $('#confirmMessage').text('Las contraseñas no coinciden.');
-      }
-    });
-  
-    $('#RepId').keyup(function() {
-      var password = $('#passId').val();
-      var confirmPassword = $('#RepId').val();
-  
-      if (password === confirmPassword) {
-        $('#repId').text('Las contraseñas coinciden.');
-      } else {
-        $('#repId').text('Las contraseñas no coinciden.');
-      }
-    });
-  
-    function validatePassword(password) {
-      var passwordRegex = /^(?=.*[A-Z])(?=.*\d.*\d)(?=.*[$@#&!]).{8,}$/;
-      return passwordRegex.test(password);
-    }
-  });
-
-/*validar rut*/                                           
+/*validar rut*/
 $("#rutId, #dvrutId").keyup(function() {
-  var rut = $("#rutId").val().replace(/./g, '');
+  var rut = $("#rutId").val().replace(/\./g, '');
   var dv = $("#dvrutId").val();
-
+  
   if (rut.length < 7) {
     $("#idrut").text("Ingrese un RUT válido");
     $("#idrut").css("color", "white");
@@ -188,3 +47,225 @@ $("#rutId, #dvrutId").keyup(function() {
     $("#btnRegistrarId").attr("disabled", true);
   }
 });
+
+/*validar P nombre*/
+$("#PnomId").keyup(function(){
+  var caracteres = $("#PnomId").val();
+  var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
+  var largo = $("#PnomId").val().length;
+  
+  if(largo < 3 || largo > 15){
+      $("#PnombreId").text("El nombre no puede ser menor a 3 caractéres o mayor a 15.");
+      vnombre = false;
+  }else if(!patronNombre.test(caracteres)){
+      $("#PnombreId").text("Sólo puede ingresar letras");
+      vnombre = false;
+  }else{
+      $("#PnombreId").text("Ingreso correcto");
+      vnombre = true;
+  }
+  
+  if(vnombre && vsnombre && vappaterno && vapmaterno && vmail && vrut && vtelefono && vpass && vcpass){
+    $("#btnRegistrarId").attr("disabled", false);
+  }else{
+    $("#btnRegistrarId").attr("disabled", true);
+  }
+});
+
+/*validar S nombre*/
+$("#SnomId").keyup(function(){
+  var caracteres = $("#SnomId").val();
+  var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
+  var largo = $("#SnomId").val().length;
+  if(largo < 3 || largo > 15){
+      $("#SnombreId").text("El nombre no puede ser menor a 3 caractéres o mayor a 15.");
+      vsnombre = false;
+  }else if(!patronNombre.test(caracteres)){
+      $("#SnombreId").text("Sólo puede ingresar letras");
+      vsnombre = false;
+  }else{
+      $("#SnombreId").text("Ingreso correcto");
+      vsnombre = true;
+  }
+  
+  if(vnombre && vsnombre && vappaterno && vapmaterno && vmail && vrut && vtelefono && vpass && vcpass){
+    $("#btnRegistrarId").attr("disabled", false);
+  }else{
+    $("#btnRegistrarId").attr("disabled", true);
+  }
+});
+
+/*validar P apellido*/
+$("#PapelId").keyup(function(){
+  var caracteres = $("#PapelId").val();
+  var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
+  var largo = $("#PapelId").val().length;
+  if(largo < 3 || largo > 15){
+      $("#PapellidoId").text("El apellido no puede ser menor a 3 caractéres o mayor a 15.");
+      vappaterno = false;
+  }else if(!patronNombre.test(caracteres)){
+      $("#PapellidoId").text("Sólo puede ingresar letras");
+      vappaterno = false;
+  }else{
+      $("#PapellidoId").text("Ingreso correcto");
+      vappaterno = true;
+  }
+  
+  if(vnombre && vsnombre && vappaterno && vapmaterno && vmail && vrut && vtelefono && vpass && vcpass){
+    $("#btnRegistrarId").attr("disabled", false);
+  }else{
+    $("#btnRegistrarId").attr("disabled", true);
+  }
+});
+
+/*validar S apellido*/
+$("#SapelId").keyup(function(){
+  var caracteres = $("#SapelId").val();
+  var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
+  var largo = $("#SapelId").val().length;
+  if(largo < 3 || largo > 15){
+      $("#MapellidoId").text("El apellido no puede ser menor a 3 caractéres o mayor a 15.");
+      vapmaterno = false;
+  }else if(!patronNombre.test(caracteres)){
+      $("#MapellidoId").text("Sólo puede ingresar letras");
+      vapmaterno = false;
+  }else{
+      $("#MapellidoId").text("Ingreso correcto");
+      vapmaterno = true;
+  }
+  
+  if(vnombre && vsnombre && vappaterno && vapmaterno && vmail && vrut && vtelefono && vpass && vcpass){
+    $("#btnRegistrarId").attr("disabled", false);
+  }else{
+    $("#btnRegistrarId").attr("disabled", true);
+  }
+});
+
+/*validar Email*/
+$("#EmailId").keyup(function(){
+  var patronCorreo = /^[a-zA-Z0-9.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
+  var correo = $.trim($("#EmailId").val());
+  if(correo === ""){
+      $("#EId").text("Este campo no puede quedar vacío");
+      vmail = false;
+  }else if(!patronCorreo.test(correo)){
+      $("#EId").text("Formato de correo electrónico incorrecto");
+      vmail = false;
+  }else{
+      $("#EId").text("Ingreso Correcto");
+      vmail = true;
+  }
+
+  if(vnombre && vsnombre && vappaterno && vapmaterno && vmail && vrut && vtelefono && vpass && vcpass){
+    $("#btnRegistrarId").attr("disabled", false);
+  }else{
+    $("#btnRegistrarId").attr("disabled", true);
+  }
+});
+
+/*validar telefono*/
+$("#TelId").keyup(function() {
+  var telefono = $("#TelId").val();
+  var regexNumeros = /^[0-9]+$/;
+
+  if (!regexNumeros.test(telefono)) {
+    $("#teleId").text("Ingresa solo números");
+    vtelefono = false;
+  } else {
+    if (telefono < 900000000 || telefono > 999999999) {
+      $("#teleId").text("Número inválido");
+      vtelefono = false;
+    } else {
+      $("#teleId").text("Ingreso correcto");
+      vtelefono = true;
+    }
+  }
+
+  if(vnombre && vsnombre && vappaterno && vapmaterno && vmail && vrut && vtelefono && vpass && vcpass){
+    $("#btnRegistrarId").attr("disabled", false);
+  }else{
+    $("#btnRegistrarId").attr("disabled", true);
+  }
+});
+
+
+/*validar contraseña*/
+$("#passId").keyup(function(){
+  var password = $("#passId").val();
+  var patronpass = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]+$/;
+  var largopass = $("#passId").val().length;
+
+  if(largopass < 8){
+    $("#passid").text("Contraseña muy corta. Al menos 8 caractéres.")
+    vpass = false;
+  }else if(!patronpass.test(password)){
+    $("#passid").text("Contraseña inválida. Asegúrate de incluir al menos una letra mayúscula, dos números y un carácter especial.")
+    vpass = false;
+  }else{
+    $("#passid").text("Contraseña válida.")
+    vpass = true;
+  }
+
+  if(vnombre && vsnombre && vappaterno && vapmaterno && vmail && vrut && vtelefono && vpass && vcpass){
+    $("#btnRegistrarId").attr("disabled", false);
+  }else{
+    $("#btnRegistrarId").attr("disabled", true);
+  }
+});
+
+$("#RepId").keyup(function(){
+  var password = $("#passId").val();
+  var confirmarpass = $("#RepId").val();
+
+  if(password == confirmarpass){
+    $("#repId").text("Ambas contraseñas coinciden.");
+    vcpass = true;
+  }else{
+    $("#prepId").text("Las contraseñas no coinciden.");
+    vcpass = false;
+  }
+
+  if(vnombre && vsnombre && vappaterno && vapmaterno && vmail && vrut && vtelefono && vpass && vcpass){
+    $("#btnRegistrarId").attr("disabled", false);
+  }else{
+    $("#btnRegistrarId").attr("disabled", true);
+  }
+});
+
+/*
+
+validar contraseña y repetir contraseña
+  $(document).ready(function() {
+    $('#passId').keyup(function() {
+      var password = $('#passId').val();
+      var confirmPassword = $('#confirmPasswordId').val();
+  
+      if (validatePassword(password)) {
+        $('#passid').text('Contraseña válida.');
+      } else {
+        $('#passid').text('Contraseña inválida. Asegúrate de incluir al menos una letra mayúscula, dos números y un carácter especial.');
+      }
+  
+      if (password === confirmPassword) {
+        $('#confirmMessage').text('Las contraseñas coinciden.');
+      } else {
+        $('#confirmMessage').text('Las contraseñas no coinciden.');
+      }
+    });
+  
+    $('#RepId').keyup(function() {
+      var password = $('#passId').val();
+      var confirmPassword = $('#RepId').val();
+  
+      if (password === confirmPassword) {
+        $('#repId').text('Las contraseñas coinciden.');
+      } else {
+        $('#repId').text('Las contraseñas no coinciden.');
+      }
+    });
+  
+    function validatePassword(password) {
+      var passwordRegex = /^(?=.*[A-Z])(?=.*\d.*\d)(?=.*[$@#&!]).{8,}$/;
+      return passwordRegex.test(password);
+    }
+  });*/
