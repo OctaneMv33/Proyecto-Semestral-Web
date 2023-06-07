@@ -104,13 +104,13 @@ $("#PapelId").keyup(function(){
   var patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/;
   var largo = $("#PapelId").val().length;
   if(largo < 3 || largo > 15){
-      $("#PapellidoId").text("El apellido no puede ser menor a 3 caractéres o mayor a 15.");
+      $("#PappellidoId").text("El apellido no puede ser menor a 3 caractéres o mayor a 15.");
       vappaterno = false;
   }else if(!patronNombre.test(caracteres)){
-      $("#PapellidoId").text("Sólo puede ingresar letras");
+      $("#PappellidoId").text("Sólo puede ingresar letras");
       vappaterno = false;
   }else{
-      $("#PapellidoId").text("Ingreso correcto");
+      $("#PappellidoId").text("Ingreso correcto");
       vappaterno = true;
   }
   
