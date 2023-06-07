@@ -145,8 +145,8 @@ $("#TelId").keyup(function() {
     }
   });
 
-/*validar rut*/
-  $("#runId, #dvrutId").keyup(function() {
+/*validar rut*/                                           
+ $("#rutId, #dvrutId").keyup(function() {
     var rut = $("#rutId").val().replace(/\./g, '');
     var dv = $("#dvrutId").val();
     
@@ -173,15 +173,15 @@ $("#TelId").keyup(function() {
       dv = (dv == 'K') ? 10 : dv;
       dv = (dv == 0) ? 11 : dv;
       if (dvEsperado != dv) {
-        $("#dvrutId").text("RUT inválido");
-        $("#dvrutId").css("color", "white");
+        $("#idrut").text("RUT inválido");
+        $("#idrut").css("color", "white");
         vrut = false;
       } else {
-        $("#dvrutId").text("");
+        $("#idrut").text("");
         vrut = true;
       }
     }
   
   });
-  
+
  
