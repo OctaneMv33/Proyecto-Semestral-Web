@@ -1,3 +1,24 @@
 {% extends 'navbar.html' %} {% block content %}
-<main></main>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="solicitud">
+                    <label for="date">Fecha: </label>
+                    <input type="date" name="fecha" id="fechaId" textarea class="form-control">
+                    <br><br>
+                    <label for="text" id="DiagId">Diagnostico:</label>
+                    <textarea class="form-control" id="diagId" rows="3" placeholder="Maximo 500 caracteres"></textarea>
+                    <br>
+                    <label for="text" id="Descrip">Descripción:</label>
+                    <textarea class="form-control" id="DesId" rows="3" placeholder="Maximo 500 caracteres"></textarea>
+                    <br>
+                    <button type="submit" id="enviarId" class="btn btn-primary">Enviar solicitud</button>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</main>
 {% endblock %}
