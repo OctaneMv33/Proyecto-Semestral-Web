@@ -43,7 +43,7 @@
               {% if request.user.is_authenticated %}
               <a>Hola {{ user.username | upper }}</a>
               <a class="nav-item nav-link" href="{{ 'logout' }}">Salir</a>
-              {% endif %}
+              {% else %} {% endif %}
               <li class="nav-item">
                 <a class="nav-link active" href="{{'index'}}">Inicio</a>
               </li>
