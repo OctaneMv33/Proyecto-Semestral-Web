@@ -40,13 +40,10 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              {% if request.user.is_authenticated %}
-              <a>Hola {{ user.username | upper }}</a>
-              <a class="nav-item nav-link" href="{{ 'logout' }}">Salir</a>
-              {% else %} {% endif %}
               <li class="nav-item">
                 <a class="nav-link active" href="{{'index'}}">Inicio</a>
               </li>
+              {% if request.user.is_authenticated %}
               <li class="nav-item">
                 <a
                   class="nav-link active"
@@ -58,12 +55,24 @@
               <li class="nav-item">
                 <a class="nav-link active" href="{{'solicitud'}}">Solicitud</a>
               </li>
-
+              <li class="nav-item">
+                <a class="nav-link active">Hola {{ user.username | upper }}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ 'logout' }}">Salir</a>
+              </li>
+              {% else %}
               <li class="nav-item">
                 <a class="nav-link active" href="{{'auth_login'}}"
                   >Iniciar sesión</a
                 >
               </li>
+              <li class="nav-item">
+                <a href="{% url 'auth_register' %}" class="nav-link active"
+                  >Registrarse</a
+                >
+              </li>
+              {% endif %}
             </ul>
             <form class="d-flex">
               <input
@@ -80,7 +89,6 @@
         </div>
       </nav>
     </header>
-    <br /><br /><br />
     {% block content %}{% endblock %}
 
     <!--JQuery-->

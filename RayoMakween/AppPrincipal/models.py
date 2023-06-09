@@ -3,8 +3,8 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class User(AbstractUser):
-    second_name = models.CharField(max_length=40)
-    second_last_name = models.CharField(max_length=40)
+    second_name = models.CharField(max_length=40, null=True)
+    second_last_name = models.CharField(max_length=40, null=True)
     run = models.IntegerField(null=True)
     dv_run = models.CharField(max_length=1)
     phone = models.IntegerField(null=True)
