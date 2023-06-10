@@ -98,3 +98,16 @@ body{
     margin-top: 2rem;
     margin-bottom: 5rem;
 }
+
+.motivo{
+    background-color: 	#931f1f;
+    width: auto;
+    height: auto;
+    padding: 3rem;
+    box-sizing: border-box;
+    border: solid rgb(0, 0, 0) 5px;
+    border-radius: 5%;
+    padding-bottom: 10rem;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
