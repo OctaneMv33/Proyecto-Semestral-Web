@@ -290,40 +290,4 @@ $("#TelId").keyup(function() {
   }
 });
 
-/*
-
-validar contraseña y repetir contraseña
-  $(document).ready(function() {
-    $('#passId').keyup(function() {
-      var password = $('#passId').val();
-      var confirmPassword = $('#confirmPasswordId').val();
-  
-      if (validatePassword(password)) {
-        $('#passid').text('Contraseña válida.');
-      } else {
-        $('#passid').text('Contraseña inválida. Asegúrate de incluir al menos una letra mayúscula, dos números y un carácter especial.');
-      }
-  
-      if (password === confirmPassword) {
-        $('#confirmMessage').text('Las contraseñas coinciden.');
-      } else {
-        $('#confirmMessage').text('Las contraseñas no coinciden.');
-      }
-    });
-  
-    $('#RepId').keyup(function() {
-      var password = $('#passId').val();
-      var confirmPassword = $('#RepId').val();
-  
-      if (password === confirmPassword) {
-        $('#repId').text('Las contraseñas coinciden.');
-      } else {
-        $('#repId').text('Las contraseñas no coinciden.');
-      }
-    });
-  
-    function validatePassword(password) {
-      var passwordRegex = /^(?=.*[A-Z])(?=.*\d.*\d)(?=.*[$@#&!]).{8,}$/;
-      return passwordRegex.test(password);
-    }
-  });*/
+/* Validacion de Formulario de solicitud */
