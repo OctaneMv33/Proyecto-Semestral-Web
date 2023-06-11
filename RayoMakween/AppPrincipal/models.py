@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
 
 # Create your models here.
 class User(AbstractUser):
@@ -8,6 +8,10 @@ class User(AbstractUser):
     run = models.IntegerField(null=True)
     dv_run = models.CharField(max_length=1)
     phone = models.IntegerField(null=True)
+    groups = models.ManyToManyField(Group,blank=True, related_name='user_groups')
+
+    def _str_(self):
+        return str(self.first_name + " " + self.last_name)
 
 class EstadoPublicacion(models.Model):
     id_estpub = models.IntegerField(db_column = 'id_estpub', primary_key= True)

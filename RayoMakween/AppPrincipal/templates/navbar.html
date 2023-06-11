@@ -52,11 +52,15 @@
                   >Búsqueda de Mantenciones</a
                 >
               </li>
+              <br>
+              <li class="nav-item">
+                <a class="nav-link active" href="{{'crearTrabajo'}}">Crear Trabajo</a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link active" href="{{'solicitud'}}">Solicitud</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active">Hola {{ user.username | upper }}</a>
+                <a class="nav-link active">Hola {{ user.first_name | upper }}</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="{{ 'logout' }}">Salir</a>

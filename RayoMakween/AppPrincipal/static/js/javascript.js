@@ -4,6 +4,8 @@ $(document).ready(function(){
   $("#btnRegistrarId").attr('disabled', true)
 });
 
+/*------------ Validacion para registro -----------------*/
+
 /*validar rut*/
 $("#rutId, #dvrutId").keyup(function() {
   var rut = $("#rutId").val().replace(/\./g, '');
@@ -238,7 +240,7 @@ $("#RepId").keyup(function(){
   }
 });
 
-/* En Index */
+/* ------------------- Validación de Formulario de Contacto ---------------------*/
 $(document).ready(function(){
   $("#enviarContactoId").attr('disabled', true);
 });
@@ -290,40 +292,156 @@ $("#TelId").keyup(function() {
   }
 });
 
-/*
+/* -------------- Validacion de Formulario de solicitud -------------- */
+var vfecha = false, vdescripcion = false
+/* Deshabilitando botón */
+$(document).ready(function(){
+  $("#enviarId").attr('disabled',true)
+});
 
-validar contraseña y repetir contraseña
-  $(document).ready(function() {
-    $('#passId').keyup(function() {
-      var password = $('#passId').val();
-      var confirmPassword = $('#confirmPasswordId').val();
-  
-      if (validatePassword(password)) {
-        $('#passid').text('Contraseña válida.');
-      } else {
-        $('#passid').text('Contraseña inválida. Asegúrate de incluir al menos una letra mayúscula, dos números y un carácter especial.');
-      }
-  
-      if (password === confirmPassword) {
-        $('#confirmMessage').text('Las contraseñas coinciden.');
-      } else {
-        $('#confirmMessage').text('Las contraseñas no coinciden.');
-      }
-    });
-  
-    $('#RepId').keyup(function() {
-      var password = $('#passId').val();
-      var confirmPassword = $('#RepId').val();
-  
-      if (password === confirmPassword) {
-        $('#repId').text('Las contraseñas coinciden.');
-      } else {
-        $('#repId').text('Las contraseñas no coinciden.');
-      }
-    });
-  
-    function validatePassword(password) {
-      var passwordRegex = /^(?=.*[A-Z])(?=.*\d.*\d)(?=.*[$@#&!]).{8,}$/;
-      return passwordRegex.test(password);
-    }
-  });*/
+/* Validando Fecha válida */
+
+$("#fechaId").change(function(){
+  var fecha = $("#fechaId").val();
+  const dia = new Date();
+  const fecha2 = new Date(fecha);
+ 
+  if(fecha2 < dia){
+    $("#mensajeFechaId").text("Debes seleccionar una fecha adecuada");
+        vfecha = false;
+  }else{
+    $("#mensajeFechaId").text("Ingreso correcto");
+        vfecha = true;
+  }
+
+  if(vfecha && vdescripcion){
+    $("#enviarId").attr('disabled',false)
+  }else{
+    $("#enviarId").attr('disabled',true)
+  }
+});
+
+
+/* Validando descripción de mínimo 20 caractéres y máximo 500*/
+$("#descripcionId").keyup(function(){
+  var largo = $("#descripcionId").val().length
+
+  if(largo < 20 || largo > 500){
+    $("#mensajeDescripcionId").text("Tiene que ingresar al menos una descripción de 20 caracteres")
+    vdescripcion = false
+  }else{
+    $("#mensajeDescripcionId").text("Descripción mínima completada")
+    vdescripcion = true
+  }
+
+  if(vfecha && vdescripcion){
+    $("#enviarId").attr('disabled',false)
+  }else{
+    $("#enviarId").attr('disabled',true)
+  }
+});
+
+/* -------------- Validacion de Formulario de Crear Trabajo/Publicación -------------- */
+var vdescripcion = false, vtitulo = false, vdiagnostico = false, vcategoriatrabajo = false, vfoto = false
+/* Deshabilitando botón */
+$(document).ready(function(){
+  $("#publicarId").attr('disabled',true)
+});
+
+/* Validando título del/la trabajo/publicación */
+$("#tituloId").keyup(function(){
+  var largo = $("#tituloId").val().length
+  var patroncaracteres = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/
+  var caracteres = $("#tituloId").val()
+
+  if(largo < 20 || largo > 80){
+    $("#mensajeTituloId").text('El largo mínimo es de 20 caractéres y el máximo de 80')
+    vtitulo = false
+  }else if(!patroncaracteres.test(caracteres)){
+    $("#mensajeTituloId").text('Sólo puede ingresar letras y números')
+    vtitulo = false
+  }else{
+    $("#mensajeTituloId").text('Ingreso correcto')
+    vtitulo = true
+  }
+
+  if(vdescripcion && vtitulo && vdiagnostico && vcategoriatrabajo && vfoto){
+    $("#publicarId").attr('disabled',false)
+  }else{
+    $("#publicarId").attr('disabled',true)
+  }
+});
+
+/* Validando diagnóstico de mínimo 50 caractéres y máximo 500*/
+$("#diagId").keyup(function(){
+  var largo = $("#diagId").val().length
+
+  if(largo < 50 || largo > 500){
+    $("#mensajeDiagnosticoTrabajoId").text("Tiene que ingresar al menos un diagnóstico de 50 caracteres")
+    vdiagnostico = false
+  }else{
+    $("#mensajeDiagnosticoTrabajoId").text("Diagnóstico mínimo completado")
+    vdiagnostico = true
+  }
+
+  if(vdescripcion && vtitulo && vdiagnostico && vcategoriatrabajo && vfoto){
+    $("#publicarId").attr('disabled',false)
+  }else{
+    $("#publicarId").attr('disabled',true)
+  }
+});
+
+/* Validando descripción de mínimo 100 caractéres y máximo 1000*/
+$("#DesId").keyup(function(){
+  var largo = $("#DesId").val().length
+
+  if(largo < 100 || largo > 1000){
+    $("#mensajeDescripcionTrabajoId").text("Tiene que ingresar al menos una descripción de 100 caracteres")
+    vdescripcion = false
+  }else{
+    $("#mensajeDescripcionTrabajoId").text("Descripción mínima completada")
+    vdescripcion = true
+  }
+
+  if(vdescripcion && vtitulo && vdiagnostico && vcategoriatrabajo && vfoto){
+    $("#publicarId").attr('disabled',false)
+  }else{
+    $("#publicarId").attr('disabled',true)
+  }
+});
+
+/* Validando cantidad de fotos */ 
+$('#formFile').on('change', function() {
+  var files = $(this)[0].files;
+  if (files.length > 6) {
+      $("#mensajeFotosTrabajoId").text('Sólo se permiten como máximo 6 fotos')
+      $(this).val('');
+      vfoto = false
+  }else{
+    $("#mensajeFotosTrabajoId").text('Ingreso correcto')
+    vfoto = true
+  }
+
+  if(vdescripcion && vtitulo && vdiagnostico && vcategoriatrabajo && vfoto){
+    $("#publicarId").attr('disabled',false)
+  }else{
+    $("#publicarId").attr('disabled',true)
+  }
+});
+
+/* Validando que se elija una categoría de trabajo */
+$("#categoriaId").change(function(){
+  if(this.value == ""){
+    $("#mensajeCategoriaTrabajoId").text('Debe elegir una categoría para el trabajo')
+    vcategoriatrabajo = false
+  }else{
+    $("#mensajeCategoriaTrabajoId").text('Ingreso correcto')
+    vcategoriatrabajo = true
+  }
+
+  if(vdescripcion && vtitulo && vdiagnostico && vcategoriatrabajo && vfoto){
+    $("#publicarId").attr('disabled',false)
+  }else{
+    $("#publicarId").attr('disabled',true)
+  }
+});

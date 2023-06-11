@@ -1,3 +1,27 @@
 {% extends 'navbar.html' %} {% block content %}
-<main></main>
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="motivo">
+                    <br><br>
+                <center><h2>Formulario Revisión de trabajo</h2></center>
+               <br><br>
+                    <center><label for="text" id="MotId">Motivo Revisión:</label></center>
+                    <textarea class="form-control" id="motivoId" rows="3" placeholder="Maximo 500 caracteres" style="height: 100px"></textarea>   
+                <br><br>
+                <center> <label for="text">...</label></center>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Seleccione opción</option>
+                    <option value="1">Aceptar</option>
+                    <option value="2">Rechazar</option>
+                </select>  
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</main>
 {% endblock %}
