@@ -71,14 +71,14 @@ def trabajo(request):
     return (render(request,'trabajo.html'))
 
 # Vistas Mecánico
-@user_passes_test(lambda u: u.groups.filter(name='Mecánico').exists(), login_url='auth_login')
+@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='auth_login')
 def crearTrabajo(request):
     return (render(request,'crear_trabajo.html'))
 
-@user_passes_test(lambda u: u.groups.filter(name='Mecánico').exists(), login_url='auth_login')
+@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='auth_login')
 def cantidadTrabajos(request):
     return (render(request,'ver_cantidad_trabajos.html'))
 
-@user_passes_test(lambda u: u.groups.filter(name='Mecánico').exists(), login_url='auth_login')
+@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='auth_login')
 def estadoPublicacion(request):
     return (render(request,'ver_estado_publicacion.html'))
