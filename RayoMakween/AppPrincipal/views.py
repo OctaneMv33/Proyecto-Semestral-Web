@@ -1,13 +1,28 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import User
-from .forms import RegistrationForm
+from .models import User, Contacto
+from .forms import RegistrationForm, ContactoForm
 
 
 # Create your views here.
 def index(request):
-    return (render(request,'index.html'))
+    if request.method =='POST':
+        form = ContactoForm(request.POST)
+        if form.is_valid():
+            print("Valido")
+            correo = form.cleaned_data['correo']
+            print(correo)
+            telefono = form.cleaned_data['telefono']
+            print(telefono)
+            descripcion = form.cleaned_data['descripcion']
+            print(descripcion)
+            Contacto.objects.create(correo=correo, telefono=telefono, descripcion=descripcion)
+            return redirect('index')
+    else:
+        print("invalido")
+        form = ContactoForm()
+    return(render(request,'index.html'))
 def auth_login(request):
     if  request.method == 'POST':
         username = request.POST['username']
