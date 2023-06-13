@@ -10,17 +10,12 @@ def index(request):
     if request.method =='POST':
         form = ContactoForm(request.POST)
         if form.is_valid():
-            print("Valido")
             correo = form.cleaned_data['correo']
-            print(correo)
             telefono = form.cleaned_data['telefono']
-            print(telefono)
             descripcion = form.cleaned_data['descripcion']
-            print(descripcion)
             Contacto.objects.create(correo=correo, telefono=telefono, descripcion=descripcion)
             return redirect('index')
     else:
-        print("invalido")
         form = ContactoForm()
     return(render(request,'index.html'))
 def auth_login(request):
