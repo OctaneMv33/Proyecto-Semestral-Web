@@ -111,3 +111,11 @@ body{
     margin-top: 2rem;
     margin-bottom: 5rem;
 }
+
+.salir{
+    color: white;
+}
+
+.salir:hover{
+    color: white;
+}

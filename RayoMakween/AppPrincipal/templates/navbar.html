@@ -47,15 +47,13 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="{% url 'auth_register' %}">Registrarse</a>
-
-   
               </li>
               {% endif %}
             </ul>
             {% if request.user.is_authenticated %}
-            <div class="d-flex align-items-center">
-              <span class="nav-link active me">Bienvenido a Taller RayoMakween {{ user.first_name | upper }}</span>
-              <a class="nav-link active" href="{{ 'logout' }}">Salir</a>
+            <div class="collapse navbar-collapse justify-content-end">
+              <span class="nav-item active">Bienvenido a Taller RayoMakween {{ user.first_name | upper }}</span>
+              <a class="nav-link active salir" href="{{ 'logout' }}">Salir</a>
             </div>
             {% endif %}
             <form class="d-flex ms-auto">
