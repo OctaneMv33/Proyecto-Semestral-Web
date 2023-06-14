@@ -1,35 +1,68 @@
 {% extends 'navbar.html' %} {% block content %}
 <main>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <div class="trabajo">
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <img src="../static/img/otomotiv-elektronigi-testleri.jpg" class="d-block w-100" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="../static/img/rotulas-de-coche-todo-lo-que-hay-que-saber.jpg" class="d-block w-100" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="../static/img/Depositphotos_122146942_small.jpg" class="d-block w-100" alt="...">
-                          </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
-                        </button>
+  <div class="cuerpo">
+    <div class="row">
+        <div class="col-md-2"></div>
+        
+        <div class="col-md-8">
+            <br>
+            <div class="carrusel">
+               <center> <h1>Galeria de imagenes</h1></center>
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                     <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="https://cdn.autobild.es/sites/navi.axelspringer.es/public/media/image/2022/08/taller-mecanico-2775341.jpg" class="d-block w-100" alt="...">
                       </div>
-                </div>
+                      <div class="carousel-item">
+                        <img src="https://talleresmulticar.com/wp-content/uploads/2021/07/Talleres-meca%CC%81nicos-cerca-de-ti.jpeg" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://www.autoavance.co/wp-content/uploads/2021/10/organizar-taller-mecanico.jpeg" class="d-block w-100" alt="...">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
             </div>
-            <div class="col-md-3"></div>
+            <br>
+            <div class="publicacion">
+              <div class="card">
+                <center><div class="card-body" style="color: black;">
+                  Trabajo realizado por Mecanico: 'Juan Perez', fecha: 22/05/2023, categoria: Direccion del vehiculo
+                 </div></center>
+              </div>
+                <br>
+                <textarea name="Diagnostico" id="diagnosticoId" cols="40" rows="10" class="form-control">
+                  <h3>Diagnostico:</h3>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, minus maiores? Nisi, vitae at laborum non fugit, saepe cum porro omnis dolore numquam est! Quam eligendi repellendus blanditiis iste saepe!
+                </textarea>
+                <br>
+                <textarea name="Descripcion" id="descripcionId" cols="40" rows="10" class="form-control">
+                  <h3>Descripcion:</h3>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, a accusamus. Magnam eius qui doloremque beatae adipisci possimus soluta voluptatem neque alias quis, natus aperiam rerum, explicabo, non ex amet!
+                </textarea>
+                <br>
+                <textarea name="Materiales" id="materialesId" cols="40" rows="10" class="form-control">
+                  <h3>Materiales:</h3>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero optio rerum amet perspiciatis saepe vero sed quidem quis voluptates quasi quia rem fugiat nesciunt dolor nihil blanditiis, omnis a obcaecati!
+                </textarea>
+            </div>
+        </div>
+        </div>
+        <div class="col-md-2">
+            
         </div>
     </div>
 </main>
+<br><br><br>
+<footer>
+
+</footer>
+<br><br><br>
 {% endblock %}
