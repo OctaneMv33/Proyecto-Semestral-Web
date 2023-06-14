@@ -142,10 +142,8 @@ a{
     margin-bottom: 5rem;
 }
 
-{
-    width: 100% ;
-    height: 500px;
-    border-radius: 5%;
 
-}
+.carousel-item-img {
+    border-radius: 10%;
+  }
 
