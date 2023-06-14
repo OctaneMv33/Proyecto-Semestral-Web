@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import User, Contacto
-from .forms import RegistrationForm, ContactoForm
-
+from .models import User, Contacto, CategoriaTrabajo,EstadoPublicacion,Publicacion
+from .forms import RegistrationForm, ContactoForm, PublicacionForm
+import os 
+from django.conf import settings
+from datetime import date
 
 # Create your views here.
 def index(request):
@@ -78,13 +80,53 @@ def busqueda(request):
 
 @user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='auth_login')
 def trabajo(request):
+    
     return (render(request,'trabajo.html'))
 
 # Vistas Mecánico
 @user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='index')
 def crearTrabajo(request):
-    return (render(request,'crear_trabajo.html'))
+    data = CategoriaTrabajo.objects.all()
+    if request.method == 'POST':
+        user_id = request.user.id
+        id_user= User.objects.get(id=user_id)
+        form = PublicacionForm(request.POST,request.FILES)
+        if form.is_valid():
+            titulo_publicacion = request.POST['titulo_publicacion']
+            descripcion_publicacion = request.POST['descripcion_publicacion']
+            diagnostico_publicacion = request.POST['diagnostico_publicacion']
+            id_categoria = request.POST['id_categoria']
+            print(id_categoria)
+            imagenes = request.FILES['imagenes']
+            # Guardar la foto en la carpeta media
+            photo_path = os.path.join(settings.MEDIA_ROOT, imagenes.name)
+            with open(photo_path, 'wb') as file:
+                for chunk in imagenes.chunks():
+                    file.write(chunk)        
+            fecha_hoy = date.today()
+            objCategory = CategoriaTrabajo.objects.get(id_categtrabajo=id_categoria)
+            objState = EstadoPublicacion.objects.get(id_estpub=1) 
+            #OBJSTATE es uno por que el primer ingreso es de rechazado/en revision
+            objPublic = Publicacion.objects.create(
+                titulo_publicacion=titulo_publicacion,
+                descripcion_publicacion=descripcion_publicacion,
+                diagnostico_publicacion=diagnostico_publicacion,
+                id_categoria=objCategory,
+                fecha_publicacion=fecha_hoy,
+                id_user=id_user,
+                id_estpub=objState
+            )
 
+            objPublic.save()
+            for i, imagen in enumerate(request.FILES.getlist('imagenes')):
+                setattr(objPublic, f'foto{i+1}', imagen)
+            
+            # Guarda la instancia de Publicacion nuevamente para guardar las imágenes
+            objPublic.save()
+            return redirect('index')
+        else:
+            print(form.errors)
+    return render(request, 'crear_trabajo.html', {'data': data})
 @user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
 def cantidadTrabajos(request):
     return (render(request,'ver_cantidad_trabajos.html'))

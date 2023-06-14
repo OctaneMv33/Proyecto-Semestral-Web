@@ -433,7 +433,7 @@ $('#formFile').on('change', function() {
 $("#categoriaId").change(function(){
   if(this.value == ""){
     $("#mensajeCategoriaTrabajoId").text('Debe elegir una categoría para el trabajo')
-    vcategoriatrabajo = false
+    vcategoriatrabajo = true
   }else{
     $("#mensajeCategoriaTrabajoId").text('Ingreso correcto')
     vcategoriatrabajo = true

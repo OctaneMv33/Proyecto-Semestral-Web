@@ -2,7 +2,7 @@ from django import forms
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import Group
-from .models import User, Contacto
+from .models import User, Contacto, Publicacion, CategoriaTrabajo
 
 
 class RegistrationForm(forms.Form):
@@ -34,4 +34,12 @@ class ContactoForm(forms.Form):
     correo = forms.EmailField()
     telefono = forms.IntegerField()
     descripcion = forms.CharField(max_length=500)
+
+class PublicacionForm(forms.Form):
+    titulo_publicacion = forms.CharField(max_length=100)
+    diagnostico_publicacion = forms.CharField(max_length=500)
+    descripcion_publicacion = forms.CharField(max_length=1000)
+    imagenes = forms.ImageField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=True)
+    id_categoria = forms.ModelChoiceField(queryset=CategoriaTrabajo.objects.all())
+
     
