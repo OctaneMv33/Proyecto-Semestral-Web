@@ -42,3 +42,21 @@ class Contacto(models.Model):
 
     def _str_(self):
         return str(self.correo + self.telefono)
+    
+class Publicacion(models.Model):
+    id_publicacion = models.AutoField(db_column = 'id_publicacion', primary_key = True)
+    titulo_publicacion = models.CharField(db_column = 'titulo_publicacion', max_length = 80, null=False, blank=False)
+    diagnostico_publicacion = models.CharField(db_column = 'diagnostico_publicacion', max_length = 500, null=False, blank=False)
+    fecha_publicacion = models.DateField(db_column='fecha_publicacion', null=False, blank=False)
+    descripcion_publicacion = models.CharField(db_column = 'descripcion_publicacion', max_length = 1000, null=False, blank=False)
+    foto1 = models.ImageField(db_column='foto1', null=False, blank=False)
+    foto2 = models.ImageField(db_column='foto2', null=True, blank=True)
+    foto3 = models.ImageField(db_column='foto3', null=True, blank=True)
+    foto4 = models.ImageField(db_column='foto4', null=True, blank=True)
+    foto5 = models.ImageField(db_column='foto5', null=True, blank=True)
+    foto6 = models.ImageField(db_column='foto6', null=True, blank=True)
+    fecha_revision = models.DateField(db_column='fecha_revision', null=True, blank=True)
+    motivo_rechazo = models.CharField(db_column = 'motivo_rechazo', max_length = 500, null=True, blank=True)
+    id_categoria = models.ForeignKey(CategoriaTrabajo, db_column='id_categoria', on_delete=models.CASCADE)
+    id_estpub = models.ForeignKey(EstadoPublicacion, db_column='id_estpub', on_delete=models.CASCADE)
+    id_user = models.ForeignKey(User, db_column='id_user', on_delete=models.CASCADE)

@@ -20,66 +20,79 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="{{'index'}}">
-            <img src="../static/img/disneys-cars-lightning-mcqueen-logo-6C17AB748F-seeklogo.com.png" alt="" width="65px" height="40px" />
+            <img
+              src="../static/img/disneys-cars-lightning-mcqueen-logo-6C17AB748F-seeklogo.com.png"
+              alt=""
+              width="65px"
+              height="40px"
+            />
           </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" href="{{'index'}}">Inicio</a>
+              </li>
               {% if request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{'busqueda'}}">Búsqueda de Mantenciones</a>
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="{{'busqueda'}}"
+                  >Búsqueda de Mantenciones</a
+                >
               </li>
+              <br>
               <li class="nav-item">
                 <a class="nav-link active" href="{{'crearTrabajo'}}">Crear Trabajo</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="{{'solicitud'}}">Solicitud</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link active">Hola {{ user.first_name | upper }}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ 'logout' }}">Salir</a>
+              </li>
               {% else %}
               <li class="nav-item">
-                <a class="nav-link active" href="{{'index'}}">Inicio</a>
+                <a class="nav-link active" href="{{'auth_login'}}"
+                  >Iniciar sesión</a
+                >
               </li>
               <li class="nav-item">
-
-                <a class="nav-link active me-2" href="{{'auth_login'}}">Iniciar sesión</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="{% url 'auth_register' %}">Registrarse</a>
+                <a href="{% url 'auth_register' %}" class="nav-link active"
+                  >Registrarse</a
+                >
               </li>
               {% endif %}
             </ul>
-            {% if request.user.is_authenticated %}
-            <div class="collapse navbar-collapse justify-content-end">
-              <span class="nav-item active">Bienvenido a Taller RayoMakween {{ user.first_name | upper }}</span>
-              <a class="nav-link active salir" href="{{ 'logout' }}">Salir</a>
-            </div>
-            {% endif %}
-            <form class="d-flex ms-auto">
-              <input class="form-control me-2" type="search" placeholder="Ej: Frenos" aria-label="Buscar" />
-              <button class="btn btn-outline-light" type="submit">Buscar</button>
+            <form class="d-flex">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Ej: Frenos"
+                aria-label="Buscar"
+              />
+              <button class="btn btn-outline-light" type="submit">
+                Buscar
+              </button>
             </form>
           </div>
         </div>
       </nav>
     </header>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
-  
     {% block content %}{% endblock %}
 
     <!--JQuery-->
