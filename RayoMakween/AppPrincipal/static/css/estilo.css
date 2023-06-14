@@ -129,7 +129,7 @@ a{
 }
 
 
-.container1{
+.publicacion{
     background-color: 	#931f1f;
     width: auto;
     height: auto;
@@ -142,4 +142,8 @@ a{
     margin-bottom: 5rem;
 }
 
-.trabajo{}
+
+.carousel-item-img {
+    border-radius: 10%;
+  }
+
