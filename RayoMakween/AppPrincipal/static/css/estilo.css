@@ -5,6 +5,10 @@ body{
     background-position-x: center;
     color: white; /*letras*/
 }
+a{
+    color: white;
+    text-decoration: none;
+}
 
 .cuadro-login{
     margin-top: 3rem;
@@ -111,3 +115,37 @@ body{
     margin-top: 2rem;
     margin-bottom: 5rem;
 }
+
+.salir{
+    color: white;
+}
+
+.salir:hover{
+    color: white;
+}
+
+.xd{
+    color: wheat;
+}
+
+
+.publicacion{
+    background-color: 	#931f1f;
+    width: auto;
+    height: auto;
+    padding: 3rem;
+    box-sizing: border-box;
+    border: solid rgb(0, 0, 0) 5px;
+    border-radius: 5%;
+    padding-bottom: 10rem;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+{
+    width: 100% ;
+    height: 500px;
+    border-radius: 5%;
+
+}
+

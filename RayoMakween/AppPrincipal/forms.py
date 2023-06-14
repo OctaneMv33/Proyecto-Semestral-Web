@@ -2,7 +2,7 @@ from django import forms
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import Group
-from .models import User
+from .models import User, Contacto
 
 
 class RegistrationForm(forms.Form):
@@ -29,3 +29,9 @@ def assign_default_group(sender, instance, created, **kwargs):
     if created:
         group = Group.objects.get(name='Cliente')  # Nombre del grupo por defecto
         instance.groups.add(group)
+
+class ContactoForm(forms.Form):
+    correo = forms.EmailField()
+    telefono = forms.IntegerField()
+    descripcion = forms.CharField(max_length=500)
+    

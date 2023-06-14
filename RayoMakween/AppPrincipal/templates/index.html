@@ -1,4 +1,37 @@
 {% extends 'navbar.html' %} {% block content %}
+<!-- Inicio sidebar -->
+<div class="flex-shrink-0 p-1 text-white bg-dark " style="width: 280px;">
+  <ul class="list-unstyled ps-0">
+    <li class="mb-1">
+      <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+        Mecanicos
+      </button>
+      <div class="collapse show" id="home-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="#" class="rounded">Overview</a></li>
+          <li><a href="#" class="rounded">Updates</a></li>
+          <li><a href="#" class="rounded">Reports</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="border-top my-3"></li>
+    <li class="mb-1">
+      
+      <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+        Dashboard
+      </button>
+      <div class="collapse" id="dashboard-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="#" class="rounded">Overview</a></li>
+          <li><a href="#" class="rounded">Weekly</a></li>
+          <li><a href="#" class="rounded">Monthly</a></li>
+          <li><a href="#" class="rounded">Annually</a></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>
+<!-- fin sidebar -->
 <br><br><br>
 <main>
   <div class="container-fluid">
@@ -33,6 +66,7 @@
             ></button>
           </div>
           <div class="carousel-inner">
+            <a href="{% url 'trabajo' %}">
             <div class="carousel-item active">
               <img
                 src="../static/img/car-electrical-system-repair-1-360x240.jpg"
@@ -49,6 +83,7 @@
                 </p>
               </div>
             </div>
+          </a>
             <div class="carousel-item">
               <img
                 src="../static/img/fallos-direccion-por-suspencion.jpg"
@@ -108,13 +143,15 @@
 </main>
 <br /><br /><br />
 <footer>
+  <!-- Formulario contacto -->
   <div class="container">
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-10">
         <div class="cuadro-form">
           <center><h1>Formulario de Contacto</h1></center>
-          <form action="">
+          <form action="" method="POST" autocomplete="off">
+            {% csrf_token %}
             <label for="correoId">Ingrese su correo</label>
             <input
               type="email"

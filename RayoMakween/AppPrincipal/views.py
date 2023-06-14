@@ -1,13 +1,23 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import User
-from .forms import RegistrationForm
+from .models import User, Contacto
+from .forms import RegistrationForm, ContactoForm
 
 
 # Create your views here.
 def index(request):
-    return (render(request,'index.html'))
+    if request.method =='POST':
+        form = ContactoForm(request.POST)
+        if form.is_valid():
+            correo = form.cleaned_data['correo']
+            telefono = form.cleaned_data['telefono']
+            descripcion = form.cleaned_data['descripcion']
+            Contacto.objects.create(correo=correo, telefono=telefono, descripcion=descripcion)
+            return redirect('index')
+    else:
+        form = ContactoForm()
+    return(render(request,'index.html'))
 def auth_login(request):
     if  request.method == 'POST':
         username = request.POST['username']
@@ -71,14 +81,14 @@ def trabajo(request):
     return (render(request,'trabajo.html'))
 
 # Vistas Mecánico
-@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='auth_login')
+@user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='index')
 def crearTrabajo(request):
     return (render(request,'crear_trabajo.html'))
 
-@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='auth_login')
+@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
 def cantidadTrabajos(request):
     return (render(request,'ver_cantidad_trabajos.html'))
 
-@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='auth_login')
+@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
 def estadoPublicacion(request):
     return (render(request,'ver_estado_publicacion.html'))
