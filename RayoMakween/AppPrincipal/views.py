@@ -6,9 +6,11 @@ from .forms import RegistrationForm, ContactoForm, PublicacionForm
 import os 
 from django.conf import settings
 from datetime import date
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 def index(request):
+    publicaciones = Publicacion.objects.order_by('-id_publicacion')[:2]
     if request.method =='POST':
         form = ContactoForm(request.POST)
         if form.is_valid():
@@ -19,7 +21,7 @@ def index(request):
             return redirect('index')
     else:
         form = ContactoForm()
-    return(render(request,'index.html'))
+    return render(request, 'index.html', {'publicaciones': publicaciones})
 def auth_login(request):
     if  request.method == 'POST':
         username = request.POST['username']
@@ -134,3 +136,12 @@ def cantidadTrabajos(request):
 @user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
 def estadoPublicacion(request):
     return (render(request,'ver_estado_publicacion.html'))
+
+
+def lista_trabajos(request):
+    publicaciones = Publicacion.objects.order_by('-id_publicacion')[:3]
+    return render(request, 'lista_trabajos.html', {'publicaciones': publicaciones})
+
+def detalle_trabajo(request, id_publicacion):
+    publicacion = get_object_or_404(Publicacion, pk=id_publicacion)
+    return render(request, 'detalle_trabajo.html', {'publicacion': publicacion})

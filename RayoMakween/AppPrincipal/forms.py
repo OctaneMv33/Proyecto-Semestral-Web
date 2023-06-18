@@ -3,6 +3,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import Group
 from .models import User, Contacto, Publicacion, CategoriaTrabajo
+from multiupload.fields import MultiFileField
 
 
 class RegistrationForm(forms.Form):
@@ -39,7 +40,7 @@ class PublicacionForm(forms.Form):
     titulo_publicacion = forms.CharField(max_length=100)
     diagnostico_publicacion = forms.CharField(max_length=500)
     descripcion_publicacion = forms.CharField(max_length=1000)
-    imagenes = forms.ImageField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=True)
+    imagenes = MultiFileField(min_num=1, max_num=6, max_file_size=1024*1024*5)
     id_categoria = forms.ModelChoiceField(queryset=CategoriaTrabajo.objects.all())
 
     
