@@ -148,7 +148,15 @@ def lista_trabajos(request):
 
 def detalle_publicacion(request, id_publicacion):
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
-    return render(request, 'detalle_trabajo.html', {'publicacion': publicacion})
+    cantidad_fotos = sum(
+        bool(getattr(publicacion, f"foto{i}")) for i in range(1, 7)
+    )
+    foto_indices = range(1, cantidad_fotos + 1)
+    context = {
+        'publicacion': publicacion,
+        'foto_indices': foto_indices,
+    }
+    return render(request, 'detalle_trabajo.html', context)
 
 @register.filter
 def startswith(value, arg):
