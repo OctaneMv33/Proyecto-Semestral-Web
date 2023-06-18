@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import User, Contacto, CategoriaTrabajo,EstadoPublicacion,Publicacion
+from .models import User, Contacto, CategoriaTrabajo,EstadoPublicacion,Publicacion, Material, PublicacionMaterial
 from .forms import RegistrationForm, ContactoForm, PublicacionForm
 import os 
 from django.conf import settings
@@ -12,8 +12,6 @@ from .templatetags.custom_filters import register
 # Create your views here.
 def index(request):
     publicaciones = Publicacion.objects.order_by('-id_publicacion')[:2]
-    for publicacion in publicaciones:
-        print(publicacion.foto1.url)
     if request.method =='POST':
         form = ContactoForm(request.POST)
         if form.is_valid():
@@ -93,16 +91,31 @@ def trabajo(request):
 @user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='index')
 def crearTrabajo(request):
     data = CategoriaTrabajo.objects.all()
+    categorias = []
+    for index, item in enumerate(data):
+        id_categtrabajo = 1000 + index * 10
+        categorias.append({
+            'id_categtrabajo': id_categtrabajo,
+            'nombre_categtrabajo': item.nombre_categtrabajo
+        })
+    objMaterial = Material.objects.all
+    context = {
+        'data': categorias,
+        'material':objMaterial
+    }
     if request.method == 'POST':
         user_id = request.user.id
         id_user= User.objects.get(id=user_id)
         form = PublicacionForm(request.POST,request.FILES)
         if form.is_valid():
+            materials= request.POST["listaMats"]
             titulo_publicacion = request.POST['titulo_publicacion']
             descripcion_publicacion = request.POST['descripcion_publicacion']
             diagnostico_publicacion = request.POST['diagnostico_publicacion']
             id_categoria = request.POST['id_categoria']
             print(id_categoria)
+            materials = materials.split(sep=',')
+            materials.pop()
             imagenes = request.FILES['imagenes']
             # Guardar la foto en la carpeta media
             photo_path = os.path.join(settings.MEDIA_ROOT, imagenes.name)
@@ -111,7 +124,7 @@ def crearTrabajo(request):
                     file.write(chunk)        
             fecha_hoy = date.today()
             objCategory = CategoriaTrabajo.objects.get(id_categtrabajo=id_categoria)
-            objState = EstadoPublicacion.objects.get(id_estpub=1) 
+            objState = EstadoPublicacion.objects.get(id_estpub=10) 
             #OBJSTATE es uno por que el primer ingreso es de rechazado/en revision
             objPublic = Publicacion.objects.create(
                 titulo_publicacion=titulo_publicacion,
@@ -122,8 +135,14 @@ def crearTrabajo(request):
                 id_user=id_user,
                 id_estpub=objState
             )
-
             objPublic.save()
+            for i in materials:
+                objMater = Material.objects.get(id_material = i)
+                objPublicMat = PublicacionMaterial.objects.create(
+                    id_publicacion = objPublic,
+                    id_material = objMater
+                )
+                objPublicMat.save()
             for i, imagen in enumerate(request.FILES.getlist('imagenes')):
                 setattr(objPublic, f'foto{i+1}', imagen)
             
@@ -132,7 +151,7 @@ def crearTrabajo(request):
             return redirect('index')
         else:
             print(form.errors)
-    return render(request, 'crear_trabajo.html', {'data': data})
+    return render(request, 'crear_trabajo.html', context)
 @user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
 def cantidadTrabajos(request):
     return (render(request,'ver_cantidad_trabajos.html'))

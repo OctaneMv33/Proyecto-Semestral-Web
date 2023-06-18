@@ -57,13 +57,62 @@
             <label for="text">Categoria trabajo</label>
             <select class="form-select" name="id_categoria" id="categoriaId">
               <option value="">Categoria de trabajo:</option>
-              {% if data %} {% for i in data %}
-              <option value="{{i.id_categtrabajo}}">
-                {{i.nombre_categtrabajo}}
-              </option>
-              {% endfor %} {% endif %}
+              {% if data %}
+                {% for i in data %}
+                <option value="{{ i.id_categtrabajo }}">
+                {{ i.nombre_categtrabajo }}
+                </option>
+                {% endfor %}
+              {% endif %}
             </select>
             <div id="mensajeCategoriaTrabajoId" style="color: white"></div>
+            <br />
+            <!-- Material -->
+            <div class="row">
+            <div class="col-6">
+              <h5 class="">Escoger Material(es)</h5>
+              <select id="MaterialesID" class="w-100 linea3 form-select">
+                <optgroup label="Material" id="MaterialID1">
+                  {% for i in material %}
+                  <option value="{{i.id_material}}">
+                    Material: {{i.nombre_material}}
+                  </option>
+                  {% endfor %}
+                </optgroup>
+              </select>
+              <br />
+              <br />
+              <button
+                type="button"
+                id="agregarID"
+                class="w-100 bordeRedondeado fondo2 titulo-arriendo"
+              >
+                Agregar
+              </button>
+            </div>
+            <div class="col-6">
+              <h5 class="">Material/es Seleccionado/s</h5>
+              <select id="eliminadoID" class="linea3 w-100 form-select">
+                <optgroup label="Material" id="MaterialID2"></optgroup>
+              </select>
+              <textarea
+                name="listaMats"
+                hidden
+                id="ocultoID"
+                cols="30"
+                rows="1"
+              ></textarea>
+              <br />
+              <br />
+              <button
+                type="button"
+                id="eliminarID"
+                class="w-100 bordeRedondeado fondo2 titulo-arriendo"
+              >
+                Eliminar
+              </button>
+            </div>
+          </div>
             <br />
             <center>
               <button type="submit" id="publicarId" class="btn btn-success">

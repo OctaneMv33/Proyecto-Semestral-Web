@@ -71,3 +71,11 @@ class Publicacion(models.Model):
             if isinstance(field, ImageField):
                 fields.append(field)
         return fields
+
+class PublicacionMaterial(models.Model):
+    id_publicacion = models.ForeignKey('Publicacion',on_delete=models.CASCADE)
+    id_material = models.ForeignKey('Material',on_delete=models.CASCADE)
+
+    def __str__(self):
+        msn = f"{self.id_publicacion} {self.id_material}"
+        return str(msn)
