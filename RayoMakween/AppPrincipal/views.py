@@ -107,7 +107,7 @@ def crearTrabajo(request):
                     file.write(chunk)        
             fecha_hoy = date.today()
             objCategory = CategoriaTrabajo.objects.get(id_categtrabajo=id_categoria)
-            objState = EstadoPublicacion.objects.get(id_estpub=1) 
+            objState = EstadoPublicacion.objects.get(id_estpub=10) 
             #OBJSTATE es uno por que el primer ingreso es de rechazado/en revision
             objPublic = Publicacion.objects.create(
                 titulo_publicacion=titulo_publicacion,
