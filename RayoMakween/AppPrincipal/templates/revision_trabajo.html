@@ -6,18 +6,23 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div class="motivo">
-                    <br><br>
+                <br><br>
                 <center><h2>Formulario Revisión de trabajo</h2></center>
                <br><br>
-                    <center><label for="text" id="MotId">Motivo Revisión:</label></center>
-                    <textarea class="form-control" id="motivoId" rows="3" placeholder="Maximo 500 caracteres" style="height: 100px"></textarea>   
-                <br><br>
-                <center> <label for="text">Seleccione casilla de revisión</label></center>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Seleccione opción</option>
-                    <option value="1">Aceptar</option>
-                    <option value="2">Rechazar</option>
-                </select>  
+                    <form action="" method="POST">
+                        <label for="text" id="MotId">Motivo Revisión:</label>
+                        <textarea class="form-control" id="motivoId" rows="3" placeholder="Maximo 500 caracteres" style="height: 100px"></textarea>   
+                    <br><br>
+                    <label for="text">Seleccione casilla de revisión</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option value="">Seleccione opción</option>
+                        {% for estpub in estados_publicacion %}
+                            <option value="{{estpub.id_estpub}}">{{estpub.nombre_estpub}}</option>
+                        {% endfor %}
+                    </select>  
+                    <br><br>
+                    <center><button type="submit" class="btn btn-success">Enviar revisión</button></center>    
+                    </form>
                 </div>
             </div>
             <div class="col-md-3"></div>

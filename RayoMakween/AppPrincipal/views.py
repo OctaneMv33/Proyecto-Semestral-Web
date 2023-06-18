@@ -64,7 +64,8 @@ def auth_register(request):
 
 
 def revisionTrabajo(request):
-    return (render(request,'revision_trabajo.html'))
+    estados_publicacion = EstadoPublicacion.objects.all()
+    return (render(request,'revision_trabajo.html', {'estados_publicacion' : estados_publicacion}))
 
 @login_required
 def exit(request):
