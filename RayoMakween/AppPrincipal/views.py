@@ -7,6 +7,7 @@ import os
 from django.conf import settings
 from datetime import date
 from django.shortcuts import render, get_object_or_404
+from .templatetags.custom_filters import register
 
 # Create your views here.
 def index(request):
@@ -148,3 +149,7 @@ def lista_trabajos(request):
 def detalle_publicacion(request, id_publicacion):
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
     return render(request, 'detalle_trabajo.html', {'publicacion': publicacion})
+
+@register.filter
+def startswith(value, arg):
+    return value.startswith(arg)

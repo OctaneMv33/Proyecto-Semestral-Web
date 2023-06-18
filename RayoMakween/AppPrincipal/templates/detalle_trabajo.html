@@ -1,47 +1,26 @@
-{% extends 'navbar.html' %} {% block content %}
+{% extends 'navbar.html' %} {% block content %} {% load custom_filters %}
 <main>
   <div class="container">
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <br />
-
         <div
           id="carouselExampleControls"
           class="carousel slide"
           data-bs-ride="carousel"
         >
           <div class="carousel-inner" style="border-radius: 10px">
-            <div class="carousel-item active">
-              <img
-                src="../static/img/Electrica-y-electronica-automotriz.jpg"
-                class="d-block w-100"
-                alt="..."
-                width="500px"
-                height="500px"
-                style="border-radius: 10px"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                src="../static/img/UJZINPOISFHQJLY4VXFQPLWI3A.jpg"
-                class="d-block w-100"
-                alt="..."
-                width="500px"
-                height="500px"
-                style="border-radius: 10px"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                src="../static/img/Electricidad-Automotriz-SIED-A-768x432.jpg"
-                class="d-block w-100"
-                alt="..."
-                width="500px"
-                height="500px"
-                style="border-radius: 10px"
-              />
-            </div>
+            {% for field in publicacion.get_image_fields %}
+    {% with field_value=field.value %}
+      {% if field_value %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <img src="{{ field_value.url }}" class="d-block w-100" alt="..." />
+          <p>{{ field_value.url }}</p>
+        </div>
+      {% endif %}
+    {% endwith %}
+  {% endfor %}
           </div>
           <button
             class="carousel-control-prev"
@@ -62,8 +41,12 @@
             <span class="visually-hidden">Next</span>
           </button>
         </div>
-
+        </div>
+        <div class="col-md-2"></div>
         <br />
+        <div class="row"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
         <div class="publicacion">
           <div class="card">
             <center>
@@ -111,7 +94,9 @@
           >
         </div>
       </div>
-      <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+    </div>
+      </div>
     </div>
   </div>
 </main>

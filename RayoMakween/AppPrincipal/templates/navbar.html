@@ -19,7 +19,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{{'index'}}">
+          <a class="navbar-brand" href="{% url 'index' %}">
             <img
               src="../static/img/disneys-cars-lightning-mcqueen-logo-6C17AB748F-seeklogo.com.png"
               alt=""
@@ -41,25 +41,25 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="{{'index'}}">Inicio</a>
+                <a class="nav-link active" href="{% url 'index' %}">Inicio</a>
               </li>
               {% if request.user.is_authenticated %}
               <li class="nav-item">
                 <a
                   class="nav-link active"
                   aria-current="page"
-                  href="{{'busqueda'}}"
+                  href="{% url 'busqueda' %}"
                   >Búsqueda de Mantenciones</a
                 >
               </li>
               <br />
               <li class="nav-item">
-                <a class="nav-link active" href="{{'crearTrabajo'}}"
+                <a class="nav-link active" href="{% url 'crearTrabajo' %}"
                   >Crear Trabajo</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="{{'solicitud'}}">Solicitud</a>
+                <a class="nav-link active" href="{% url 'solicitud' %}">Solicitud</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active"
@@ -67,7 +67,7 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="{{ 'logout' }}">Salir</a>
+                <a class="nav-link active" href="{% url 'logout' %}">Salir</a>
               </li>
               {% else %}
               <li class="nav-item">

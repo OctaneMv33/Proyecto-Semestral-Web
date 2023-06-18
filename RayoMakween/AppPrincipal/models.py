@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group
+from django.db.models import ImageField
 
 # Create your models here.
 class User(AbstractUser):
@@ -63,3 +64,10 @@ class Publicacion(models.Model):
 
     def __str__(self):
         return f"{self.titulo_publicacion} {self.id_user.username} {self.id_categoria.nombre_categtrabajo} {self.id_estpub.nombre_estpub}"
+    
+    def get_image_fields(self):
+        fields = []
+        for field in self._meta.fields:
+            if isinstance(field, ImageField):
+                fields.append(field)
+        return fields
