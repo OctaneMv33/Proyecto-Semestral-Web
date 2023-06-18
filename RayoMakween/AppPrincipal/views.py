@@ -10,6 +10,7 @@ from django.shortcuts import render, get_object_or_404
 from .templatetags.custom_filters import register
 
 # Create your views here.
+#Index
 def index(request):
     publicaciones = Publicacion.objects.order_by('-id_publicacion')[:2]
     if request.method =='POST':
@@ -23,6 +24,7 @@ def index(request):
     else:
         form = ContactoForm()
     return render(request, 'index.html', {'publicaciones': publicaciones})
+#Login de Usuario
 def auth_login(request):
     if  request.method == 'POST':
         username = request.POST['username']
@@ -36,6 +38,7 @@ def auth_login(request):
             return render(request, 'login.html', {'error_message': error_message})
     else:
         return(render(request,'login.html'))
+#Registro de Usuario
 def auth_register(request):
     if request.method=='POST':
         form = RegistrationForm(request.POST)
@@ -63,7 +66,8 @@ def auth_register(request):
         form = RegistrationForm()
     return(render(request,'registro.html'))
 
-
+#Vista Admin
+#Revision para aprovar o rechazar
 def revisionTrabajo(request, id_publicacion):
     estados_publicacion = EstadoPublicacion.objects.all()
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
@@ -98,6 +102,7 @@ def trabajo(request):
     return (render(request,'trabajo.html'))
 
 # Vistas Mecánico
+# Crear Trabajo
 @user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='index')
 def crearTrabajo(request):
     data = CategoriaTrabajo.objects.all()
@@ -170,11 +175,11 @@ def cantidadTrabajos(request):
 def estadoPublicacion(request):
     return (render(request,'ver_estado_publicacion.html'))
 
-
+#Listado de busqueda
 def lista_trabajos(request):
     publicaciones = Publicacion.objects.order_by('-id_publicacion')[:2]
     return render(request, 'lista_trabajos.html', {'publicaciones': publicaciones})
-
+# Revision aprobada
 def detalle_publicacion(request, id_publicacion):
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
     cantidad_fotos = sum(
