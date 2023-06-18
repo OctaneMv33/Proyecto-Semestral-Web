@@ -142,7 +142,7 @@ def estadoPublicacion(request):
 
 
 def lista_trabajos(request):
-    publicaciones = Publicacion.objects.order_by('-id_publicacion')[:3]
+    publicaciones = Publicacion.objects.order_by('-id_publicacion')[:2]
     return render(request, 'lista_trabajos.html', {'publicaciones': publicaciones})
 
 def detalle_trabajo(request, id_publicacion):
