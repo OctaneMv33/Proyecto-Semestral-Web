@@ -135,7 +135,7 @@ LOGOUT_REDIRECT_URL = 'index'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Directorio donde se guardarán los archivos cargados
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'appPrincipal/static/media')
 
 # URL para acceder a los archivos cargados
-MEDIA_URL = '/media/'
+MEDIA_URL = '/appPrincipal/static/media/'

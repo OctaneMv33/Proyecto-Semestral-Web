@@ -11,6 +11,8 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 def index(request):
     publicaciones = Publicacion.objects.order_by('-id_publicacion')[:2]
+    for publicacion in publicaciones:
+        print(publicacion.foto1.url)
     if request.method =='POST':
         form = ContactoForm(request.POST)
         if form.is_valid():

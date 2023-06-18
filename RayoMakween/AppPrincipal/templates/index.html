@@ -15,26 +15,20 @@
           data-bs-ride="carousel"
         >
           <div class="carousel-indicators">
+            {% for publicacion in publicaciones %}
             <button
               type="button"
               data-bs-target="#carouselExampleCaptions"
-              data-bs-slide-to="0"
-              class="active"
-              aria-current="true"
-              aria-label="Slide 1"
+              data-bs-slide-to="{{ forloop.counter0 }}"
+              {%
+              if
+              forloop.first
+              %}class="active"
+              {%
+              endif
+              %}
             ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-            ></button>
+            {% endfor %}
           </div>
           <div class="carousel-inner">
             {% for publicacion in publicaciones %}
@@ -42,7 +36,11 @@
               <a
                 href="{% url 'detalle_publicacion' publicacion.id_publicacion %}"
               >
-                <img src="{{ publicacion.foto1.url }}" alt="Foto Publicación" />
+                <img
+                  src="{{ publicacion.foto1.url }}"
+                  alt="Foto Publicación"
+                  class="d-block w-100"
+                />
                 <div class="carousel-caption d-none d-md-block">
                   <h5>{{ publicacion.titulo_publicacion }}</h5>
                   <p>{{ publicacion.diagnostico_publicacion }}</p>
