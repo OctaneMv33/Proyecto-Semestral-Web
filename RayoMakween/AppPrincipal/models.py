@@ -10,28 +10,28 @@ class User(AbstractUser):
     phone = models.IntegerField(null=True)
     groups = models.ManyToManyField(Group,blank=True, related_name='user_groups')
 
-    def _str_(self):
+    def __str__(self):
         return str(self.first_name + " " + self.last_name)
 
 class EstadoPublicacion(models.Model):
     id_estpub = models.IntegerField(db_column = 'id_estpub', primary_key= True)
     nombre_estpub = models.CharField(db_column = 'nombre_estpub', max_length = 30, blank = False, null = False)
 
-    def _str_(self):
+    def __str__(self):
         return str(self.nombre_estpub)
     
 class CategoriaTrabajo(models.Model):
     id_categtrabajo = models.IntegerField(db_column = 'id_categtrabajo', primary_key = True)
     nombre_categtrabajo = models.CharField(db_column = 'nombre_categtrabajo', max_length = 150, blank = False, null = False)
 
-    def _str_(self):
+    def __str__(self):
         return str(self.nombre_categtrabajo)
 
 class Material(models.Model):
     id_material = models.AutoField(db_column = 'id_material', primary_key = True)
     nombre_material = models.CharField(db_column = 'nombre_material', max_length = 80, blank = False, null = False)
 
-    def _str_(self):
+    def __str__(self):
         return str(self.nombre_material)
     
 class Contacto(models.Model):
@@ -40,7 +40,7 @@ class Contacto(models.Model):
     telefono = models.IntegerField(db_column = 'telefono', blank = False, null = False)
     descripcion = models.CharField(db_column = 'descripcion', max_length = 500, blank = False, null = False)
 
-    def _str_(self):
+    def __str__(self):
         return str(self.correo + self.telefono)
     
 class Publicacion(models.Model):
