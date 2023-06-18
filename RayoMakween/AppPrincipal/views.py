@@ -64,9 +64,19 @@ def auth_register(request):
     return(render(request,'registro.html'))
 
 
-def revisionTrabajo(request):
+def revisionTrabajo(request, id_publicacion):
     estados_publicacion = EstadoPublicacion.objects.all()
-    return (render(request,'revision_trabajo.html', {'estados_publicacion' : estados_publicacion}))
+    publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
+    cantidad_fotos = sum(
+        bool(getattr(publicacion, f"foto{i}")) for i in range(1, 7)
+    )
+    foto_indices = range(1, cantidad_fotos + 1)
+    context = {
+        'publicacion': publicacion,
+        'foto_indices': foto_indices,
+        'estados_publicacion' : estados_publicacion
+    }
+    return (render(request,'revision_trabajo.html', context))
 
 @login_required
 def exit(request):
