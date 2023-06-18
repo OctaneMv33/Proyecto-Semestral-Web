@@ -62,4 +62,4 @@ class Publicacion(models.Model):
     id_user = models.ForeignKey(User, db_column='id_user', on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.titulo_publicacion +' '+ self.id_user +' '+ self.id_categoria +' '+ self.id_estpub)
+        return f"{self.titulo_publicacion} {self.id_user.username} {self.id_categoria.nombre_categtrabajo} {self.id_estpub.nombre_estpub}"
