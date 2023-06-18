@@ -16,7 +16,9 @@
           <div class="carousel-inner" style="border-radius: 10px">
             {% for publicacion in publicaciones %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-              <a href="{% url 'detalle_trabajo' publicacion.id_publicacion %}">
+              <a
+                href="{% url 'detalle_publicacion' publicacion.id_publicacion %}"
+              >
                 <img
                   src="{{ publicacion.foto1.url }}"
                   alt="Foto Publicación"

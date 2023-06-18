@@ -110,7 +110,7 @@ def crearTrabajo(request):
                     file.write(chunk)        
             fecha_hoy = date.today()
             objCategory = CategoriaTrabajo.objects.get(id_categtrabajo=id_categoria)
-            objState = EstadoPublicacion.objects.get(id_estpub=10) 
+            objState = EstadoPublicacion.objects.get(id_estpub=1) 
             #OBJSTATE es uno por que el primer ingreso es de rechazado/en revision
             objPublic = Publicacion.objects.create(
                 titulo_publicacion=titulo_publicacion,
@@ -145,6 +145,6 @@ def lista_trabajos(request):
     publicaciones = Publicacion.objects.order_by('-id_publicacion')[:2]
     return render(request, 'lista_trabajos.html', {'publicaciones': publicaciones})
 
-def detalle_trabajo(request, id_publicacion):
-    publicacion = get_object_or_404(Publicacion, pk=id_publicacion)
+def detalle_publicacion(request, id_publicacion):
+    publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
     return render(request, 'detalle_trabajo.html', {'publicacion': publicacion})

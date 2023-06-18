@@ -1,7 +1,7 @@
 
 from django.urls import path
 from .views import index, auth_login, auth_register, busqueda
-from .views import crearTrabajo, revisionTrabajo, solicitud, trabajo, cantidadTrabajos, estadoPublicacion,exit,lista_trabajos, detalle_trabajo
+from .views import crearTrabajo, revisionTrabajo, solicitud, cantidadTrabajos, estadoPublicacion,exit,lista_trabajos, detalle_publicacion
 
 urlpatterns = [
     path('', index,name='index'),
@@ -13,7 +13,7 @@ urlpatterns = [
     path('revisionTrabajo', revisionTrabajo,name='revisionTrabajo'),
     path('solicitud', solicitud,name='solicitud'),
     path('lista_trabajos', lista_trabajos, name='lista_trabajos'),
-    path('trabajo/<int:id_publicacion>', detalle_trabajo, name='detalle_trabajo'),
+    path('trabajo/<int:id_publicacion>', detalle_publicacion, name='detalle_publicacion'),
     path('cantidadTrabajos', cantidadTrabajos,name='cantidadTrabajos'),
     path('estadoPublicacion', estadoPublicacion,name='estadoPublicacion'),   
     path('logout',exit,name='exit'),
