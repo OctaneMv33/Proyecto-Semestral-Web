@@ -6,8 +6,8 @@
 <main>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
         <div
           id="carouselExampleControls"
           class="carousel slide"
@@ -20,7 +20,7 @@
                 <img
                   src="{{ publicacion.foto1.url }}"
                   alt="Foto Publicación"
-                  class="d-block w-100"
+                  class="d-block w-100 img-fluid"
                 />
                 <div class="carousel-caption d-none d-md-block">
                   <h5>{{ publicacion.titulo_publicacion }}</h5>
@@ -51,7 +51,7 @@
         </div>
         <!-- segundo -->
       </div>
-      <div class="col-md-1"></div>
+      <div class="col-md-3"></div>
     </div>
   </div>
 </main>
