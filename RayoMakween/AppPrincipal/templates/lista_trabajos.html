@@ -6,21 +6,23 @@
       <div class="col-md-12">
         <center><h1 id="tituloBusqueda">Listado de Publicaciones</h1></center>
         <div class="cuadro">
-            {% for publicacion in publicaciones %}
-            <a href="{{ publicacion.foto1.url }}">
+            {% for item in results %}
+            <a href="{% url 'detalle_publicacion' item.id_publicacion %}">
             <div class="trabajo">
                 <img
-                  src="{{ publicacion.foto1.url }}"
+                  src="{{ item.foto1.url }}"
                   width="65px"
                   height="40px"
                   alt=""
                 />
-                Titulo: {{ publicacion.titulo_publicacion }} <br>
-                Trabajo realizado por: {{ publicacion.id_user.first_name}} {{ publicacion.id_user.last_name }},
-                Fecha: {{ publicacion.fecha_publicacion|date:"d/m/Y" }},
-                Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}
+                Titulo: {{ item.titulo_publicacion }} <br>
+                Trabajo realizado por: {{ item.id_user.first_name}} {{ item.id_user.last_name }},
+                Fecha: {{ item.fecha_publicacion|date:"d/m/Y" }},
+                Categoria: {{ item.id_categoria.nombre_categtrabajo }}
               </div>
             </a>
+            {% empty %}
+            <p>No se encontraron resultados</p>
             {% endfor %}
         </div>
       </div>

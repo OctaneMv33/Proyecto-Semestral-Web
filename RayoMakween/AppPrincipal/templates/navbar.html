@@ -82,12 +82,14 @@
               </li>
               {% endif %}
             </ul>
-            <form class="d-flex">
+            <form class="d-flex" action="{% url 'search_results' %}" method="GET">
+              {% csrf_token %}
               <input
                 class="form-control me-2"
                 type="search"
                 placeholder="Ej: Frenos"
                 aria-label="Buscar"
+                name="search_query"
               />
               <button class="btn btn-outline-light" type="submit">
                 Buscar

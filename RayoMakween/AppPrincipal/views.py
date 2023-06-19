@@ -8,6 +8,8 @@ from django.conf import settings
 from datetime import date
 from django.shortcuts import render, get_object_or_404
 from .templatetags.custom_filters import register
+from django.db.models import Q
+from django.views.generic import ListView
 
 # Create your views here.
 #Index
@@ -191,3 +193,32 @@ def detalle_publicacion(request, id_publicacion):
 @register.filter
 def startswith(value, arg):
     return value.startswith(arg)
+
+
+class SearchResultsView(ListView):
+    model = Publicacion
+    template_name = 'lista_trabajos.html'
+    context_object_name = 'results'
+
+    def get_queryset(self):
+        query = self.request.GET.get('search_query')
+        if query:
+            queryset = Publicacion.objects.filter(
+                Q(titulo_publicacion__icontains=query) |
+                Q(diagnostico_publicacion__icontains=query) |
+                Q(descripcion_publicacion__icontains=query) |
+                Q(id_categoria__nombre_categtrabajo__icontains=query) |
+                Q(id_user__first_name__icontains=query) |
+                Q(id_user__last_name__icontains=query)
+            )          
+            return queryset
+        else:
+            return Publicacion.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_results'] = User.objects.filter(
+            Q(first_name__icontains=self.request.GET.get('search_query')) | 
+            Q(last_name__icontains=self.request.GET.get('search_query'))
+        )
+        return context
