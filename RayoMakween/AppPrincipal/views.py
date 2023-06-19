@@ -93,10 +93,6 @@ def solicitud(request):
     return (render(request,'solicitud.html'))
 
 @user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='auth_login')
-def busqueda(request):
-    return (render(request,'busqueda.html'))
-
-@user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='auth_login')
 def trabajo(request):
     
     return (render(request,'trabajo.html'))
@@ -177,7 +173,7 @@ def estadoPublicacion(request):
 
 #Listado de busqueda
 def lista_trabajos(request):
-    publicaciones = Publicacion.objects.order_by('-id_publicacion')[:2]
+    publicaciones = Publicacion.objects.all()
     return render(request, 'lista_trabajos.html', {'publicaciones': publicaciones})
 # Revision aprobada
 def detalle_publicacion(request, id_publicacion):

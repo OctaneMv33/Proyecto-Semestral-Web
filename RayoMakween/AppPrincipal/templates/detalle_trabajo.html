@@ -1,10 +1,9 @@
-{% extends 'navbar.html' %} {% block content %} {% load custom_filters %}
+{% extends 'navbar.html' %} {% block title %}{{ publicacion.titulo_publicacion }}{% endblock %} {% block content %} {% load custom_filters %}
 <main>
   <div class="container">
     <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <br />
+      <div class="col-md-12">
+        <center><h1 id="tituloPublicacion">{{ publicacion.titulo_publicacion }}</h1></center>
         <div
           id="carouselExampleControls"
           class="carousel slide"
@@ -17,8 +16,6 @@
                 src="{{ publicacion.foto1.url }}"
                 class="d-block w-100"
                 alt="..."
-                width="500px"
-                height="500px"
                 style="border-radius: 10px"
               />
             </div>
@@ -68,59 +65,52 @@
           </button>
         </div>
         </div>
-        <div class="col-md-2"></div>
-        <br />
+        <div class="cuadro-detalle">
+          <div class="card-body" style="color:white">
+            <p> Fecha de Publicación: {{ publicacion.fecha_publicacion|date:"d/m/Y" }}, Mecánico a cargo: {{ publicacion.id_user.first_name }} {{ publicacion.id_user.last_name }}, Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}</p>
+          </div>
+        </div>
         <div class="row"></div>
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-        <div class="publicacion">
-          <div class="card">
-            <center>
-              <div class="card-body" style="color: black">
-                <h2>{{ publicacion.titulo_publicacion }}</h2>
+        <div class="col-md-12">
+          <div class="publicacion">
+            <h3>Diagnóstico</h3>
+            <div class="cuadro-trabajo">
+                <div class="card-body" style="color:white">
+                  <p>{{ publicacion.diagnostico_publicacion }}</p>
+                </div>
+            </div>
+            <h3>Descripción</h3>
+            <div class="cuadro-trabajo">
+              <div class="card-body" style="color:white">
                 <p>{{ publicacion.descripcion_publicacion }}</p>
               </div>
-            </center>
+            </div>
+            <br />
+            <textarea
+              name="Descripcion"
+              id="descripcionId"
+              cols="40"
+              rows="10"
+              class="form-control"
+            >
+                  <h3>Descripcion:</h3>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, a accusamus. Magnam eius qui doloremque beatae adipisci possimus soluta voluptatem neque alias quis, natus aperiam rerum, explicabo, non ex amet!
+                </textarea
+            >
+            <br />
+            <textarea
+              name="Materiales"
+              id="materialesId"
+              cols="40"
+              rows="10"
+              class="form-control"
+            >
+                  <h3>Materiales:</h3>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero optio rerum amet perspiciatis saepe vero sed quidem quis voluptates quasi quia rem fugiat nesciunt dolor nihil blanditiis, omnis a obcaecati!
+                </textarea
+            >
           </div>
-          <br />
-          <textarea
-            name="Diagnostico"
-            id="diagnosticoId"
-            cols="40"
-            rows="10"
-            class="form-control"
-          >
-                <h3>Diagnostico:</h3>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, minus maiores? Nisi, vitae at laborum non fugit, saepe cum porro omnis dolore numquam est! Quam eligendi repellendus blanditiis iste saepe!
-              </textarea
-          >
-          <br />
-          <textarea
-            name="Descripcion"
-            id="descripcionId"
-            cols="40"
-            rows="10"
-            class="form-control"
-          >
-                <h3>Descripcion:</h3>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, a accusamus. Magnam eius qui doloremque beatae adipisci possimus soluta voluptatem neque alias quis, natus aperiam rerum, explicabo, non ex amet!
-              </textarea
-          >
-          <br />
-          <textarea
-            name="Materiales"
-            id="materialesId"
-            cols="40"
-            rows="10"
-            class="form-control"
-          >
-                <h3>Materiales:</h3>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero optio rerum amet perspiciatis saepe vero sed quidem quis voluptates quasi quia rem fugiat nesciunt dolor nihil blanditiis, omnis a obcaecati!
-              </textarea
-          >
-        </div>
       </div>
-        <div class="col-md-2"></div>
     </div>
       </div>
     </div>

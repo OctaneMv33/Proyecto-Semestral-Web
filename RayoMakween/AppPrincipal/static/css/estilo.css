@@ -128,11 +128,6 @@ a{
     color: white;
 }
 
-.xd{
-    color: wheat;
-}
-
-
 .publicacion{
     background-color: 	#931f1f;
     width: auto;
@@ -151,3 +146,59 @@ a{
     border-radius: 10%;
   }
 
+.cuadro{
+    width: auto;
+    height: auto;
+    background-color: #931f1f;
+    padding: 3rem;
+    border: solid black 5px;
+    border-radius: 5%;
+    margin-top: 5rem;
+}
+
+.trabajo{
+    background-color: #520f0f;
+    border: solid white 3px;
+    padding: 1.5rem;
+    width: auto;
+    height: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.trabajo:hover{
+    background-color: whitesmoke;
+    border: solid black 3px;
+    color: black;
+}
+
+#tituloBusqueda{
+    display: block;
+    color: white;
+    margin-top: 5rem;
+}
+
+#tituloPublicacion{
+    display: block;
+    color: white;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+}
+
+.cuadro-trabajo{
+    width: auto;
+    height: auto;
+    padding: 2rem;
+    text-align: start;
+}
+
+.cuadro-trabajo p{
+    font-size: 18px;
+}
+
+.cuadro-detalle{
+    background-color: #520f0f;
+    border: solid white 3px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
