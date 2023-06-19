@@ -15,6 +15,13 @@ from django.views.generic import ListView
 #Index
 def index(request):
     publicaciones = Publicacion.objects.order_by('-id_publicacion')[:2]
+    categorias = CategoriaTrabajo.objects.all()
+    usuarios = User.objects.all()
+    context = {
+        'categorias': categorias,
+        'usuarios': usuarios,
+        'publicaciones': publicaciones
+    }
     if request.method =='POST':
         form = ContactoForm(request.POST)
         if form.is_valid():
@@ -25,7 +32,7 @@ def index(request):
             return redirect('index')
     else:
         form = ContactoForm()
-    return render(request, 'index.html', {'publicaciones': publicaciones})
+    return render(request, 'index.html',context)
 #Login de Usuario
 def auth_login(request):
     if  request.method == 'POST':
