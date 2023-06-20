@@ -1,3 +1,43 @@
-{% extends 'navbar.html' %} {% block content %}
+{% extends 'navbar.html' %} {% block title %}Dashboard admin{% endblock %}  {% block content %}
 <!--Vista en grafico o tabla de trabajos aprobados, rechazados o en espera por usuario para el admin-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="fondoTabla">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="scope">RUT Mecánico</th>
+                            <th class="scope">Nombre mecánico</th>
+                            <th class="scope">Cant. Publi. Aceptadas</th>
+                            <th class="scope">Cant. Publi. Rechazadas</th>
+                            <th class="scope">Cant. Publi. Pendientes</th>
+                        </tr>
+                        <tr>
+                            <td class="datos">11111111-K</td>
+                            <td class="datos">Bear Grills</td>
+                            <td class="datos">10</td>
+                            <td class="datos">2</td>
+                            <td class="datos">0</td>
+                        </tr>
+                        <tr>
+                            <td class="datos">22222222-K</td>
+                            <td class="datos">El Loco Pepe</td>
+                            <td class="datos">1</td>
+                            <td class="datos">20</td>
+                            <td class="datos">0</td>
+                        </tr>
+                        <tr>
+                            <td class="datos">33333333-K</td>
+                            <td class="datos">Feiker</td>
+                            <td class="datos">20</td>
+                            <td class="datos">0</td>
+                            <td class="datos">0</td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

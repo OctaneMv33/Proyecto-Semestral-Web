@@ -493,6 +493,7 @@ var vmotivo = false, vestado = false
 /* Validaciones Revision de Trabajo */
 $(document).ready(function(){
   $("#btnRevisionId").attr('disabled', true)
+  $("#motivoId").attr('disabled', true)
 });
 
 $("#motivoId").keyup(function(){
@@ -503,6 +504,7 @@ $("#motivoId").keyup(function(){
   }else{
     $("#mensajeMotivoId").text('Ingreso correcto');
     vmotivo = true
+    vestado = true
   }
 
   if((vmotivo && vestado) || vestado){
@@ -517,9 +519,16 @@ $("#estadoRevisionId").change(function(){
   if(opcion === ""){
     $("#mensajeEstadoMotivoId").text('Debe seleccionar un estado de revisión.')
     vestado = false
+  }else if(opcion === "20"){
+    $("#mensajeEstadoMotivoId").text('Ingreso correcto. No olvide escribir el motivo de rechazo')
+    vestado = false
+    $("#motivoId").attr('disabled', false)
   }else{
     $("#mensajeEstadoMotivoId").text('Ingreso correcto')
+    $("#mensajeMotivoId").text('');
+    $("#motivoId").val("");
     vestado = true
+    $("#motivoId").attr('disabled', true)
   }
 
   if((vmotivo && vestado) || vestado){
