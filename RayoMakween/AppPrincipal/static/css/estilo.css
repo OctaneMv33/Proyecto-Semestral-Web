@@ -224,3 +224,23 @@ a{
     border-radius: 5%;
     margin-bottom: 3rem;
 }
+
+.fondoTabla{
+    background-color: #520f0f;
+    color: white;
+    width: auto;
+    height: auto;
+    padding: 2rem;
+    margin-top: 5rem;
+    border: solid white 3px;
+}
+
+.scope{
+    color: white;
+    text-align: center;
+}
+
+.datos{
+    color: white;
+    text-align: center;
+}

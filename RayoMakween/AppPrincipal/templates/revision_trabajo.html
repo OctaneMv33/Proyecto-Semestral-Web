@@ -1,4 +1,4 @@
-{% extends 'navbar.html' %} {% block title %}Revisión de Trabajo{% endblock %} {% block content %} {% load custom_filters %}
+{% extends 'navbar.html' %} {% block title %}Revisión de: {{ publicacion.titulo_publicacion }}{% endblock %} {% block content %} {% load custom_filters %}
 
 <main>
   <div class="container">
@@ -102,6 +102,10 @@
                 </ul>
               </div>
             </div>
+          <h3>Cantidad de Rechazos</h3>
+            <div class="cuadro-trabajo">
+              <p>3</p>
+            </div>
           </div>
       </div>
     </div>
@@ -118,10 +122,6 @@
           <center><h2>Formulario Revisión de trabajo</h2></center>
          <br><br>
               <form action="" method="POST">
-                <label for="motivoId" id="MotId">Motivo Revisión:</label>
-                <textarea class="form-control" id="motivoId" rows="3" placeholder="Maximo 500 caracteres" style="height: 100px"></textarea>
-                <div id="mensajeMotivoId"></div> 
-            <br><br>
               <label for="text">Seleccione casilla de revisión</label>
               <select class="form-select" id="estadoRevisionId" aria-label="Default select example">
                   <option value="">--- Seleccione estado de revisión ---</option>
@@ -130,6 +130,10 @@
                   {% endfor %}}
               </select> 
               <div id="mensajeEstadoMotivoId"></div>
+              <br><br>
+              <label for="motivoId" id="MotId">Motivo Rechazo:</label>
+                <textarea class="form-control" id="motivoId" rows="3" placeholder="Maximo 500 caracteres" style="height: 100px"></textarea>
+                <div id="mensajeMotivoId"></div> 
             <br><br>
             <center>
               <button type="submit" class="btn btn-success" id="btnRevisionId">Enviar Revisión</button>

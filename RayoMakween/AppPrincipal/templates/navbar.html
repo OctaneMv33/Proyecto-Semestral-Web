@@ -67,17 +67,15 @@
                       </li>
                     {% else %}
                       <li class="nav-item">
-                        <a
-                          class="nav-link active"
-                          aria-current="page"
-                          href="{% url 'lista_trabajos' %}"
-                          >Listado de Mantenciones</a
-                        >
-                      </li>
-                      <li class="nav-item">
                         <a href="{% url 'listadoTrabajosRevision' %}" class="nav-link active">
                           Pendientes por Revisar
                         </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="" class="nav-link active">Registrar Mecánico</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{% url 'dashboardAdmin' %}" class="nav-link active">Dashboard Admin</a>
                       </li>
                     {% endif %}
                   {% endfor %}
