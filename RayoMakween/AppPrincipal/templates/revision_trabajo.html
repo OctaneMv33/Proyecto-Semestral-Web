@@ -117,22 +117,24 @@
               <br><br>
           <center><h2>Formulario Revisión de trabajo</h2></center>
          <br><br>
-              <label for="motivoId" id="MotId">Motivo Revisión:</label>
-              <textarea class="form-control" id="motivoId" rows="3" placeholder="Maximo 500 caracteres" style="height: 100px"></textarea>
-              <div id="mensajeMotivoId"></div> 
-          <br><br>
-          <label for="text">Seleccione casilla de revisión</label>
-          <select class="form-select" id="estadoRevisionId" aria-label="Default select example">
-              <option value="">--- Seleccione estado de revisión ---</option>
-              {% for estpub in estados_publicacion %}
-                <option value="{{ estpub.id_estpub }}"> {{ estpub.nombre_estpub }} </option>
-              {% endfor %}}
-          </select> 
-          <div id="mensajeEstadoMotivoId"></div>
-          <br><br>
-          <center>
-            <button type="submit" class="btn btn-success" id="btnRevisionId">Enviar Revisión</button>
-          </center>
+              <form action="" method="POST">
+                <label for="motivoId" id="MotId">Motivo Revisión:</label>
+                <textarea class="form-control" id="motivoId" rows="3" placeholder="Maximo 500 caracteres" style="height: 100px"></textarea>
+                <div id="mensajeMotivoId"></div> 
+            <br><br>
+              <label for="text">Seleccione casilla de revisión</label>
+              <select class="form-select" id="estadoRevisionId" aria-label="Default select example">
+                  <option value="">--- Seleccione estado de revisión ---</option>
+                  {% for estpub in estados_publicacion %}
+                    <option value="{{ estpub.id_estpub }}"> {{ estpub.nombre_estpub }} </option>
+                  {% endfor %}}
+              </select> 
+              <div id="mensajeEstadoMotivoId"></div>
+            <br><br>
+            <center>
+              <button type="submit" class="btn btn-success" id="btnRevisionId">Enviar Revisión</button>
+            </center>
+            </form>
           </div>
       </div>
       <div class="col-md-1"></div>
