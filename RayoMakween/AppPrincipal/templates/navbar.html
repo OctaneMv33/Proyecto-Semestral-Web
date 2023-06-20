@@ -55,6 +55,16 @@
                           >Crear Trabajo</a
                         >
                       </li>
+                      <li class="nav-item">
+                        <a href="{% url 'cantidadTrabajos' %}" class="nav-link active">
+                          Ver Cantidad Trabajos
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{% url 'estadoPublicacion' %}" class="nav-link active">
+                          Ver Estado Publicacion
+                        </a>
+                      </li>
                     {% else %}
                       <li class="nav-item">
                         <a
@@ -63,7 +73,7 @@
                           href="{% url 'lista_trabajos' %}"
                           >Listado de Mantenciones</a
                         >
-                      </li>        
+                      </li>    
                     {% endif %}
                   {% endfor %}
               {% else %}
@@ -107,7 +117,6 @@
       </nav>
     </header>
     {% block content %}{% endblock %}
-
     <!--JQuery-->
     <script
       src="https://code.jquery.com/jquery-3.7.0.js"
