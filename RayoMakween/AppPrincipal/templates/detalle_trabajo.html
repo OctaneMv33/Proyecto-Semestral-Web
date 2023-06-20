@@ -65,13 +65,13 @@
           </button>
         </div>
         </div>
-        <div class="cuadro-detalle">
-          <div class="card-body" style="color:white">
-            <p> Fecha de Publicación: {{ publicacion.fecha_publicacion|date:"d/m/Y" }}, Mecánico a cargo: {{ publicacion.id_user.first_name }} {{ publicacion.id_user.last_name }}, Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}</p>
-          </div>
-        </div>
         <div class="row"></div>
         <div class="col-md-12">
+          <div class="cuadro-detalle">
+            <div class="card-body" style="color:white">
+              <p> Fecha de Publicación: {{ publicacion.fecha_publicacion|date:"d/m/Y" }}, Mecánico a cargo: {{ publicacion.id_user.first_name }} {{ publicacion.id_user.last_name }}, Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}</p>
+            </div>
+          </div>
           <div class="publicacion">
             <h3>Diagnóstico</h3>
             <div class="cuadro-trabajo">
@@ -85,30 +85,22 @@
                 <p>{{ publicacion.descripcion_publicacion }}</p>
               </div>
             </div>
-            <br />
-            <textarea
-              name="Descripcion"
-              id="descripcionId"
-              cols="40"
-              rows="10"
-              class="form-control"
-            >
-                  <h3>Descripcion:</h3>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, a accusamus. Magnam eius qui doloremque beatae adipisci possimus soluta voluptatem neque alias quis, natus aperiam rerum, explicabo, non ex amet!
-                </textarea
-            >
-            <br />
-            <textarea
-              name="Materiales"
-              id="materialesId"
-              cols="40"
-              rows="10"
-              class="form-control"
-            >
-                  <h3>Materiales:</h3>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero optio rerum amet perspiciatis saepe vero sed quidem quis voluptates quasi quia rem fugiat nesciunt dolor nihil blanditiis, omnis a obcaecati!
-                </textarea
-            >
+            <h3>Materiales</h3>
+            <div class="cuadro-trabajo">
+              <div class="card-body" style="color:white">
+                <ul>
+                  {% if materiales %}
+                  {% for material in materiales %}
+                      <li>
+                        <p>{{ material }}</p>
+                      </li>
+                  {% endfor %}
+                {% else %}
+                  <p>No se encontraron materiales.</p>
+                {% endif %}
+                </ul>
+              </div>
+            </div>
           </div>
       </div>
     </div>

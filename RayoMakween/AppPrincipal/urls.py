@@ -15,6 +15,6 @@ urlpatterns = [
     path('trabajo/<int:id_publicacion>', detalle_publicacion, name='detalle_publicacion'),
     path('cantidadTrabajos', cantidadTrabajos,name='cantidadTrabajos'),
     path('estadoPublicacion', estadoPublicacion,name='estadoPublicacion'), 
-    path('buscar/', SearchResultsView.as_view(), name='search_results'),
+    path('buscar', SearchResultsView.as_view(), name='search_results'),
     path('logout',exit,name='exit'),
 ]

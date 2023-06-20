@@ -103,12 +103,11 @@ def solicitud(request):
 
 @user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='auth_login')
 def trabajo(request):
-    
     return (render(request,'trabajo.html'))
 
 # Vistas Mecánico
 # Crear Trabajo
-@user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='index')
+@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
 def crearTrabajo(request):
     data = CategoriaTrabajo.objects.all()
     categorias = []
@@ -191,9 +190,11 @@ def detalle_publicacion(request, id_publicacion):
         bool(getattr(publicacion, f"foto{i}")) for i in range(1, 7)
     )
     foto_indices = range(1, cantidad_fotos + 1)
+    materiales = PublicacionMaterial.objects.filter(id_publicacion=publicacion).values_list('id_material__nombre_material', flat=True)
     context = {
         'publicacion': publicacion,
         'foto_indices': foto_indices,
+        'materiales': materiales,
     }
     return render(request, 'detalle_trabajo.html', context)
 

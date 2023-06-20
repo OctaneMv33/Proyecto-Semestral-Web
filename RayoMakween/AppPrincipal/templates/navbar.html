@@ -44,34 +44,31 @@
                 <a class="nav-link active" href="{% url 'index' %}">Inicio</a>
               </li>
               {% if request.user.is_authenticated %}
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="{% url 'lista_trabajos' %}"
-                  >Listado de Mantenciones</a
-                >
-              </li>
-              <br />
-              <li class="nav-item">
-                <a class="nav-link active" href="{% url 'crearTrabajo' %}"
-                  >Crear Trabajo</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="{% url 'solicitud' %}">Solicitud</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active"
-                  >Hola {{ user.first_name | upper }}</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="{% url 'logout' %}">Salir</a>
-              </li>
+                  {% for group in request.user.groups.all %}
+                    {% if group.name == 'Cliente' %} 
+                        <li class="nav-item">
+                          <a class="nav-link active" href="{% url 'solicitud' %}">Solicitud</a>
+                        </li>
+                    {% elif group.name == 'Mecanico' %}
+                      <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'crearTrabajo' %}"
+                          >Crear Trabajo</a
+                        >
+                      </li>
+                    {% else %}
+                      <li class="nav-item">
+                        <a
+                          class="nav-link active"
+                          aria-current="page"
+                          href="{% url 'lista_trabajos' %}"
+                          >Listado de Mantenciones</a
+                        >
+                      </li>        
+                    {% endif %}
+                  {% endfor %}
               {% else %}
               <li class="nav-item">
-                <a class="nav-link active" href="{{'auth_login'}}"
+                <a class="nav-link active" href="{% url 'auth_login' %}"
                   >Iniciar sesión</a
                 >
               </li>
@@ -82,7 +79,17 @@
               </li>
               {% endif %}
             </ul>
-            <form class="d-flex" action="{% url 'search_results' %}" method="GET">
+            {% if request.user.is_authenticated %}
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active">Hola {{ user.first_name | upper }}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'logout' %}" id="salirId">Salir</a>
+              </li>
+            </ul>
+          {% endif %}
+            <form class="d-flex justify-content-end" action="{% url 'search_results' %}" method="GET">
               {% csrf_token %}
               <input
                 class="form-control me-2"
