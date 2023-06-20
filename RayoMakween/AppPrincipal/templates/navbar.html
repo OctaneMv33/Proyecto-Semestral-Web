@@ -73,7 +73,12 @@
                           href="{% url 'lista_trabajos' %}"
                           >Listado de Mantenciones</a
                         >
-                      </li>    
+                      </li>
+                      <li class="nav-item">
+                        <a href="{% url 'listadoTrabajosRevision' %}" class="nav-link active">
+                          Pendientes por Revisar
+                        </a>
+                      </li>
                     {% endif %}
                   {% endfor %}
               {% else %}

@@ -3,9 +3,8 @@
 <main>
   <div class="container">
     <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <br />
+      <div class="col-md-12">
+        <center><h1 id="tituloPublicacion">{{ publicacion.titulo_publicacion }}</h1></center>
         <div
           id="carouselExampleControls"
           class="carousel slide"
@@ -18,8 +17,6 @@
                 src="{{ publicacion.foto1.url }}"
                 class="d-block w-100"
                 alt="..."
-                width="500px"
-                height="500px"
                 style="border-radius: 10px"
               />
             </div>
@@ -69,65 +66,78 @@
           </button>
         </div>
         </div>
-        <div class="col-md-2"></div>
-        <br />
         <div class="row"></div>
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-        <div class="publicacion">
-          <div class="card">
-            <center>
-              <div class="card-body" style="color: black">
-                <h2>{{ publicacion.titulo_publicacion }}</h2>
+        <div class="col-md-12">
+          <div class="cuadro-detalle">
+            <div class="card-body" style="color:white">
+              <p> Fecha de Publicación: {{ publicacion.fecha_publicacion|date:"d/m/Y" }}, Mecánico a cargo: {{ publicacion.id_user.first_name }} {{ publicacion.id_user.last_name }}, Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}</p>
+            </div>
+          </div>
+          <div class="publicacionRevision">
+            <h3>Diagnóstico</h3>
+            <div class="cuadro-trabajo">
+                <div class="card-body" style="color:white">
+                  <p>{{ publicacion.diagnostico_publicacion }}</p>
+                </div>
+            </div>
+            <h3>Descripción</h3>
+            <div class="cuadro-trabajo">
+              <div class="card-body" style="color:white">
                 <p>{{ publicacion.descripcion_publicacion }}</p>
               </div>
-            </center>
+            </div>
+            <h3>Materiales</h3>
+            <div class="cuadro-trabajo">
+              <div class="card-body" style="color:white">
+                <ul>
+                  {% if materiales %}
+                  {% for material in materiales %}
+                      <li>
+                        <p>{{ material }}</p>
+                      </li>
+                  {% endfor %}
+                {% else %}
+                  <p>No se encontraron materiales.</p>
+                {% endif %}
+                </ul>
+              </div>
+            </div>
           </div>
-          <br />
-          <textarea
-            name="Diagnostico"
-            id="diagnosticoId"
-            cols="40"
-            rows="10"
-            class="form-control"
-          >
-                <h3>Diagnostico:</h3>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, minus maiores? Nisi, vitae at laborum non fugit, saepe cum porro omnis dolore numquam est! Quam eligendi repellendus blanditiis iste saepe!
-              </textarea
-          >
-          <br />
-          <textarea
-            name="Descripcion"
-            id="descripcionId"
-            cols="40"
-            rows="10"
-            class="form-control"
-          >
-                <h3>Descripcion:</h3>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, a accusamus. Magnam eius qui doloremque beatae adipisci possimus soluta voluptatem neque alias quis, natus aperiam rerum, explicabo, non ex amet!
-              </textarea
-          >
-          <br />
-          <textarea
-            name="Materiales"
-            id="materialesId"
-            cols="40"
-            rows="10"
-            class="form-control"
-          >
-                <h3>Materiales:</h3>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero optio rerum amet perspiciatis saepe vero sed quidem quis voluptates quasi quia rem fugiat nesciunt dolor nihil blanditiis, omnis a obcaecati!
-              </textarea
-          >
-        </div>
       </div>
-        <div class="col-md-2"></div>
     </div>
       </div>
     </div>
   </div>
 </main>
-<br /><br /><br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+      <div class="col-md-10">
+          <div class="motivo">
+              <br><br>
+          <center><h2>Formulario Revisión de trabajo</h2></center>
+         <br><br>
+              <label for="motivoId" id="MotId">Motivo Revisión:</label>
+              <textarea class="form-control" id="motivoId" rows="3" placeholder="Maximo 500 caracteres" style="height: 100px"></textarea>
+              <div id="mensajeMotivoId"></div> 
+          <br><br>
+          <label for="text">Seleccione casilla de revisión</label>
+          <select class="form-select" id="estadoRevisionId" aria-label="Default select example">
+              <option value="">--- Seleccione estado de revisión ---</option>
+              {% for estpub in estados_publicacion %}
+                <option value="{{ estpub.id_estpub }}"> {{ estpub.nombre_estpub }} </option>
+              {% endfor %}}
+          </select> 
+          <div id="mensajeEstadoMotivoId"></div>
+          <br><br>
+          <center>
+            <button type="submit" class="btn btn-success" id="btnRevisionId">Enviar Revisión</button>
+          </center>
+          </div>
+      </div>
+      <div class="col-md-1"></div>
+  </div>
+</div>
 <footer></footer>
 <br /><br /><br />
 {% endblock %}

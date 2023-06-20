@@ -78,16 +78,18 @@ def auth_register(request):
 #Vista Admin
 #Revision para aprovar o rechazar
 def revisionTrabajo(request, id_publicacion):
-    estados_publicacion = EstadoPublicacion.objects.all()
+    estados_publicacion = EstadoPublicacion.objects.filter(Q(id_estpub=20) | Q(id_estpub=30))
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
     cantidad_fotos = sum(
         bool(getattr(publicacion, f"foto{i}")) for i in range(1, 7)
     )
+    materiales = PublicacionMaterial.objects.filter(id_publicacion=publicacion).values_list('id_material__nombre_material', flat=True)
     foto_indices = range(1, cantidad_fotos + 1)
     context = {
         'publicacion': publicacion,
         'foto_indices': foto_indices,
-        'estados_publicacion' : estados_publicacion
+        'estados_publicacion' : estados_publicacion,
+        'materiales' : materiales
     }
     return (render(request,'revision_trabajo.html', context))
 
@@ -178,6 +180,12 @@ def cantidadTrabajos(request):
 @user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
 def estadoPublicacion(request):
     return (render(request,'ver_estado_publicacion.html'))
+
+@user_passes_test(lambda u: u.groups.filter(name='Administrador').exists(), login_url='index')
+def listadoTrabajosRevision(request):
+    publicaciones = Publicacion.objects.filter(id_estpub=10)
+    return (render(request, 'lista_trabajos_pendientes.html', {'publicaciones':publicaciones}))
+
 
 #Listado de busqueda
 def lista_trabajos(request):

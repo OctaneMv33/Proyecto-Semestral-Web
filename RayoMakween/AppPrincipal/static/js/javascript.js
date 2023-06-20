@@ -488,3 +488,43 @@ $("#eliminarID").click(function () {
   $(sel).remove();
 
 });
+
+var vmotivo = false, vestado = false
+/* Validaciones Revision de Trabajo */
+$(document).ready(function(){
+  $("#btnRevisionId").attr('disabled', true)
+});
+
+$("#motivoId").keyup(function(){
+  cantidadCaracteres = $("#motivoId").val().length
+  if(cantidadCaracteres < 50 || cantidadCaracteres > 500){
+    $("#mensajeMotivoId").text('El motivo de rechazo debe tener al menos 50 caracteres de largo y máximo 500');
+    vmotivo = false
+  }else{
+    $("#mensajeMotivoId").text('Ingreso correcto');
+    vmotivo = true
+  }
+
+  if((vmotivo && vestado) || vestado){
+    $("#btnRevisionId").attr('disabled', false)
+  }else{
+    $("#btnRevisionId").attr('disabled', true)
+  }
+});
+
+$("#estadoRevisionId").change(function(){
+  opcion = $("#estadoRevisionId").val();
+  if(opcion === ""){
+    $("#mensajeEstadoMotivoId").text('Debe seleccionar un estado de revisión.')
+    vestado = false
+  }else{
+    $("#mensajeEstadoMotivoId").text('Ingreso correcto')
+    vestado = true
+  }
+
+  if((vmotivo && vestado) || vestado){
+    $("#btnRevisionId").attr('disabled', false)
+  }else{
+    $("#btnRevisionId").attr('disabled', true)
+  }
+});
