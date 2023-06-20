@@ -1,0 +1,60 @@
+{% extends 'navbar.html' %} {% block title %}Registro de Usuario{% endblock %} {% block content %}
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <div class="formulario">
+                <center><h2>Formulario de Registro</h2></center>
+                <form action="" method="POST" autocomplete="off">
+                  {% csrf_token %}
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Rut:</span>
+                    <input type="text" class="form-control" placeholder="12345678" aria-label="run" id="rutId" name="rut">
+                    <span class="input-group-text">Dv rut:</span>
+                    <input type="text" class="form-control" placeholder="K" aria-label="dvrun" id="dvrutId" name="dvrut">
+                </div>
+                <div id="idrut"></div>
+                <br>
+                <label for="text">Primer Nombre </label>
+                <input type="text" class="form-control" id="PnomId" name="nombre">
+                <div id="PnombreId"></div>
+                <br>
+                <label for="text">Segundo Nombre </label>
+                <input type="text" class="form-control" id="SnomId" name="snombre">
+                <div id="SnombreId"></div>
+                <br>
+                <label for="text">Apellido Paterno </label>
+                <input type="text" class="form-control" id="PapelId" name="appaterno">
+                <div id="PappellidoId"></div>
+                <br>
+                <label for="text">Apellido Materno (Campo opcional)</label>
+                <input type="text" class="form-control" id="SapelId" name="apmaterno" >
+                <div id="MappellidoId"></div>
+                <br>
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="EmailId" name="email">
+                <div id="EId"></div>
+                <br>
+                <label for="TelId">Telefono</label>
+                <input type="number" class="form-control" id="TelId" name="phone">
+                <div id="teleId"></div>
+                <br>
+                <label for="password">Crear contraseña</label>
+                <input type="password" class="form-control" id="passId"  name="password1">
+                <div id="passid"></div>
+                <br>
+                <label for="password">Repetir contraseña</label>
+                <input type="password" class="form-control" id="RepId" name="password2">
+                <div id="repId"></div>
+                <br>
+                <center><button type="submit" class="btn btn-success" id="btnRegistrarId">Registrar</button></center>
+              </div>
+              </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -25,12 +25,6 @@ class RegistrationForm(forms.Form):
             raise forms.ValidationError('Las contraseñas no coinciden')
         
 
-@receiver(post_save, sender=User)
-def assign_default_group(sender, instance, created, **kwargs):
-    if created:
-        group = Group.objects.get(name='Cliente')  # Nombre del grupo por defecto
-        instance.groups.add(group)
-
 class ContactoForm(forms.Form):
     correo = forms.EmailField()
     telefono = forms.IntegerField()
