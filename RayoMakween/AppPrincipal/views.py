@@ -11,6 +11,7 @@ from django.shortcuts import render, get_object_or_404
 from .templatetags.custom_filters import register
 from django.db.models import Q
 from django.views.generic import ListView
+from django.db import connection
 
 # Create your views here.
 #Index
@@ -130,7 +131,32 @@ def revisionTrabajo(request, id_publicacion):
     return (render(request,'revision_trabajo.html', context))
 
 def dashboardAdmin(request):
-    return (render(request, 'dashboard_admin.html'))
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            SELECT
+                CONCAT(u.run,'-',u.dv_run) AS RUT,
+                CONCAT(u.first_name,' ',u.last_name) AS NOMBRE,
+                SUM(CASE WHEN NULLIF(NULLIF(p.id_estpub, 10),20) IS NULL THEN 0 
+                WHEN NULLIF(NULLIF(p.id_estpub, 10),20) = 30 THEN 1 END) AS CANTIDAD_ACEPTADOS,
+                SUM(CASE WHEN NULLIF(NULLIF(p.id_estpub, 10),30) IS NULL THEN 0 
+                WHEN NULLIF(NULLIF(p.id_estpub, 10),30) = 20 THEN 1 END) AS CANTIDAD_RECHAZADOS,
+                SUM(CASE WHEN NULLIF(NULLIF(p.id_estpub, 20),30) IS NULL THEN 0 
+                WHEN NULLIF(NULLIF(p.id_estpub, 20),30) = 10 THEN 1 END) AS CANTIDAD_PENDIENTES
+            FROM 
+                appprincipal_user u
+                INNER JOIN appprincipal_publicacion p
+                ON(u.id = p.id_user)
+            GROUP BY
+                RUT, NOMBRE
+        """)
+        datos= cursor.fetchall()
+        keys = ['RUT', 'NOMBRE', 'CANTIDAD_ACEPTADOS', 'CANTIDAD_RECHAZADOS', 'CANTIDAD_PENDIENTES']
+        datos_dict = [dict(zip(keys, row)) for row in datos]
+
+        context={
+            'datos':datos_dict
+        }
+    return render(request, 'dashboard_admin.html', context)
 
 def editarTrabajo(request, id_publicacion):
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)

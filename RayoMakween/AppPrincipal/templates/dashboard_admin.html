@@ -13,27 +13,15 @@
                             <th class="scope">Cant. Publi. Rechazadas</th>
                             <th class="scope">Cant. Publi. Pendientes</th>
                         </tr>
-                        <tr>
-                            <td class="datos">11111111-K</td>
-                            <td class="datos">Bear Grills</td>
-                            <td class="datos">10</td>
-                            <td class="datos">2</td>
-                            <td class="datos">0</td>
-                        </tr>
-                        <tr>
-                            <td class="datos">22222222-K</td>
-                            <td class="datos">El Loco Pepe</td>
-                            <td class="datos">1</td>
-                            <td class="datos">20</td>
-                            <td class="datos">0</td>
-                        </tr>
-                        <tr>
-                            <td class="datos">33333333-K</td>
-                            <td class="datos">Feiker</td>
-                            <td class="datos">20</td>
-                            <td class="datos">0</td>
-                            <td class="datos">0</td>
-                        </tr>
+                        {% for dato in datos %}    
+                            <tr>
+                                <td class="datos">{{ dato.RUT }}</td>
+                                <td class="datos">{{ dato.NOMBRE }}</td>
+                                <td class="datos">{{ dato.CANTIDAD_ACEPTADOS }}</td>
+                                <td class="datos">{{ dato.CANTIDAD_RECHAZADOS }}</td>
+                                <td class="datos">{{ dato.CANTIDAD_PENDIENTES }}</td>
+                            </tr>
+                        {% endfor %}    
                     </thead>
                 </table>
             </div>
