@@ -17,7 +17,7 @@ from django.db import connection
 #Index
 def index(request):
     publicaciones_1 = Publicacion.objects.filter(id_estpub=30)
-    publicaciones_2 = Publicacion.objects.filter(id_publicacion__in=publicaciones_1).exclude(id_estpub=30).order_by('-id_publicacion')[:2]
+    publicaciones_2 = Publicacion.objects.filter(id_publicacion__in=publicaciones_1).exclude(id_estpub=30).order_by('-id_publicacion')[:5]
     publicaciones = list(publicaciones_1) + list(publicaciones_2)
     categorias = CategoriaTrabajo.objects.all()
     usuarios = User.objects.all()

@@ -117,7 +117,7 @@
               <div class="cuadro-trabajo">
                 <div class="card-body" style="color:white">
                   <select class="form-select" name="id_categoria" id="categoriaId">
-                    <option value="{{ publicacion.id_categoria }}">Categoria designada: {{ publicacion.id_categoria.nombre_categtrabajo }}</option>
+                    <option value="{{ publicacion.id_categoria.id_categtrabajo }}">Categoria designada: {{ publicacion.id_categoria.nombre_categtrabajo }}</option>
                     {% if data %}
                       {% for i in data %}
                       <option value="{{ i.id_categtrabajo }}">
