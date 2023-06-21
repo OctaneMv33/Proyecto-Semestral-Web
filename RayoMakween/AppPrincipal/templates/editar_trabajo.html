@@ -1,0 +1,118 @@
+{% extends 'navbar.html' %} {% block title %}Editar: {{ publicacion.titulo_publicacion }}{% endblock %} {% block content %}
+
+<main>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <center><h1 id="tituloPublicacion">{{ publicacion.titulo_publicacion }}</h1></center>
+          <div
+            id="carouselExampleControls"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner" style="border-radius: 10px">
+  
+              <div class="carousel-item active">
+                <img
+                  src="{{ publicacion.foto1.url }}"
+                  class="d-block w-100"
+                  alt="..."
+                  style="border-radius: 10px"
+                />
+              </div>
+              {% if publicacion.foto2 %}
+    <div class="carousel-item">
+      <img src="{{ publicacion.foto2.url }}" class="d-block w-100" alt="..." width="500px" height="500px" style="border-radius: 10px" />
+    </div>
+  {% endif %}
+  {% if publicacion.foto3 %}
+  <div class="carousel-item">
+    <img src="{{ publicacion.foto3.url }}" class="d-block w-100" alt="..." width="500px" height="500px" style="border-radius: 10px" />
+  </div>
+  {% endif %}
+  {% if publicacion.foto4 %}
+    <div class="carousel-item">
+      <img src="{{ publicacion.foto4.url }}" class="d-block w-100" alt="..." width="500px" height="500px" style="border-radius: 10px" />
+    </div>
+  {% endif %}
+  {% if publicacion.foto5 %}
+    <div class="carousel-item">
+      <img src="{{ publicacion.foto5.url }}" class="d-block w-100" alt="..." width="500px" height="500px" style="border-radius: 10px" />
+    </div>
+  {% endif %}
+  {% if publicacion.foto6 %}
+    <div class="carousel-item">
+      <img src="{{ publicacion.foto6.url }}" class="d-block w-100" alt="..." width="500px" height="500px" style="border-radius: 10px" />
+    </div>
+  {% endif %}
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev"
+            >
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="next"
+            >
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          </div>
+          <div class="row"></div>
+          <div class="col-md-12">
+            <div class="cuadro-detalle">
+              <div class="card-body" style="color:white">
+                <p> Fecha de Publicación: {{ publicacion.fecha_publicacion|date:"d/m/Y" }}, Mecánico a cargo: {{ publicacion.id_user.first_name }} {{ publicacion.id_user.last_name }}, Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}</p>
+              </div>
+            </div>
+            <div class="publicacionRevision">
+              <h3>Diagnóstico</h3>
+              <div class="cuadro-trabajo">
+                  <div class="card-body" style="color:white">
+                    <p>{{ publicacion.diagnostico_publicacion }}</p>
+                  </div>
+              </div>
+              <h3>Descripción</h3>
+              <div class="cuadro-trabajo">
+                <div class="card-body" style="color:white">
+                  <p>{{ publicacion.descripcion_publicacion }}</p>
+                </div>
+              </div>
+              <h3>Materiales</h3>
+              <div class="cuadro-trabajo">
+                <div class="card-body" style="color:white">
+                  <ul>
+                    {% if materiales %}
+                    {% for material in materiales %}
+                        <li>
+                          <p>{{ material }}</p>
+                        </li>
+                    {% endfor %}
+                  {% else %}
+                    <p>No se encontraron materiales.</p>
+                  {% endif %}
+                  </ul>
+                </div>
+              </div>
+            <h3>Cantidad de Rechazos</h3>
+              <div class="cuadro-trabajo">
+                <p>3</p>
+              </div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+  <br /><br /><br />
+{% endblock %}

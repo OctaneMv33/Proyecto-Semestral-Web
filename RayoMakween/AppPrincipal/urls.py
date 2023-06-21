@@ -1,7 +1,7 @@
 
 from django.urls import path
 from .views import index, auth_login, auth_register, SearchResultsView,registro_mecanico
-from .views import crearTrabajo, revisionTrabajo, solicitud, cantidadTrabajos, estadoPublicacion,exit,lista_trabajos, detalle_publicacion, listadoTrabajosRevision,dashboardAdmin
+from .views import crearTrabajo, revisionTrabajo, solicitud, cantidadTrabajos, estadoPublicacion,exit,lista_trabajos, detalle_publicacion, listadoTrabajosRevision,dashboardAdmin, listaTrabajosRechazados, editarTrabajo
 
 urlpatterns = [
     path('', index,name='index'),
@@ -18,6 +18,8 @@ urlpatterns = [
     path('estadoPublicacion', estadoPublicacion,name='estadoPublicacion'), 
     path('buscar', SearchResultsView.as_view(), name='search_results'),
     path('listadoTrabajosRevision', listadoTrabajosRevision, name='listadoTrabajosRevision'),
+    path('listaTrabajosRechazados',listaTrabajosRechazados,name='listaTrabajosRechazados'),
+    path('editarTrabajo/<int:id_publicacion>', editarTrabajo, name='editarTrabajo'),
     path('dashboardAdmin', dashboardAdmin, name='dashboardAdmin'),
     path('logout',exit,name='exit'),
 ]

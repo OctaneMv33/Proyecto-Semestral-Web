@@ -4,8 +4,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <center><h1 id="tituloBusqueda">Listado de Publicaciones</h1></center>
         <div class="cuadro">
+          <center><h1 id="resultadoBusqueda">Resultados de búsqueda</h1></center>
             {% for item in results %}
             <a href="{% url 'detalle_publicacion' item.id_publicacion %}">
             <div class="trabajo">

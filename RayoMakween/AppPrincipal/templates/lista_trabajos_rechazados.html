@@ -1,12 +1,12 @@
-{% extends 'navbar.html' %} {% block title %}Trabajos Pendientes de Revisar{% endblock %} {% block content %}
+{% extends 'navbar.html' %} {% block title %}Publicaciones Rechazadas{% endblock %} {% block content %}
 <div class="container">
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="cuadro">
-                <center><h1>Lista de Publicaciones Pendientes de Revisar</h1></center>
+                <center><h1>Lista de Publicaciones Rechazadas</h1></center>
                 {% for publicacion in publicaciones %}
-                <a href="{% url 'revisionTrabajo' publicacion.id_publicacion %}">
+                <a href="{% url 'editarTrabajo' publicacion.id_publicacion %}">
                     <div class="trabajo">
                         <img
                           src="{{ publicacion.foto1.url }}"

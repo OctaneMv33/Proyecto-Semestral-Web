@@ -119,6 +119,23 @@ def revisionTrabajo(request, id_publicacion):
 def dashboardAdmin(request):
     return (render(request, 'dashboard_admin.html'))
 
+def editarTrabajo(request, id_publicacion):
+    publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
+    cantidad_fotos = sum(
+        bool(getattr(publicacion, f"foto{i}")) for i in range(1, 7)
+    )
+    materiales = PublicacionMaterial.objects.filter(id_publicacion=publicacion).values_list('id_material__nombre_material', flat=True)
+    foto_indices = range(1, cantidad_fotos + 1)
+    context = {
+        'publicacion': publicacion,
+        'foto_indices': foto_indices,
+        'materiales' : materiales
+    }
+    return(render(request, 'editar_trabajo.html',context))
+
+def listaTrabajosRechazados(request):
+    publicaciones = Publicacion.objects.filter(id_estpub=20)
+    return(render(request, 'lista_trabajos_rechazados.html', {'publicaciones' : publicaciones}))
 
 @login_required
 def exit(request):
