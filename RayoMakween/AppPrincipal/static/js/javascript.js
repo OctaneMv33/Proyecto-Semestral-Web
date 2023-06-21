@@ -491,39 +491,39 @@ $("#eliminarID").click(function () {
 
 var vmotivo = false, vestado = false
 /* Validaciones Revision de Trabajo */
-$(document).ready(function(){
+$(document).ready(function () {
   $("#btnRevisionId").attr('disabled', true)
   $("#motivoId").attr('disabled', true)
 });
 
-$("#motivoId").keyup(function(){
+$("#motivoId").keyup(function () {
   cantidadCaracteres = $("#motivoId").val().length
-  if(cantidadCaracteres < 50 || cantidadCaracteres > 500){
+  if (cantidadCaracteres < 50 || cantidadCaracteres > 500) {
     $("#mensajeMotivoId").text('El motivo de rechazo debe tener al menos 50 caracteres de largo y máximo 500');
     vmotivo = false
-  }else{
+  } else {
     $("#mensajeMotivoId").text('Ingreso correcto');
     vmotivo = true
     vestado = true
   }
 
-  if((vmotivo && vestado) || vestado){
+  if ((vmotivo && vestado) || vestado) {
     $("#btnRevisionId").attr('disabled', false)
-  }else{
+  } else {
     $("#btnRevisionId").attr('disabled', true)
   }
 });
 
-$("#estadoRevisionId").change(function(){
+$("#estadoRevisionId").change(function () {
   opcion = $("#estadoRevisionId").val();
-  if(opcion === ""){
+  if (opcion === "") {
     $("#mensajeEstadoMotivoId").text('Debe seleccionar un estado de revisión.')
     vestado = false
-  }else if(opcion === "20"){
+  } else if (opcion === "20") {
     $("#mensajeEstadoMotivoId").text('Escriba el motivo de rechazo.')
     vestado = false
     $("#motivoId").attr('disabled', false)
-  }else{
+  } else {
     $("#mensajeEstadoMotivoId").text('Ingreso correcto')
     $("#mensajeMotivoId").text('');
     $("#motivoId").val("");
@@ -531,9 +531,22 @@ $("#estadoRevisionId").change(function(){
     $("#motivoId").attr('disabled', true)
   }
 
-  if((vmotivo && vestado) || vestado){
+  if ((vmotivo && vestado) || vestado) {
     $("#btnRevisionId").attr('disabled', false)
-  }else{
+  } else {
     $("#btnRevisionId").attr('disabled', true)
   }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  var checkboxCambiarImagenes = document.getElementById("checkbox_cambiar_imagenes");
+  var inputImagenes = document.getElementById("input_imagenes");
+
+  checkboxCambiarImagenes.addEventListener("change", function () {
+    if (checkboxCambiarImagenes.checked) {
+      inputImagenes.style.display = "block";
+    } else {
+      inputImagenes.style.display = "none";
+    }
+  });
 });

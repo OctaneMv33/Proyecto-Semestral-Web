@@ -99,7 +99,7 @@ def registro_mecanico(request):
     return(render(request,'registro_mecanico.html'))
 
 #Vista Admin
-#Revision para aprovar o rechazar
+#Revision para aprobar o rechazar
 def revisionTrabajo(request, id_publicacion):
     estados_publicacion = EstadoPublicacion.objects.filter(Q(id_estpub=20) | Q(id_estpub=30))
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
@@ -120,7 +120,6 @@ def revisionTrabajo(request, id_publicacion):
         publicacion.id_estpub = estado_revision
         #En caso de rechazo
         if estado_revision_id == '20':
-            print("paso por aca")
             motivo_modificado = request.POST.get('motivo_rechazo')
             publicacion.motivo_rechazo = motivo_modificado
             publicacion.cant_rechaz += 1
@@ -138,11 +137,48 @@ def editarTrabajo(request, id_publicacion):
     )
     materiales = PublicacionMaterial.objects.filter(id_publicacion=publicacion).values_list('id_material__nombre_material', flat=True)
     foto_indices = range(1, cantidad_fotos + 1)
+    data = CategoriaTrabajo.objects.all()
+    categorias = []
+    for index, item in enumerate(data):
+        id_categtrabajo = 1000 + index * 10
+        categorias.append({
+            'id_categtrabajo': id_categtrabajo,
+            'nombre_categtrabajo': item.nombre_categtrabajo
+        })
+    objMaterial = Material.objects.all
     context = {
+        'data': categorias,
         'publicacion': publicacion,
         'foto_indices': foto_indices,
-        'materiales' : materiales
+        'materiales' : materiales,
+        'material':objMaterial
     }
+    if request.method == 'POST':
+        print(request.POST)
+        materials= request.POST["listaMats"]
+        if 'imagenes' in request.FILES:
+            for i in range(1, 7):
+                setattr(publicacion, f'foto{i}', None)
+            for i, imagen in enumerate(request.FILES.getlist('imagenes')):
+                setattr(publicacion, f'foto{i+1}', imagen)
+        PublicacionMaterial.objects.filter(id_publicacion=publicacion).delete()
+        publicacion.titulo_publicacion = request.POST['titulo_publicacion']
+        publicacion.diagnostico_publicacion = request.POST['diagnostico']
+        publicacion.descripcion_publicacion = request.POST['descripcion']
+        id_categoria = request.POST['id_categoria']
+        publicacion.id_categoria = get_object_or_404(CategoriaTrabajo, id_categtrabajo=id_categoria)
+        publicacion.id_estpub = EstadoPublicacion.objects.get(id_estpub=10) 
+        materials = materials.split(sep=',')
+        materials.pop()
+        for i in materials:
+                objMater = Material.objects.get(id_material = i)
+                objPublicMat = PublicacionMaterial.objects.create(
+                    id_publicacion = publicacion,
+                    id_material = objMater
+                )
+                objPublicMat.save()
+        publicacion.save()
+        return redirect('listaTrabajosRechazados')
     return(render(request, 'editar_trabajo.html',context))
 
 def listaTrabajosRechazados(request):

@@ -73,40 +73,130 @@
                 <p> Fecha de Publicación: {{ publicacion.fecha_publicacion|date:"d/m/Y" }}, Mecánico a cargo: {{ publicacion.id_user.first_name }} {{ publicacion.id_user.last_name }}, Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}</p>
               </div>
             </div>
+            <!-- Aqui empieza el edit de todo -->
+          <form  action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}    
             <div class="publicacionRevision">
+              <h3>Titulo</h3>
+              <div class="cuadro-trabajo">
+                <div class="card-body" style="color:white">
+                <p>Modifique en caso de ser necesario</p>
+              <textarea class="form-control" name="titulo_publicacion">{{ publicacion.titulo_publicacion }}</textarea>
+                </div>
+              </div>
               <h3>Diagnóstico</h3>
               <div class="cuadro-trabajo">
                   <div class="card-body" style="color:white">
-                    <p>{{ publicacion.diagnostico_publicacion }}</p>
+                    <p>Modifique en caso de ser necesario</p>
+                    <textarea class="form-control" name="diagnostico">{{ publicacion.diagnostico_publicacion }}</textarea>
                   </div>
               </div>
               <h3>Descripción</h3>
               <div class="cuadro-trabajo">
                 <div class="card-body" style="color:white">
-                  <p>{{ publicacion.descripcion_publicacion }}</p>
+                  <p>Modifique en caso de ser necesario</p>
+                  <textarea class="form-control" name="descripcion">{{ publicacion.descripcion_publicacion }}</textarea>
+                </div>
+              </div>
+              <h3>Imagenes</h3>
+              <div class="cuadro-trabajo">
+                <div class="card-body" style="color:white">
+                  <input type="checkbox" name="cambiar_imagenes" id="checkbox_cambiar_imagenes">
+                  <label for="checkbox_cambiar_imagenes">Cambiar imágenes</label>
+                  <input                 
+                  class="form-control"
+                  type="file"
+                  name="imagenes"
+                  multiple
+                  accept=".jpg, .jpeg, .png, .webp"
+                  max="6"
+                  id="input_imagenes" style="display: none;">
+                </div>
+              </div>
+              <h3>Categoria</h3>
+              <div class="cuadro-trabajo">
+                <div class="card-body" style="color:white">
+                  <select class="form-select" name="id_categoria" id="categoriaId">
+                    <option value="{{ publicacion.id_categoria }}">Categoria designada: {{ publicacion.id_categoria.nombre_categtrabajo }}</option>
+                    {% if data %}
+                      {% for i in data %}
+                      <option value="{{ i.id_categtrabajo }}">
+                      {{ i.nombre_categtrabajo }}
+                      </option>
+                      {% endfor %}
+                    {% endif %}
+                  </select>
                 </div>
               </div>
               <h3>Materiales</h3>
               <div class="cuadro-trabajo">
-                <div class="card-body" style="color:white">
-                  <ul>
-                    {% if materiales %}
-                    {% for material in materiales %}
-                        <li>
-                          <p>{{ material }}</p>
-                        </li>
-                    {% endfor %}
-                  {% else %}
-                    <p>No se encontraron materiales.</p>
-                  {% endif %}
-                  </ul>
+              <div class="card-body" style="color:white">
+              <div class="row">
+                <div class="col-6">
+                  <h5 class="">Escoger Material(es)</h5>
+                  <select id="MaterialesID" class="w-100 linea3 form-select">
+                    <optgroup label="Material" id="MaterialID1">
+                      {% for i in material %}
+                      <option value="{{i.id_material}}">
+                        Material: {{i.nombre_material}}
+                      </option>
+                      {% endfor %}
+                    </optgroup>
+                  </select>
+                  <br />
+                  <br />
+                  <button
+                    type="button"
+                    id="agregarID"
+                    class="w-100 bordeRedondeado fondo2 titulo-arriendo btn btn-success"
+                  >
+                    Agregar
+                  </button>
+                </div>
+                <div class="col-6">
+                  <h5 class="">Material/es Seleccionado/s</h5>
+                  <select id="eliminadoID" class="linea3 w-100 form-select">
+                    <optgroup label="Material" id="MaterialID2">
+                      {% for material in materiales %}
+                      <option value="{{ material }}">{{ material }}</option>
+                      {% endfor %}
+                    </optgroup>
+                  </select>
+                  <textarea
+                    name="listaMats"
+                    hidden
+                    id="ocultoID"
+                    cols="30"
+                    rows="1"
+                  ></textarea>
+                  <br />
+                  <br />
+                  <button
+                    type="button"
+                    id="eliminarID"
+                    class="w-100 bordeRedondeado fondo2 titulo-arriendo btn btn-danger"
+                  >
+                    Eliminar
+                  </button>
                 </div>
               </div>
+            </div>  
+            </div>
             <h3>Cantidad de Rechazos</h3>
               <div class="cuadro-trabajo">
-                <p>3</p>
+                <p>{{ publicacion.cant_rechaz }}</p>
               </div>
+            <h3>Motivo del Rechazo</h3>
+              <div class="cuadro-trabajo">
+            <p>{{ publicacion.motivo_rechazo }}</p>
+              </div>
+              <center>
+                <button type="submit" id="Editarid" class="btn btn-success">
+                  Editar
+                </button>
+              </center>
             </div>
+          </form>
         </div>
       </div>
         </div>
