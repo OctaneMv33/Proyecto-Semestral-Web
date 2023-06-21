@@ -520,7 +520,7 @@ $("#estadoRevisionId").change(function(){
     $("#mensajeEstadoMotivoId").text('Debe seleccionar un estado de revisión.')
     vestado = false
   }else if(opcion === "20"){
-    $("#mensajeEstadoMotivoId").text('Ingreso correcto. No olvide escribir el motivo de rechazo')
+    $("#mensajeEstadoMotivoId").text('Escriba el motivo de rechazo.')
     vestado = false
     $("#motivoId").attr('disabled', false)
   }else{
