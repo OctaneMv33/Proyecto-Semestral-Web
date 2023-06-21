@@ -116,7 +116,6 @@ def revisionTrabajo(request, id_publicacion):
     }
     return (render(request,'revision_trabajo.html', context))
 
-#Dashboard
 def dashboardAdmin(request):
     return (render(request, 'dashboard_admin.html'))
 
