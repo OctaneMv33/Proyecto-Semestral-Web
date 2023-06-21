@@ -336,7 +336,6 @@ class SearchResultsView(ListView):
     model = Publicacion
     template_name = 'lista_trabajos.html'
     context_object_name = 'results'
-
     def get_queryset(self):
         query = self.request.GET.get('search_query')
         if query:
