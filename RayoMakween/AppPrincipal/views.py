@@ -52,7 +52,6 @@ def auth_login(request):
 def auth_register(request):
     if request.method=='POST':
         form = RegistrationForm(request.POST)
-        print(form)
         if form.is_valid():
             rut = form.cleaned_data['rut']
             dvrut = form.cleaned_data['dvrut']
@@ -79,7 +78,6 @@ def auth_register(request):
 def registro_mecanico(request):
     if request.method=='POST':
         form = RegistrationForm(request.POST)
-        print(form)
         if form.is_valid():
             rut = form.cleaned_data['rut']
             dvrut = form.cleaned_data['dvrut']
@@ -121,6 +119,7 @@ def revisionTrabajo(request, id_publicacion):
 #Dashboard
 def dashboardAdmin(request):
     return (render(request, 'dashboard_admin.html'))
+
 
 @login_required
 def exit(request):
