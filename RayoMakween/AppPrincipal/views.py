@@ -114,6 +114,18 @@ def revisionTrabajo(request, id_publicacion):
         'estados_publicacion' : estados_publicacion,
         'materiales' : materiales
     }
+    if request.method=='POST':
+        estado_revision_id = request.POST.get('estado_revision')
+        estado_revision = EstadoPublicacion.objects.get(id_estpub=estado_revision_id)
+        publicacion.id_estpub = estado_revision
+        #En caso de rechazo
+        if estado_revision_id == '20':
+            print("paso por aca")
+            motivo_modificado = request.POST.get('motivo_rechazo')
+            publicacion.motivo_rechazo = motivo_modificado
+            publicacion.cant_rechaz += 1
+        publicacion.save()
+        return redirect('listadoTrabajosRevision')
     return (render(request,'revision_trabajo.html', context))
 
 def dashboardAdmin(request):

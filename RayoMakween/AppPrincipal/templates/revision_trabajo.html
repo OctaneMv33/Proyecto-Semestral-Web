@@ -122,17 +122,18 @@
           <center><h2>Formulario Revisión de trabajo</h2></center>
          <br><br>
               <form action="" method="POST">
+                {% csrf_token %}
               <label for="text">Seleccione casilla de revisión</label>
-              <select class="form-select" id="estadoRevisionId" aria-label="Default select example">
+              <select class="form-select" id="estadoRevisionId" name="estado_revision" aria-label="Default select example">
                   <option value="">--- Seleccione estado de revisión ---</option>
                   {% for estpub in estados_publicacion %}
                     <option value="{{ estpub.id_estpub }}"> {{ estpub.nombre_estpub }} </option>
-                  {% endfor %}}
+                  {% endfor %}
               </select> 
               <div id="mensajeEstadoMotivoId"></div>
               <br><br>
               <label for="motivoId" id="MotId">Motivo Rechazo:</label>
-                <textarea class="form-control" id="motivoId" rows="3" placeholder="Maximo 500 caracteres" style="height: 100px"></textarea>
+                <textarea class="form-control" id="motivoId" rows="3" name="motivo_rechazo" placeholder="Maximo 500 caracteres" style="height: 100px"></textarea>
                 <div id="mensajeMotivoId"></div> 
             <br><br>
             <center>
