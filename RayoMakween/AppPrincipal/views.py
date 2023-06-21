@@ -180,6 +180,7 @@ def crearTrabajo(request):
                 diagnostico_publicacion=diagnostico_publicacion,
                 id_categoria=objCategory,
                 fecha_publicacion=fecha_hoy,
+                cant_rechaz=0,
                 id_user=id_user,
                 id_estpub=objState
             )
