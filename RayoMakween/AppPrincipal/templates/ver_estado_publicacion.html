@@ -1,4 +1,27 @@
 {% extends 'navbar.html' %} {% block title %}Ver Estado de Publicación{% endblock %} {% block content %}
 
-<main></main>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="fondoTabla">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="scope">ID Publicación</th>
+                            <th class="scope">Título Publicación</th>
+                            <th class="scope">Estado</th>
+                        </tr>
+                        {% for publicacion in publicaciones %}    
+                            <tr>
+                                <td class="datos">{{ publicacion.id_publicacion }}</td>
+                                <td class="datos">{{ publicacion.titulo_publicacion }}</td>
+                                <td class="datos">{{ publicacion.id_estpub.nombre_estpub }}</td>
+                            </tr>
+                        {% endfor %}    
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

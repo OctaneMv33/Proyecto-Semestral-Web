@@ -158,12 +158,14 @@ def dashboardAdmin(request):
         }
     return render(request, 'dashboard_admin.html', context)
 
+
 def editarTrabajo(request, id_publicacion):
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
     cantidad_fotos = sum(
         bool(getattr(publicacion, f"foto{i}")) for i in range(1, 7)
     )
-    materiales = PublicacionMaterial.objects.filter(id_publicacion=publicacion).values_list('id_material__nombre_material', flat=True)
+    materiales = PublicacionMaterial.objects.filter(id_publicacion=publicacion)
+    print(materiales)
     foto_indices = range(1, cantidad_fotos + 1)
     data = CategoriaTrabajo.objects.all()
     categorias = []
@@ -173,7 +175,7 @@ def editarTrabajo(request, id_publicacion):
             'id_categtrabajo': id_categtrabajo,
             'nombre_categtrabajo': item.nombre_categtrabajo
         })
-    objMaterial = Material.objects.all
+    objMaterial = Material.objects.exclude(nombre_material__in=materiales.values_list('id_material__nombre_material', flat=True))
     context = {
         'data': categorias,
         'publicacion': publicacion,
@@ -197,7 +199,6 @@ def editarTrabajo(request, id_publicacion):
         publicacion.id_categoria = get_object_or_404(CategoriaTrabajo, id_categtrabajo=id_categoria)
         publicacion.id_estpub = EstadoPublicacion.objects.get(id_estpub=10) 
         materials = materials.split(sep=',')
-        materials.pop()
         for i in materials:
                 objMater = Material.objects.get(id_material = i)
                 objPublicMat = PublicacionMaterial.objects.create(
@@ -210,7 +211,8 @@ def editarTrabajo(request, id_publicacion):
     return(render(request, 'editar_trabajo.html',context))
 
 def listaTrabajosRechazados(request):
-    publicaciones = Publicacion.objects.filter(id_estpub=20)
+    usuarioActual = request.user
+    publicaciones = Publicacion.objects.filter(Q(id_estpub=20) & Q(id_user = usuarioActual))
     return(render(request, 'lista_trabajos_rechazados.html', {'publicaciones' : publicaciones}))
 
 @login_required
@@ -300,7 +302,12 @@ def cantidadTrabajos(request):
 
 @user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
 def estadoPublicacion(request):
-    return (render(request,'ver_estado_publicacion.html'))
+    usuarioActual = request.user
+    publicaciones = Publicacion.objects.filter(id_user = usuarioActual)
+    context = {
+        'publicaciones' : publicaciones
+    }
+    return (render(request,'ver_estado_publicacion.html', context))
 
 @user_passes_test(lambda u: u.groups.filter(name='Administrador').exists(), login_url='index')
 def listadoTrabajosRevision(request):

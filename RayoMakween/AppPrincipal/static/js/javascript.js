@@ -448,46 +448,54 @@ $("#categoriaId").change(function () {
 
 /*Validando material */
 var grupo = "2";
-var material = "";
-$("#agregarID").click(function () {
+var materiales = [];
 
-  var sel = $("#MaterialesID :selected");
-  var val = $(sel).val();
-  var text = $(sel).text();
-  var idPadre = sel.parent().prop("id");
-  grupo = "#" + idPadre.substr(0, idPadre.length - 1) + "2";
-  //alert(grupo);
+$(document).ready(function () {
+  cargarMaterialesSeleccionados();
 
-  $(grupo).append('<option value="' + val + '">' + text + '</option>');
+  $("#agregarID").click(function () {
+    var sel = $("#MaterialesID :selected");
+    var val = $(sel).val();
+    var text = $(sel).text();
+    var idPadre = sel.parent().prop("id");
+    grupo = "#" + idPadre.substr(0, idPadre.length - 1) + "2";
+    $(grupo).append('<option value="' + val + '">' + text + '</option>');
+    materiales.push(val);
+    actualizarOcultoID();
+    $(sel).remove();
+  });
 
-  material = material + val + ",";
-  $("#ocultoID").text(material);
-  //var val = "#bicicletasID option[value=" + val + "]";
+  $("#eliminarID").click(function () {
+    var sel = $("#eliminadoID :selected");
+    var val = $(sel).val();
+    var text = $(sel).text();
+    var idPadre = sel.parent().prop("id");
+    grupo = "#" + idPadre.substr(0, idPadre.length - 1) + "1";
+    $(grupo).append('<option value="' + val + '">' + text + '</option>');
 
-  $(sel).remove();
-
+    var index = materiales.indexOf(val);
+    if (index > -1) {
+      materiales.splice(index, 1);
+    }
+    actualizarOcultoID();
+    $(sel).remove();
+  });
 });
 
+function cargarMaterialesSeleccionados() {
+  var materialesSeleccionados = [];
+  $("#eliminadoID option").each(function() {
+    materialesSeleccionados.push($(this).val());
+  });
+  materiales = materialesSeleccionados.filter(function (material) {
+    return material.trim() !== "";
+  });
+  actualizarOcultoID();
+}
 
-$("#eliminarID").click(function () {
-
-  var sel = $("#eliminadoID :selected");
-  var val = $(sel).val();
-  var text = $(sel).text();
-  var idPadre = sel.parent().prop("id");
-  grupo = "#" + idPadre.substr(0, idPadre.length - 1) + "1";
-  // alert(grupo);
-
-  $(grupo).append('<option value="' + val + '">' + text + '</option>');
-
-  material = material.replace(val + ',', '');
-  //var val = "#bicicletasID option[value=" + val + "]";
-  $("#ocultoID").text(material);
-
-
-  $(sel).remove();
-
-});
+function actualizarOcultoID() {
+  $("#ocultoID").val(materiales.join(","));
+}
 
 var vmotivo = false, vestado = false
 /* Validaciones Revision de Trabajo */
