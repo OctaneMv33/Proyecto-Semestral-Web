@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
@@ -9,16 +10,15 @@ from django.conf import settings
 from datetime import date
 from django.shortcuts import render, get_object_or_404
 from .templatetags.custom_filters import register
-from django.db.models import Q
+from django.db.models import Q, Value
 from django.views.generic import ListView
 from django.db import connection
+from django.db.models.functions import Concat
 
 # Create your views here.
 #Index
 def index(request):
-    publicaciones_1 = Publicacion.objects.filter(id_estpub=30)
-    publicaciones_2 = Publicacion.objects.filter(id_publicacion__in=publicaciones_1).exclude(id_estpub=30).order_by('-id_publicacion')[:5]
-    publicaciones = list(publicaciones_1) + list(publicaciones_2)
+    publicaciones = Publicacion.objects.filter(id_estpub=30).order_by('-id_publicacion')[:5]
     categorias = CategoriaTrabajo.objects.all()
     usuarios = User.objects.all()
     context = {
@@ -36,7 +36,8 @@ def index(request):
             return redirect('index')
     else:
         form = ContactoForm()
-    return render(request, 'index.html',context)
+    return render(request, 'index.html', context)
+
 #Login de Usuario
 def auth_login(request):
     if  request.method == 'POST':
@@ -78,6 +79,24 @@ def auth_register(request):
         form = RegistrationForm()
     return(render(request,'registro.html'))
 
+#Buscar por categoría
+def buscarPorCategoria(request):
+    categorias = CategoriaTrabajo.objects.all()
+    context = {
+        'categorias' : categorias
+    }
+    return (render(request, 'buscar_por_categoria.html', context))
+
+#Buscar por mecánico
+def buscarPorMecanico(request): 
+    grupoMec = Group.objects.get(name='Mecanico')
+    mecanicos = User.objects.filter(groups = grupoMec)
+    context = {
+        'mecanicos' : mecanicos
+    }
+    return (render(request, 'buscar_por_mecanico.html', context))
+
+#Registro de Mecánico
 def registro_mecanico(request):
     if request.method=='POST':
         form = RegistrationForm(request.POST)
@@ -296,9 +315,6 @@ def crearTrabajo(request):
         else:
             print(form.errors)
     return render(request, 'crear_trabajo.html', context)
-@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
-def cantidadTrabajos(request):
-    return (render(request,'ver_cantidad_trabajos.html'))
 
 @user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
 def estadoPublicacion(request):
@@ -319,6 +335,25 @@ def listadoTrabajosRevision(request):
 def lista_trabajos(request):
     publicaciones = Publicacion.objects.all()
     return render(request, 'lista_trabajos.html', {'publicaciones': publicaciones})
+
+# Busqueda de categoria
+def resultados_por_categoria(request):
+    categorias = CategoriaTrabajo.objects.all()
+    context = {
+        'categorias': categorias,
+        **SearchResultsViewCategory.as_view()(request).context_data,
+    }
+    return render(request, 'resultados_por_categoria.html', context)
+
+def resultados_por_mecanico(request):
+    grupoMec = Group.objects.get(name='Mecanico')
+    mecanicos = User.objects.filter(groups = grupoMec)
+    context = {
+        'mecanicos' : mecanicos
+        **SearchResultsViewMechanics.as_view()(request).context_data,
+    }
+    return render(request, 'resultados_por_mecanico.html', context)
+
 # Revision aprobada
 def detalle_publicacion(request, id_publicacion):
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
@@ -343,16 +378,33 @@ class SearchResultsView(ListView):
     model = Publicacion
     template_name = 'lista_trabajos.html'
     context_object_name = 'results'
+
     def get_queryset(self):
         query = self.request.GET.get('search_query')
         if query:
-            queryset = Publicacion.objects.filter(
+            queryset = Publicacion.objects.annotate(
+                full_name=Concat('id_user__first_name', Value(' '), 'id_user__last_name')
+            ).filter(
                 Q(titulo_publicacion__icontains=query) |
                 Q(diagnostico_publicacion__icontains=query) |
                 Q(descripcion_publicacion__icontains=query) |
                 Q(id_categoria__nombre_categtrabajo__icontains=query) |
-                Q(id_user__first_name__icontains=query) |
-                Q(id_user__last_name__icontains=query)
+                Q(full_name__icontains=query)
+            ).distinct()
+            return queryset
+        else:
+            return Publicacion.objects.none()
+
+class SearchResultsViewCategory(ListView):
+    model = Publicacion
+    template_name = 'resultados_por_categoria.html'
+    context_object_name = 'results'
+
+    def get_queryset(self):
+        query = self.request.GET.get('resultados_por_categoria')
+        if query:
+            queryset = Publicacion.objects.filter(
+                Q(id_categoria__nombre_categtrabajo__icontains=query)
             )          
             return queryset
         else:
@@ -360,8 +412,30 @@ class SearchResultsView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user_results'] = User.objects.filter(
-            Q(first_name__icontains=self.request.GET.get('search_query')) | 
-            Q(last_name__icontains=self.request.GET.get('search_query'))
-        )
+        categorias = CategoriaTrabajo.objects.all()
+        context['categorias'] = categorias
+        return context
+    
+class SearchResultsViewMechanics(ListView):
+    model = Publicacion
+    template_name = 'resultados_por_mecanico.html'
+    context_object_name = 'results'
+
+    def get_queryset(self):
+        query = self.request.GET.get('resultados_por_mecanico')
+        if query:
+            queryset = Publicacion.objects.annotate(
+                full_name=Concat('id_user__first_name', Value(' '), 'id_user__last_name')
+            ).filter(
+                Q(full_name__icontains=query)
+            ).distinct()
+            return queryset
+        else:
+            return Publicacion.objects.none()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        grupoMec = Group.objects.get(name='Mecanico')
+        mecanicos = User.objects.filter(groups = grupoMec)
+        context['mecanicos'] = mecanicos
         return context

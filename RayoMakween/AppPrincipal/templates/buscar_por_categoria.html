@@ -1,0 +1,35 @@
+{% extends 'navbar.html' %} {% block title %}Buscar por Categoría{% endblock %} {% block content %}
+
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="cuadro">
+                    <center><h1>Buscar Mantenciones por Categoría</h1></center>
+                    <br>
+                    <form action="{% url 'resultados_por_categoria' %}" method="GET">
+                    <div class="container">
+                        <div class="row">
+                                <div class="col-md-11">
+                                    <select name="resultados_por_categoria" id="buscarId" class="form-select">
+                                        <option value="">--- Seleccione una categoría a buscar ---</option>
+                                        {% for categoria in categorias %}
+                                            <option value="{{categoria.nombre_categtrabajo}}">{{categoria.nombre_categtrabajo}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="submit" class="btn btn-success" id="btnbuscarId">Buscar</button>
+                                </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+
+</main>
+{% endblock %}
