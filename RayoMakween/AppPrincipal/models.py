@@ -56,7 +56,7 @@ class Publicacion(models.Model):
     foto4 = models.ImageField(upload_to='foto_publicacion/', null=True, blank=True)
     foto5 = models.ImageField(upload_to='foto_publicacion/', null=True, blank=True)
     foto6 = models.ImageField(upload_to='foto_publicacion/', null=True, blank=True)
-    fecha_revision = models.DateField(db_column='fecha_revision', null=True, blank=True)
+    fecha_revision = models.DateTimeField(db_column='fecha_revision', null=True, blank=True)
     cant_rechaz = models.IntegerField(db_column = 'cantidad_rechazos', blank = False, null = False)
     motivo_rechazo = models.CharField(db_column = 'motivo_rechazo', max_length = 500, null=True, blank=True)
     id_categoria = models.ForeignKey(CategoriaTrabajo, db_column='id_categoria', on_delete=models.CASCADE)

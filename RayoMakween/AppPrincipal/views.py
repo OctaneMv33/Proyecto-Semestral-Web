@@ -79,7 +79,7 @@ def auth_register(request):
         form = RegistrationForm()
     return(render(request,'registro.html'))
 
-#Buscar por categoría
+#Buscar por categoría pertenece a cliente
 def buscarPorCategoria(request):
     categorias = CategoriaTrabajo.objects.all()
     context = {
@@ -87,7 +87,7 @@ def buscarPorCategoria(request):
     }
     return (render(request, 'buscar_por_categoria.html', context))
 
-#Buscar por mecánico
+#Buscar por mecánico pertenece a cliente
 def buscarPorMecanico(request): 
     grupoMec = Group.objects.get(name='Mecanico')
     mecanicos = User.objects.filter(groups = grupoMec)
@@ -139,16 +139,20 @@ def revisionTrabajo(request, id_publicacion):
     if request.method=='POST':
         estado_revision_id = request.POST.get('estado_revision')
         estado_revision = EstadoPublicacion.objects.get(id_estpub=estado_revision_id)
+        fecha_revision = request.POST.get('fechaRevision')
         publicacion.id_estpub = estado_revision
+        publicacion.fecha_revision = fecha_revision
         #En caso de rechazo
         if estado_revision_id == '20':
             motivo_modificado = request.POST.get('motivo_rechazo')
             publicacion.motivo_rechazo = motivo_modificado
             publicacion.cant_rechaz += 1
+            publicacion.fecha_revision = fecha_revision
         publicacion.save()
         return redirect('listadoTrabajosRevision')
     return (render(request,'revision_trabajo.html', context))
 
+#Admin
 def dashboardAdmin(request):
     with connection.cursor() as cursor:
         cursor.execute("""
@@ -177,7 +181,7 @@ def dashboardAdmin(request):
         }
     return render(request, 'dashboard_admin.html', context)
 
-
+# Mecánico
 def editarTrabajo(request, id_publicacion):
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
     cantidad_fotos = sum(
@@ -229,6 +233,7 @@ def editarTrabajo(request, id_publicacion):
         return redirect('listaTrabajosRechazados')
     return(render(request, 'editar_trabajo.html',context))
 
+# Mecánico
 def listaTrabajosRechazados(request):
     usuarioActual = request.user
     publicaciones = Publicacion.objects.filter(Q(id_estpub=20) & Q(id_user = usuarioActual))
@@ -439,3 +444,15 @@ class SearchResultsViewMechanics(ListView):
         mecanicos = User.objects.filter(groups = grupoMec)
         context['mecanicos'] = mecanicos
         return context
+
+# Organizar código
+
+#Vistas No Registrado
+
+#Vistas Cliente
+
+#Vistas Mecánico
+
+#Vistas Admin
+
+#Clases para búsqueda
