@@ -64,11 +64,19 @@
                           >Crear Trabajo</a
                         >
                       </li>
+                      {% if numero_publicaciones == 0 %}
                       <li class="nav-item">
-                        <a href="{% url 'listaTrabajosRechazados' %}" class="nav-link active">
-                          Ver Trabajos Rechazados
+                        <a href="{% url 'listaTrabajosRechazados' %}" class="nav-link active" >
+                          No hay trabajos rechazados
                         </a>
                       </li>
+                      {% else %}
+                      <li class="nav-item parpadeo">
+                        <a href="{% url 'listaTrabajosRechazados' %}" class="nav-link active" >
+                          Ver Trabajos Rechazados ({{ numero_publicaciones }})
+                        </a>
+                      </li>
+                      {% endif %}
                       <li class="nav-item">
                         <a href="{% url 'estadoPublicacion' %}" class="nav-link active">
                           Ver Estado Publicacion

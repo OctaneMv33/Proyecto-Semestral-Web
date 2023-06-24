@@ -195,7 +195,6 @@ def editarTrabajo(request, id_publicacion):
         bool(getattr(publicacion, f"foto{i}")) for i in range(1, 7)
     )
     materiales = PublicacionMaterial.objects.filter(id_publicacion=publicacion)
-    print(materiales)
     foto_indices = range(1, cantidad_fotos + 1)
     data = CategoriaTrabajo.objects.all()
     categorias = []
@@ -214,7 +213,6 @@ def editarTrabajo(request, id_publicacion):
         'material':objMaterial
     }
     if request.method == 'POST':
-        print(request.POST)
         materials= request.POST["listaMats"]
         if 'imagenes' in request.FILES:
             for i in range(1, 7):
@@ -305,7 +303,6 @@ def crearTrabajo(request):
             descripcion_publicacion = request.POST['descripcion_publicacion']
             diagnostico_publicacion = request.POST['diagnostico_publicacion']
             id_categoria = request.POST['id_categoria']
-            print(id_categoria)
             materials = materials.split(sep=',')
             materials.pop()
             imagenes = request.FILES['imagenes']
