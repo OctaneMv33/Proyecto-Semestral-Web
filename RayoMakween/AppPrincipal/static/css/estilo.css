@@ -245,8 +245,7 @@ a{
     text-align: center;
 }
 
-/*
-Posible animación para notificar que alguna publicación fue rechazada
+
 @keyframes parpadeo {
     0% { opacity: 1; }
     50% { opacity: 0.5; }
@@ -255,4 +254,4 @@ Posible animación para notificar que alguna publicación fue rechazada
   
   .parpadeo {
     animation: parpadeo 1s infinite;
-  }*/
+  }
