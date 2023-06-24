@@ -24,6 +24,9 @@ class RegistrationForm(forms.Form):
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError('Las contraseñas no coinciden')
         
+class SolicitudForm(forms.Form):
+    fechaSolicitud = forms.DateField()
+    descripcionSolicitud = forms.CharField(max_length=500)
 
 class ContactoForm(forms.Form):
     correo = forms.EmailField()

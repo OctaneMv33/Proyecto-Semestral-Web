@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import User, Contacto, CategoriaTrabajo,EstadoPublicacion,Publicacion, Material, PublicacionMaterial
-from .forms import RegistrationForm, ContactoForm, PublicacionForm
+from .models import User, Contacto, CategoriaTrabajo,EstadoPublicacion,Publicacion, Material, PublicacionMaterial, Solicitud
+from .forms import RegistrationForm, ContactoForm, PublicacionForm, SolicitudForm
 import os 
 from django.conf import settings
 from datetime import date
@@ -247,6 +247,23 @@ def exit(request):
 # Vistas Cliente
 @user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='auth_login')
 def solicitud(request):
+    if request.method == 'POST':
+        user_id = request.user.id
+        id_user= User.objects.get(id=user_id)
+        form = SolicitudForm(request.POST)
+        if form.is_valid():
+            fechaSolicitud = form.cleaned_data['fechaSolicitud']
+            descripcionSolicitud = form.cleaned_data['descripcionSolicitud']
+            objSolic = Solicitud.objects.create(
+                fecha_solicitud = fechaSolicitud,
+                descripcion_solicitud = descripcionSolicitud,
+                id_user = id_user
+            )
+            objSolic.save()
+            return redirect('index')
+        else:
+            print(form.errors)
+
     return (render(request,'solicitud.html'))
 
 @user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='auth_login')

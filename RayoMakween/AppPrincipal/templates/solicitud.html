@@ -7,15 +7,18 @@
                 <div class="solicitud">
                     <center><h1>Solicitud de Trabajo</h1></center>
                     <br><br>
-                    <label for="fechaId">Fecha: </label>
-                    <input type="date" name="fecha" id="fechaId" textarea class="form-control">
-                    <div id="mensajeFechaId" style="color: white;"></div>
-                    <br><br>
-                    <label for="descripcionId" id="DescId">Descripción de problema:</label>
-                    <textarea class="form-control" id="descripcionId" rows="3" placeholder="Maximo 500 caracteres"></textarea>
-                    <div id="mensajeDescripcionId" style="color: white;"></div>
-                    <br>
-                    <center><button type="submit" id="enviarId" class="btn btn-success">Enviar solicitud</button></center>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <label for="fechaId">Fecha: </label>
+                        <input type="date" name="fechaSolicitud" id="fechaId" textarea class="form-control">
+                        <div id="mensajeFechaId" style="color: white;"></div>
+                        <br><br>
+                        <label for="descripcionId" id="DescId">Descripción de problema:</label>
+                        <textarea class="form-control" id="descripcionId" rows="3" name="descripcionSolicitud" placeholder="Maximo 500 caracteres"></textarea>
+                        <div id="mensajeDescripcionId" style="color: white;"></div>
+                        <br>
+                        <center><button type="submit" id="enviarId" class="btn btn-success">Enviar solicitud</button></center>
+                    </form>
                 </div>
             </div>
             <div class="col-md-2"></div>
