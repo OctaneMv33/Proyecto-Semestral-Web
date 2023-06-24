@@ -81,6 +81,7 @@ def auth_register(request):
     return(render(request,'registro.html'))
 
 #Buscar por categoría pertenece a cliente
+@user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='index')
 def buscarPorCategoria(request):
     categorias = CategoriaTrabajo.objects.all()
     context = {
@@ -89,6 +90,7 @@ def buscarPorCategoria(request):
     return (render(request, 'buscar_por_categoria.html', context))
 
 #Buscar por mecánico pertenece a cliente
+@user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='index')
 def buscarPorMecanico(request): 
     grupoMec = Group.objects.get(name='Mecanico')
     mecanicos = User.objects.filter(groups = grupoMec)
@@ -98,6 +100,7 @@ def buscarPorMecanico(request):
     return (render(request, 'buscar_por_mecanico.html', context))
 
 #Registro de Mecánico
+@user_passes_test(lambda u: u.groups.filter(name='Administrador').exists(), login_url='index')
 def registro_mecanico(request):
     if request.method=='POST':
         form = RegistrationForm(request.POST)
@@ -123,6 +126,7 @@ def registro_mecanico(request):
 
 #Vista Admin
 #Revision para aprobar o rechazar
+@user_passes_test(lambda u: u.groups.filter(name='Administrador').exists(), login_url='index')
 def revisionTrabajo(request, id_publicacion):
     estados_publicacion = EstadoPublicacion.objects.filter(Q(id_estpub=20) | Q(id_estpub=30))
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
@@ -154,6 +158,7 @@ def revisionTrabajo(request, id_publicacion):
     return (render(request,'revision_trabajo.html', context))
 
 #Admin
+@user_passes_test(lambda u: u.groups.filter(name='Administrador').exists(), login_url='index')
 def dashboardAdmin(request):
     with connection.cursor() as cursor:
         cursor.execute("""
@@ -183,6 +188,7 @@ def dashboardAdmin(request):
     return render(request, 'dashboard_admin.html', context)
 
 # Mecánico
+@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
 def editarTrabajo(request, id_publicacion):
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
     cantidad_fotos = sum(
@@ -235,6 +241,7 @@ def editarTrabajo(request, id_publicacion):
     return(render(request, 'editar_trabajo.html',context))
 
 # Mecánico
+@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
 def listaTrabajosRechazados(request):
     usuarioActual = request.user
     publicaciones = Publicacion.objects.filter(Q(id_estpub=20) & Q(id_user = usuarioActual))
