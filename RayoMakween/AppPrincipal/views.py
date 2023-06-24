@@ -14,6 +14,7 @@ from django.db.models import Q, Value
 from django.views.generic import ListView
 from django.db import connection
 from django.db.models.functions import Concat
+from django.views.defaults import page_not_found
 
 # Create your views here.
 #Index
@@ -456,3 +457,8 @@ class SearchResultsViewMechanics(ListView):
 #Vistas Admin
 
 #Clases para búsqueda
+
+#No se encuentra 
+
+def pagina_no_encontrada(request, exception):
+    return page_not_found(request, exception, template_name='not_found.html')
