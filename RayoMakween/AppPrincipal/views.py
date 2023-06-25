@@ -1,24 +1,25 @@
+from typing import Any, Dict
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import User, Contacto, CategoriaTrabajo,EstadoPublicacion,Publicacion, Material, PublicacionMaterial
-from .forms import RegistrationForm, ContactoForm, PublicacionForm
+from .models import User, Contacto, CategoriaTrabajo,EstadoPublicacion,Publicacion, Material, PublicacionMaterial, Solicitud
+from .forms import RegistrationForm, ContactoForm, PublicacionForm, SolicitudForm
 import os 
 from django.conf import settings
 from datetime import date
 from django.shortcuts import render, get_object_or_404
 from .templatetags.custom_filters import register
-from django.db.models import Q
+from django.db.models import Q, Value
 from django.views.generic import ListView
 from django.db import connection
+from django.db.models.functions import Concat
+from django.views.defaults import page_not_found
 
 # Create your views here.
 #Index
 def index(request):
-    publicaciones_1 = Publicacion.objects.filter(id_estpub=30)
-    publicaciones_2 = Publicacion.objects.filter(id_publicacion__in=publicaciones_1).exclude(id_estpub=30).order_by('-id_publicacion')[:5]
-    publicaciones = list(publicaciones_1) + list(publicaciones_2)
+    publicaciones = Publicacion.objects.filter(id_estpub=30).order_by('-id_publicacion')[:5]
     categorias = CategoriaTrabajo.objects.all()
     usuarios = User.objects.all()
     context = {
@@ -36,7 +37,8 @@ def index(request):
             return redirect('index')
     else:
         form = ContactoForm()
-    return render(request, 'index.html',context)
+    return render(request, 'index.html', context)
+
 #Login de Usuario
 def auth_login(request):
     if  request.method == 'POST':
@@ -78,6 +80,27 @@ def auth_register(request):
         form = RegistrationForm()
     return(render(request,'registro.html'))
 
+#Buscar por categoría pertenece a cliente
+@user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='index')
+def buscarPorCategoria(request):
+    categorias = CategoriaTrabajo.objects.all()
+    context = {
+        'categorias' : categorias
+    }
+    return (render(request, 'buscar_por_categoria.html', context))
+
+#Buscar por mecánico pertenece a cliente
+@user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='index')
+def buscarPorMecanico(request): 
+    grupoMec = Group.objects.get(name='Mecanico')
+    mecanicos = User.objects.filter(groups = grupoMec)
+    context = {
+        'mecanicos' : mecanicos
+    }
+    return (render(request, 'buscar_por_mecanico.html', context))
+
+#Registro de Mecánico
+@user_passes_test(lambda u: u.groups.filter(name='Administrador').exists(), login_url='index')
 def registro_mecanico(request):
     if request.method=='POST':
         form = RegistrationForm(request.POST)
@@ -103,6 +126,7 @@ def registro_mecanico(request):
 
 #Vista Admin
 #Revision para aprobar o rechazar
+@user_passes_test(lambda u: u.groups.filter(name='Administrador').exists(), login_url='index')
 def revisionTrabajo(request, id_publicacion):
     estados_publicacion = EstadoPublicacion.objects.filter(Q(id_estpub=20) | Q(id_estpub=30))
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
@@ -120,16 +144,21 @@ def revisionTrabajo(request, id_publicacion):
     if request.method=='POST':
         estado_revision_id = request.POST.get('estado_revision')
         estado_revision = EstadoPublicacion.objects.get(id_estpub=estado_revision_id)
+        fecha_revision = request.POST.get('fechaRevision')
         publicacion.id_estpub = estado_revision
+        publicacion.fecha_revision = fecha_revision
         #En caso de rechazo
         if estado_revision_id == '20':
             motivo_modificado = request.POST.get('motivo_rechazo')
             publicacion.motivo_rechazo = motivo_modificado
             publicacion.cant_rechaz += 1
+            publicacion.fecha_revision = fecha_revision
         publicacion.save()
         return redirect('listadoTrabajosRevision')
     return (render(request,'revision_trabajo.html', context))
 
+#Admin
+@user_passes_test(lambda u: u.groups.filter(name='Administrador').exists(), login_url='index')
 def dashboardAdmin(request):
     with connection.cursor() as cursor:
         cursor.execute("""
@@ -158,14 +187,14 @@ def dashboardAdmin(request):
         }
     return render(request, 'dashboard_admin.html', context)
 
-
+# Mecánico
+@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
 def editarTrabajo(request, id_publicacion):
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
     cantidad_fotos = sum(
         bool(getattr(publicacion, f"foto{i}")) for i in range(1, 7)
     )
     materiales = PublicacionMaterial.objects.filter(id_publicacion=publicacion)
-    print(materiales)
     foto_indices = range(1, cantidad_fotos + 1)
     data = CategoriaTrabajo.objects.all()
     categorias = []
@@ -184,7 +213,6 @@ def editarTrabajo(request, id_publicacion):
         'material':objMaterial
     }
     if request.method == 'POST':
-        print(request.POST)
         materials= request.POST["listaMats"]
         if 'imagenes' in request.FILES:
             for i in range(1, 7):
@@ -210,6 +238,8 @@ def editarTrabajo(request, id_publicacion):
         return redirect('listaTrabajosRechazados')
     return(render(request, 'editar_trabajo.html',context))
 
+# Mecánico
+@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
 def listaTrabajosRechazados(request):
     usuarioActual = request.user
     publicaciones = Publicacion.objects.filter(Q(id_estpub=20) & Q(id_user = usuarioActual))
@@ -223,6 +253,23 @@ def exit(request):
 # Vistas Cliente
 @user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='auth_login')
 def solicitud(request):
+    if request.method == 'POST':
+        user_id = request.user.id
+        id_user= User.objects.get(id=user_id)
+        form = SolicitudForm(request.POST)
+        if form.is_valid():
+            fechaSolicitud = form.cleaned_data['fechaSolicitud']
+            descripcionSolicitud = form.cleaned_data['descripcionSolicitud']
+            objSolic = Solicitud.objects.create(
+                fecha_solicitud = fechaSolicitud,
+                descripcion_solicitud = descripcionSolicitud,
+                id_user = id_user
+            )
+            objSolic.save()
+            return redirect('index')
+        else:
+            print(form.errors)
+
     return (render(request,'solicitud.html'))
 
 @user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='auth_login')
@@ -256,7 +303,6 @@ def crearTrabajo(request):
             descripcion_publicacion = request.POST['descripcion_publicacion']
             diagnostico_publicacion = request.POST['diagnostico_publicacion']
             id_categoria = request.POST['id_categoria']
-            print(id_categoria)
             materials = materials.split(sep=',')
             materials.pop()
             imagenes = request.FILES['imagenes']
@@ -296,9 +342,6 @@ def crearTrabajo(request):
         else:
             print(form.errors)
     return render(request, 'crear_trabajo.html', context)
-@user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
-def cantidadTrabajos(request):
-    return (render(request,'ver_cantidad_trabajos.html'))
 
 @user_passes_test(lambda u: u.groups.filter(name='Mecanico').exists(), login_url='index')
 def estadoPublicacion(request):
@@ -319,6 +362,25 @@ def listadoTrabajosRevision(request):
 def lista_trabajos(request):
     publicaciones = Publicacion.objects.all()
     return render(request, 'lista_trabajos.html', {'publicaciones': publicaciones})
+
+# Busqueda de categoria
+def resultados_por_categoria(request):
+    categorias = CategoriaTrabajo.objects.all()
+    context = {
+        'categorias': categorias,
+        **SearchResultsViewCategory.as_view()(request).context_data,
+    }
+    return render(request, 'resultados_por_categoria.html', context)
+
+def resultados_por_mecanico(request):
+    grupoMec = Group.objects.get(name='Mecanico')
+    mecanicos = User.objects.filter(groups = grupoMec)
+    context = {
+        'mecanicos' : mecanicos
+        **SearchResultsViewMechanics.as_view()(request).context_data,
+    }
+    return render(request, 'resultados_por_mecanico.html', context)
+
 # Revision aprobada
 def detalle_publicacion(request, id_publicacion):
     publicacion = get_object_or_404(Publicacion, id_publicacion=id_publicacion)
@@ -343,16 +405,33 @@ class SearchResultsView(ListView):
     model = Publicacion
     template_name = 'lista_trabajos.html'
     context_object_name = 'results'
+
     def get_queryset(self):
         query = self.request.GET.get('search_query')
         if query:
-            queryset = Publicacion.objects.filter(
+            queryset = Publicacion.objects.annotate(
+                full_name=Concat('id_user__first_name', Value(' '), 'id_user__last_name')
+            ).filter(
                 Q(titulo_publicacion__icontains=query) |
                 Q(diagnostico_publicacion__icontains=query) |
                 Q(descripcion_publicacion__icontains=query) |
                 Q(id_categoria__nombre_categtrabajo__icontains=query) |
-                Q(id_user__first_name__icontains=query) |
-                Q(id_user__last_name__icontains=query)
+                Q(full_name__icontains=query)
+            ).distinct()
+            return queryset
+        else:
+            return Publicacion.objects.none()
+
+class SearchResultsViewCategory(ListView):
+    model = Publicacion
+    template_name = 'resultados_por_categoria.html'
+    context_object_name = 'results'
+
+    def get_queryset(self):
+        query = self.request.GET.get('resultados_por_categoria')
+        if query:
+            queryset = Publicacion.objects.filter(
+                Q(id_categoria__nombre_categtrabajo__icontains=query)
             )          
             return queryset
         else:
@@ -360,17 +439,55 @@ class SearchResultsView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['user_results'] = User.objects.filter(
-            Q(first_name__icontains=self.request.GET.get('search_query')) | 
-            Q(last_name__icontains=self.request.GET.get('search_query'))
-        )
+        categorias = CategoriaTrabajo.objects.all()
+        context['categorias'] = categorias
         return context
     
+class SearchResultsViewMechanics(ListView):
+    model = Publicacion
+    template_name = 'resultados_por_mecanico.html'
+    context_object_name = 'results'
 
-    def login_view(request):
-        if request.method == 'POST':
-            if User:
-               error_message = 'Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.'
-            return render(request, 'login.html', {'error_message': error_message})
+    def get_queryset(self):
+        query = self.request.GET.get('resultados_por_mecanico')
+        if query:
+            queryset = Publicacion.objects.annotate(
+                full_name=Concat('id_user__first_name', Value(' '), 'id_user__last_name')
+            ).filter(
+                Q(full_name__icontains=query)
+            ).distinct()
+            return queryset
+        else:
+            return Publicacion.objects.none()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        grupoMec = Group.objects.get(name='Mecanico')
+        mecanicos = User.objects.filter(groups = grupoMec)
+        context['mecanicos'] = mecanicos
+        return context
 
-        return render(request, 'login.html')
+# Organizar código
+
+#Vistas No Registrado
+
+#Vistas Cliente
+
+#Vistas Mecánico
+
+#Vistas Admin
+
+#Clases para búsqueda
+
+#No se encuentra 
+
+def pagina_no_encontrada(request, exception):
+    return page_not_found(request, exception, template_name='not_found.html')
+
+def login_view(request):
+    if request.method == 'POST':
+        if User:
+            error_message = 'Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.'
+        return render(request, 'login.html', {'error_message': error_message})
+
+    return render(request, 'login.html')
