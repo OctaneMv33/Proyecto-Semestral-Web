@@ -5,13 +5,13 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-                <div class="cuadro">
+                <div class="cuadroBusquedaCliente">
                     <center><h1>Buscar Mantenciones por Categoría</h1></center>
                     <br>
                     <form action="{% url 'resultados_por_categoria' %}" method="GET">
                     <div class="container">
                         <div class="row">
-                                <div class="col-md-11">
+                                <div class="col-md-10 col-sm-10 col-10">
                                     <select name="resultados_por_categoria" id="buscarId" class="form-select">
                                         <option value="">--- Seleccione una categoría a buscar ---</option>
                                         {% for categoria in categorias %}
@@ -19,7 +19,7 @@
                                         {% endfor %}
                                     </select>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2 col-sm-2 col-2">
                                     <button type="submit" class="btn btn-success" id="btnbuscarId">Buscar</button>
                                 </div>
                         </div>

@@ -68,26 +68,22 @@
         <div class="row"></div>
         <div class="col-md-12">
           <div class="cuadro-detalle">
-            <div class="card-body" style="color:white">
               <p> Fecha de Publicación: {{ publicacion.fecha_publicacion|date:"d/m/Y" }}, Mecánico a cargo: {{ publicacion.id_user.first_name }} {{ publicacion.id_user.last_name }}, Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}</p>
-            </div>
           </div>
           <div class="publicacion">
-            <h3>Diagnóstico</h3>
+            <center><h3>Diagnóstico</h3></center>
             <div class="cuadro-trabajo">
-                <div class="card-body" style="color:white">
-                  <p>{{ publicacion.diagnostico_publicacion }}</p>
-                </div>
+                <p>{{ publicacion.diagnostico_publicacion }}</p>
+                <hr class="hr-fade">  
             </div>
-            <h3>Descripción</h3>
+            <center><h3>Descripción</h3></center>
             <div class="cuadro-trabajo">
-              <div class="card-body" style="color:white">
                 <p>{{ publicacion.descripcion_publicacion }}</p>
-              </div>
             </div>
-            <h3>Materiales</h3>
+            <hr class="hr-fade"> 
+            <br>
+            <center><h3>Materiales</h3></center>
             <div class="cuadro-trabajo">
-              <div class="card-body" style="color:white">
                 <ul>
                   {% if materiales %}
                   {% for material in materiales %}
@@ -99,7 +95,6 @@
                   <p>No se encontraron materiales.</p>
                 {% endif %}
                 </ul>
-              </div>
             </div>
           </div>
       </div>

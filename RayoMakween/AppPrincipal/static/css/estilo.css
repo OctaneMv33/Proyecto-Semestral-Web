@@ -53,6 +53,11 @@ a{
     background-color: rgb(100, 100, 100);
 }
 
+.hr-fade{
+    height: 3px;
+    background: linear-gradient(to right, transparent, #ffffff, transparent);
+}
+
 .cuadro-form{
     background-color: 	#931f1f;
     width: auto;
@@ -88,7 +93,7 @@ a{
     box-sizing: border-box;
     border: solid rgb(0, 0, 0) 5px;
     border-radius: 5%;
-    padding-bottom: 10rem;
+    padding-bottom: 7rem;
     margin-top: 2rem;
     margin-bottom: 5rem;
 }
@@ -102,9 +107,13 @@ a{
     box-sizing: border-box;
     border: solid rgb(0, 0, 0) 5px;
     border-radius: 5%;
-    padding-bottom: 10rem;
+    padding-bottom: 8rem;
     margin-top: 2rem;
     margin-bottom: 5rem;
+}
+
+.solicitud h5{
+    font-size: 18px;
 }
 
 .motivo{
@@ -135,7 +144,7 @@ a{
     padding: 3rem;
     box-sizing: border-box;
     border: solid rgb(0, 0, 0) 5px;
-    border-radius: 5%;
+    border-radius: 50px;
     margin-bottom: 5rem;
 }
 
@@ -150,8 +159,9 @@ a{
     background-color: #931f1f;
     padding: 3rem;
     border: solid black 5px;
-    border-radius: 5%;
+    border-radius: 50px;
     margin-top: 5rem;
+    margin-bottom: 10rem;
 }
 
 .trabajo{
@@ -162,6 +172,7 @@ a{
     height: auto;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    font-size: 15px;
 }
 
 .trabajo:hover{
@@ -187,7 +198,7 @@ a{
     width: auto;
     height: auto;
     padding: 2rem;
-    text-align: start;
+    text-align: justify;
 }
 
 .cuadro-trabajo p{
@@ -197,13 +208,16 @@ a{
 .cuadro-detalle{
     background-color: #520f0f;
     border: solid white 3px;
+    border-radius: 8px;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    padding: 1.5rem;
 }
 
 .cuadro-detalle p{
     margin: 0 auto;
     text-align: center;
+    color: white;
 }
 
 .contorno {
@@ -221,7 +235,7 @@ a{
     padding: 3rem;
     box-sizing: border-box;
     border: solid rgb(0, 0, 0) 5px;
-    border-radius: 5%;
+    border-radius: 50px;
     margin-bottom: 3rem;
 }
 
@@ -233,6 +247,7 @@ a{
     padding: 2rem;
     margin-top: 5rem;
     border: solid white 3px;
+    margin-bottom: 10rem;
 }
 
 .scope{
@@ -245,6 +260,445 @@ a{
     text-align: center;
 }
 
+.img-listado{
+    width: 8rem;
+    height: 5rem;
+    margin-top: 6px;
+}
+
+
+.cuadroBusquedaCliente{
+    width: auto;
+    height: auto;
+    background-color: #931f1f;
+    padding: 3rem;
+    border: solid black 5px;
+    border-radius: 20px;
+    margin-top: 5rem;
+    margin-bottom: 30rem;
+}
+
+.cuadroBusquedaClienteAlternativo{
+    width: auto;
+    height: auto;
+    background-color: #931f1f;
+    padding: 2rem;
+    border: solid black 5px;
+    border-radius: 20px;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px){
+    .carousel-item img {
+        width: auto;
+        height: 35rem;
+        object-fit: fill;
+    }
+
+    .trabajo{
+        background-color: #520f0f;
+        border: solid white 3px;
+        padding: 1.5rem;
+        width: auto;
+        height: auto;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        font-size: 14px;
+    }
+
+    .img-listado{
+        width: 8rem;
+        height: 5rem;
+        margin-top: 2rem;
+    }
+
+    .fondoTabla{
+        background-color: #520f0f;
+        color: white;
+        width: auto;
+        height: auto;
+        padding: 2rem;
+        margin-top: 5rem;
+        border: solid white 3px;
+        margin-bottom: 20rem;
+    }
+
+    .formulario{
+        background-color: 	#931f1f;
+        width: auto;
+        height: auto;
+        padding: 2rem;
+        box-sizing: border-box;
+        border: solid rgb(0, 0, 0) 5px;
+        border-radius: 50px;
+        padding-bottom: 7rem;
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+    }
+
+    .cuadroBusquedaCliente{
+        width: auto;
+        height: auto;
+        background-color: #931f1f;
+        padding: 3rem;
+        border: solid black 5px;
+        border-radius: 20px;
+        margin-top: 5rem;
+        margin-bottom: 25rem;
+    }
+
+    .publicacionRevision{
+        background-color: 	#931f1f;
+        width: auto;
+        height: auto;
+        padding: 2rem;
+        box-sizing: border-box;
+        border: solid rgb(0, 0, 0) 5px;
+        border-radius: 50px;
+        margin-bottom: 3rem;
+    }
+
+    .publicacion{
+        background-color: 	#931f1f;
+        width: auto;
+        height: auto;
+        padding: 1.5rem;
+        box-sizing: border-box;
+        border: solid rgb(0, 0, 0) 5px;
+        border-radius: 50px;
+        margin-bottom: 5rem;
+    }
+
+    .publicacion p{
+        font-size: 16px;
+        color: white;
+    }
+
+    .cuadro-detalle{
+        background-color: #520f0f;
+        border: solid white 3px;
+        border-radius: 8px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+    }
+    
+    .cuadro-detalle p{
+        margin: 0 auto;
+        text-align: center;
+        color: white;
+        font-size: 16px;
+    }
+
+    .motivo{
+        background-color: 	#931f1f;
+        width: auto;
+        height: auto;
+        padding: 3rem;
+        box-sizing: border-box;
+        border: solid rgb(0, 0, 0) 5px;
+        border-radius: 5%;
+        padding-bottom: 8rem;
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+    }
+}
+
+@media only screen and (min-width: 575px) and (max-width: 767px){
+    .fondoTabla{
+        background-color: #520f0f;
+        color: white;
+        width: auto;
+        height: auto;
+        padding: 1rem;
+        margin-top: 5rem;
+        border: solid white 3px;
+        margin-bottom: 18rem;
+    }
+
+    .solicitud h5{
+        font-size: 15px;
+    }
+
+    .img-listado{
+        width: auto;
+        height: 5rem;
+    }
+
+    .scope{
+        color: white;
+        text-align: center;
+    }
+    
+    .datos{
+        color: white;
+        text-align: center;
+    }
+
+    .publicacionRevision{
+        background-color: 	#931f1f;
+        width: auto;
+        height: auto;
+        padding: 1.5rem;
+        box-sizing: border-box;
+        border: solid rgb(0, 0, 0) 5px;
+        border-radius: 50px;
+        margin-bottom: 3rem;
+    }
+
+    .cuadro{
+        width: auto;
+        height: auto;
+        background-color: #931f1f;
+        padding: 3rem;
+        border: solid black 5px;
+        border-radius: 50px;
+        margin-top: 5rem;
+        margin-bottom: 15rem;
+    }
+
+    .trabajo{
+        background-color: #520f0f;
+        border: solid white 3px;
+        padding: 1.5rem;
+        width: auto;
+        height: auto;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        font-size: 14px;
+        text-align: justify;
+    }
+    
+    .trabajo:hover{
+        background-color: whitesmoke;
+        border: solid black 3px;
+        color: black;
+    }
+
+    .img-listado{
+        width: 8rem;
+        height: 5rem;
+        margin-left: 5rem;
+        margin-bottom: 1rem;
+    }
+
+    .formulario{
+        background-color: 	#931f1f;
+        width: auto;
+        height: auto;
+        padding: 2rem;
+        box-sizing: border-box;
+        border: solid rgb(0, 0, 0) 5px;
+        border-radius: 50px;
+        padding-bottom: 7rem;
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+    }
+
+    .cuadroBusquedaCliente{
+        width: auto;
+        height: auto;
+        background-color: #931f1f;
+        padding: 2rem;
+        border: solid black 5px;
+        border-radius: 20px;
+        margin-top: 5rem;
+        margin-bottom: 35rem;
+    }
+
+    .carousel-caption{
+        font-size: 12px;
+    }
+
+    .carousel-item img {
+        width: auto;
+        height: 35rem;
+        object-fit: fill;
+    }
+
+    .publicacion{
+        background-color: 	#931f1f;
+        width: auto;
+        height: auto;
+        padding: 1.5rem;
+        box-sizing: border-box;
+        border: solid rgb(0, 0, 0) 5px;
+        border-radius: 50px;
+        margin-bottom: 5rem;
+    }
+
+    .publicacion p{
+        font-size: 15px;
+        color: white;
+    }
+
+    .cuadro-detalle{
+        background-color: #520f0f;
+        border: solid white 3px;
+        border-radius: 8px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+    }
+    
+    .cuadro-detalle p{
+        margin: 0 auto;
+        text-align: center;
+        color: white;
+        font-size: 15px;
+    }
+
+    .motivo{
+        background-color: 	#931f1f;
+        width: auto;
+        height: auto;
+        padding: 2rem;
+        box-sizing: border-box;
+        border: solid rgb(0, 0, 0) 5px;
+        border-radius: 5%;
+        padding-bottom: 8rem;
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+    }
+}
+
+
+@media only screen and (min-width: 360px) and (max-width: 574px){
+    .fondoTabla{
+        background-color: #520f0f;
+        color: white;
+        width: auto;
+        height: auto;
+        padding: 0.5rem;
+        margin-top: 5rem;
+        border: solid white 3px;
+        margin-bottom: 30rem;
+        font-size: 10px;
+    }
+
+    .solicitud{
+        background-color: 	#931f1f;
+        width: auto;
+        height: auto;
+        padding: 2rem;
+        box-sizing: border-box;
+        border: solid rgb(0, 0, 0) 5px;
+        border-radius: 5%;
+        padding-bottom: 8rem;
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+    }
+
+    .solicitud h5{
+        font-size: 12px;
+    }
+
+    .formulario{
+        background-color: 	#931f1f;
+        width: auto;
+        height: auto;
+        padding: 2rem;
+        box-sizing: border-box;
+        border: solid rgb(0, 0, 0) 5px;
+        border-radius: 50px;
+        padding-bottom: 7rem;
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+    }
+
+    .cuadroBusquedaCliente{
+        width: auto;
+        height: auto;
+        background-color: #931f1f;
+        padding: 2rem;
+        border: solid black 5px;
+        border-radius: 20px;
+        margin-top: 5rem;
+        margin-bottom: 40rem;
+    }
+
+    .carousel-caption{
+        font-size: 12px;
+    }
+
+    .carousel-item img {
+        width: auto;
+        height: 30rem;
+        object-fit: fill;
+      }
+    
+    .publicacionRevision{
+        background-color: 	#931f1f;
+        width: auto;
+        height: auto;
+        padding: 1.5rem;
+        box-sizing: border-box;
+        border: solid rgb(0, 0, 0) 5px;
+        border-radius: 50px;
+        margin-bottom: 3rem;
+    }
+
+    .publicacionRevision h5{
+        font-size: 12px;
+    }
+
+    .publicacion{
+        background-color: 	#931f1f;
+        width: auto;
+        height: auto;
+        padding: 1rem;
+        box-sizing: border-box;
+        border: solid rgb(0, 0, 0) 5px;
+        border-radius: 50px;
+        margin-bottom: 5rem;
+    }
+
+    .publicacion p{
+        font-size: 14px;
+        color: white;
+    }
+
+    .cuadro-detalle{
+        background-color: #520f0f;
+        border: solid white 3px;
+        border-radius: 8px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        padding: 1rem;
+    }
+    
+    .cuadro-detalle p{
+        margin: 0 auto;
+        text-align: center;
+        color: white;
+        font-size: 14px;
+    }
+
+    .motivo{
+        background-color: 	#931f1f;
+        width: auto;
+        height: auto;
+        padding: 1rem;
+        box-sizing: border-box;
+        border: solid rgb(0, 0, 0) 5px;
+        border-radius: 5%;
+        padding-bottom: 8rem;
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+    }
+
+    .cuadro-trabajo{
+        width: auto;
+        height: auto;
+        padding: 2rem;
+        text-align: justify;
+    }
+    
+    .cuadro-trabajo p{
+        font-size: 14px;
+    }
+}
 
 @keyframes parpadeo {
     0% { opacity: 1; }

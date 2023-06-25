@@ -77,30 +77,26 @@
           <form  action="" method="POST" enctype="multipart/form-data">
               {% csrf_token %}    
             <div class="publicacionRevision">
-              <h3>Titulo</h3>
+              <center><h3>Título</h3></center>
               <div class="cuadro-trabajo">
-                <div class="card-body" style="color:white">
                 <p>Modifique en caso de ser necesario</p>
               <textarea class="form-control" name="titulo_publicacion">{{ publicacion.titulo_publicacion }}</textarea>
-                </div>
               </div>
-              <h3>Diagnóstico</h3>
+              <hr class="hr-fade">
+              <center><h3>Diagnóstico</h3></center>
               <div class="cuadro-trabajo">
-                  <div class="card-body" style="color:white">
                     <p>Modifique en caso de ser necesario</p>
                     <textarea class="form-control" name="diagnostico">{{ publicacion.diagnostico_publicacion }}</textarea>
-                  </div>
               </div>
-              <h3>Descripción</h3>
+              <hr class="hr-fade">
+              <center><h3>Descripción</h3></center>
               <div class="cuadro-trabajo">
-                <div class="card-body" style="color:white">
                   <p>Modifique en caso de ser necesario</p>
                   <textarea class="form-control" name="descripcion">{{ publicacion.descripcion_publicacion }}</textarea>
-                </div>
               </div>
-              <h3>Imagenes</h3>
+              <hr class="hr-fade">
+              <center><h3>Imágenes</h3></center>
               <div class="cuadro-trabajo">
-                <div class="card-body" style="color:white">
                   <input type="checkbox" name="cambiar_imagenes" id="checkbox_cambiar_imagenes">
                   <label for="checkbox_cambiar_imagenes">Cambiar imágenes</label>
                   <input                 
@@ -111,11 +107,10 @@
                   accept=".jpg, .jpeg, .png, .webp"
                   max="6"
                   id="input_imagenes" style="display: none;">
-                </div>
               </div>
-              <h3>Categoria</h3>
+              <hr class="hr-fade">
+              <center><h3>Categoria</h3></center>
               <div class="cuadro-trabajo">
-                <div class="card-body" style="color:white">
                   <select class="form-select" name="id_categoria" id="categoriaId">
                     <option value="{{ publicacion.id_categoria.id_categtrabajo }}">Categoria designada: {{ publicacion.id_categoria.nombre_categtrabajo }}</option>
                     {% if data %}
@@ -126,9 +121,9 @@
                       {% endfor %}
                     {% endif %}
                   </select>
-                </div>
               </div>
-              <h3>Materiales</h3>
+              <hr class="hr-fade">
+              <center><h3>Materiales</h3></center>
               <div class="cuadro-trabajo">
               <div class="card-body" style="color:white">
               <div class="row">
@@ -180,13 +175,15 @@
                   </button>
                 </div>
               </div>
-            </div>  
             </div>
-            <h3>Cantidad de Rechazos</h3>
+            <hr class="hr-fade">  
+            </div>
+            <center><h3>Cantidad de Rechazos</h3></center>
               <div class="cuadro-trabajo">
-                <p>{{ publicacion.cant_rechaz }}</p>
+                <center><p>{{ publicacion.cant_rechaz }}</p></center>
+                <hr class="hr-fade">
               </div>
-            <h3>Motivo del Rechazo</h3>
+            <center><h3>Motivo del Rechazo</h3></center>
               <div class="cuadro-trabajo">
             <p>{{ publicacion.motivo_rechazo }}</p>
               </div>

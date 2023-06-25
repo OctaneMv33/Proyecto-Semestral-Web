@@ -12,16 +12,33 @@
                 {% for publicacion in publicaciones %}
                 <a href="{% url 'revisionTrabajo' publicacion.id_publicacion %}">
                     <div class="trabajo">
-                        <img
-                          src="{{ publicacion.foto1.url }}"
-                          width="65px"
-                          height="40px"
-                          alt=""
-                        />
-                        Titulo: {{ publicacion.titulo_publicacion }} <br>
-                        Trabajo realizado por: {{ publicacion.id_user.first_name}} {{ publicacion.id_user.last_name }},
-                        Fecha: {{ publicacion.fecha_publicacion|date:"d/m/Y" }},
-                        Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-5 col-lg-3">
+                                    <img
+                                        src="{{ publicacion.foto1.url }}"
+                                        alt=""
+                                        class="img-listado"
+                                    />
+                                </div>
+                                <div class="col-md-7 col-lg-9">
+                                    <div class="container">
+                                        <div class="row">
+                                            Titulo: {{ publicacion.titulo_publicacion }}
+                                        </div>
+                                        <div class="row">
+                                            Trabajo realizado por: {{ publicacion.id_user.first_name}} {{ publicacion.id_user.last_name }}
+                                        </div>
+                                        <div class="row">
+                                            Fecha: {{ publicacion.fecha_publicacion|date:"d/m/Y" }}
+                                        </div>
+                                        <div class="row">
+                                            Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                       </div>
                     </a>
                 {% empty %}
