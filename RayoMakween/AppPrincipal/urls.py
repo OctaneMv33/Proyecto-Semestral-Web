@@ -1,7 +1,7 @@
 
 from django.urls import path
 from .views import index, auth_login, auth_register, SearchResultsView,registro_mecanico, SearchResultsViewCategory, SearchResultsViewMechanics
-from .views import crearTrabajo, revisionTrabajo, solicitud,estadoPublicacion,exit,lista_trabajos, detalle_publicacion, listadoTrabajosRevision,dashboardAdmin, listaTrabajosRechazados, editarTrabajo, buscarPorCategoria, buscarPorMecanico
+from .views import crearTrabajo, revisionTrabajo, solicitud,estadoPublicacion,exit,lista_trabajos, detalle_publicacion, listadoTrabajosRevision,dashboardAdmin, listaTrabajosRechazados, editarTrabajo, buscarPorCategoria, buscarPorMecanico, registro_exitoso
 
 urlpatterns = [
     path('', index,name='index'),
@@ -25,4 +25,7 @@ urlpatterns = [
     path('resultados_por_mecanico', SearchResultsViewMechanics.as_view(), name='resultados_por_mecanico'),
     path('dashboardAdmin', dashboardAdmin, name='dashboardAdmin'),
     path('logout',exit,name='exit'),
+    path('registro_exitoso', registro_exitoso, name='registro_exitoso'),
+   
+  
 ]
