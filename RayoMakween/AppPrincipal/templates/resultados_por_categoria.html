@@ -38,16 +38,33 @@
               {% for item in results %}
               <a href="{% url 'detalle_publicacion' item.id_publicacion %}">
               <div class="trabajo">
-                  <img
-                    src="{{ item.foto1.url }}"
-                    width="65px"
-                    height="40px"
-                    alt=""
-                  />
-                  Titulo: {{ item.titulo_publicacion }} <br>
-                  Trabajo realizado por: {{ item.id_user.first_name}} {{ item.id_user.last_name }},
-                  Fecha: {{ item.fecha_publicacion|date:"d/m/Y" }},
-                  Categoria: {{ item.id_categoria.nombre_categtrabajo }}
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-5 col-lg-4 d-flex justify-content-center">
+                      <img
+                        src="{{ item.foto1.url }}"
+                        alt=""
+                        class="img-listado"
+                      />
+                    </div>
+                    <div class="col-md-7 col-lg-8">
+                      <div class="container">
+                        <div class="row d-flex justify-content-baseline">
+                          Titulo: {{ item.titulo_publicacion }}
+                        </div>
+                        <div class="row d-flex justify-content-baseline">
+                          Trabajo realizado por: {{ item.id_user.first_name}} {{ item.id_user.last_name }}
+                        </div>
+                        <div class="row d-flex justify-content-baseline">
+                          Fecha: {{ item.fecha_publicacion|date:"d/m/Y" }}
+                        </div>
+                        <div class="row d-flex justify-content-baseline">
+                          Categoria: {{ item.id_categoria.nombre_categtrabajo }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 </div>
               </a>
               {% empty %}
@@ -58,7 +75,5 @@
       </div>
     </div>
   </main>
-  <br /><br /><br />
-  <footer></footer>
   <br /><br /><br />
 {% endblock %}

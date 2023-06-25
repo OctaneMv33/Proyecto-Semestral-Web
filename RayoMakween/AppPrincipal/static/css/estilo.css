@@ -22,7 +22,7 @@ a{
     padding: 2rem;
     box-sizing: border-box;
     border: solid rgb(0, 0, 0) 5px;
-    border-radius: 5%;
+    border-radius: 30px;
     padding-bottom: 7rem;
 }
 
@@ -65,7 +65,7 @@ a{
     padding: 2rem;
     box-sizing: border-box;
     border: solid rgb(0, 0, 0) 5px;
-    border-radius: 5%;
+    border-radius: 30px;
     padding-bottom: 4rem;
     margin-bottom: 4rem;
 }
@@ -92,7 +92,7 @@ a{
     padding: 3rem;
     box-sizing: border-box;
     border: solid rgb(0, 0, 0) 5px;
-    border-radius: 5%;
+    border-radius: 30px;
     padding-bottom: 7rem;
     margin-top: 2rem;
     margin-bottom: 5rem;
@@ -106,7 +106,7 @@ a{
     padding: 3rem;
     box-sizing: border-box;
     border: solid rgb(0, 0, 0) 5px;
-    border-radius: 5%;
+    border-radius: 30px;
     padding-bottom: 8rem;
     margin-top: 2rem;
     margin-bottom: 5rem;
@@ -159,7 +159,7 @@ a{
     background-color: #931f1f;
     padding: 3rem;
     border: solid black 5px;
-    border-radius: 50px;
+    border-radius: 40px;
     margin-top: 5rem;
     margin-bottom: 10rem;
 }
@@ -224,6 +224,34 @@ a{
     text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
 }
 
+.pieDePagina{
+    width: 100%;
+    height: 10rem;
+    margin-top: 4rem !important;
+    box-sizing: border-box;
+}
+
+.pieDePagina img{
+    width: 190px;
+    height: 100px;
+    margin-top: 2rem;
+}
+
+.pieDePagina .derechos{
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.pieDePagina p{
+
+    text-align: center;
+}
+
+.pieDePagina h4{
+    text-align: center;
+    margin-top: 2rem;
+}
+
 #salirId{
     margin-right: 1rem;
 }
@@ -248,6 +276,7 @@ a{
     margin-top: 5rem;
     border: solid white 3px;
     margin-bottom: 10rem;
+    border-radius: 8px;
 }
 
 .scope{
@@ -265,7 +294,6 @@ a{
     height: 5rem;
     margin-top: 6px;
 }
-
 
 .cuadroBusquedaCliente{
     width: auto;
@@ -286,6 +314,17 @@ a{
     border: solid black 5px;
     border-radius: 20px;
     margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.registroexitoso{
+    text-align: center;  background-color: 	#931f1f;
+    width: auto;
+    height: auto;
+    padding: 1rem;
+    box-sizing: border-box;
+    border: solid rgb(0, 0, 0) 5px;
+    border-radius: 50px;
     margin-bottom: 5rem;
 }
 
@@ -310,7 +349,6 @@ a{
     .img-listado{
         width: 8rem;
         height: 5rem;
-        margin-top: 2rem;
     }
 
     .fondoTabla{
@@ -403,6 +441,19 @@ a{
         margin-top: 2rem;
         margin-bottom: 5rem;
     }
+
+    .pieDePagina{
+        width: 100%;
+        height: 10rem;
+        margin-top: 4rem !important;
+        box-sizing: border-box;
+    }
+
+    .pieDePagina img{
+        width: 190px;
+        height: 120px;
+        margin-top: 2rem;
+    }
 }
 
 @media only screen and (min-width: 575px) and (max-width: 767px){
@@ -422,7 +473,7 @@ a{
     }
 
     .img-listado{
-        width: auto;
+        width: 8rem;
         height: 5rem;
     }
 
@@ -479,7 +530,6 @@ a{
     .img-listado{
         width: 8rem;
         height: 5rem;
-        margin-left: 5rem;
         margin-bottom: 1rem;
     }
 
@@ -561,6 +611,19 @@ a{
         margin-top: 2rem;
         margin-bottom: 5rem;
     }
+
+    .pieDePagina{
+        width: 100%;
+        height: 25rem;
+        margin-top: 4rem !important;
+        box-sizing: border-box;
+    }
+
+    .pieDePagina img{
+        width: 190px;
+        height: 100px;
+        margin-top: 2rem;
+    }
 }
 
 
@@ -584,7 +647,7 @@ a{
         padding: 2rem;
         box-sizing: border-box;
         border: solid rgb(0, 0, 0) 5px;
-        border-radius: 5%;
+        border-radius: 30px;
         padding-bottom: 8rem;
         margin-top: 2rem;
         margin-bottom: 5rem;
@@ -654,9 +717,27 @@ a{
         margin-bottom: 5rem;
     }
 
+    .pieDePagina{
+        width: 100%;
+        height: 25rem;
+        margin-top: 4rem !important;
+        box-sizing: border-box;
+    }
+
+    .pieDePagina img{
+        width: 150px;
+        height: 90px;
+        margin-top: 2rem;
+    }
+    
     .publicacion p{
         font-size: 14px;
         color: white;
+    }
+    
+    .img-listado{
+        width: 8rem;
+        height: 5rem;
     }
 
     .cuadro-detalle{
@@ -709,5 +790,3 @@ a{
   .parpadeo {
     animation: parpadeo 1s infinite;
   }
-
-

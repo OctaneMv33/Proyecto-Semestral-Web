@@ -364,6 +364,7 @@ def lista_trabajos(request):
     return render(request, 'lista_trabajos.html', {'publicaciones': publicaciones})
 
 # Busqueda de categoria
+@user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='auth_login')
 def resultados_por_categoria(request):
     categorias = CategoriaTrabajo.objects.all()
     context = {
@@ -372,6 +373,7 @@ def resultados_por_categoria(request):
     }
     return render(request, 'resultados_por_categoria.html', context)
 
+@user_passes_test(lambda u: u.groups.filter(name='Cliente').exists(), login_url='auth_login')
 def resultados_por_mecanico(request):
     grupoMec = Group.objects.get(name='Mecanico')
     mecanicos = User.objects.filter(groups = grupoMec)
@@ -395,6 +397,9 @@ def detalle_publicacion(request, id_publicacion):
         'materiales': materiales,
     }
     return render(request, 'detalle_trabajo.html', context)
+
+def registroExitoso(request):
+    return render(request, 'registro_exitoso.html')
 
 @register.filter
 def startswith(value, arg):

@@ -1,53 +1,55 @@
-{% extends 'navbar.html' %} {% block title %}Trabajos Pendientes de Revisar{% endblock %} {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
-            <div class="cuadro">
-                {% if publicaciones %}
-                    <center><h1>Lista de Publicaciones Pendientes de Revisar</h1></center>
-                {% else %}
-                    <center><h1>No Hay Publicaciones Por Mostrar</h1></center>
-                {% endif %}
-                {% for publicacion in publicaciones %}
-                <a href="{% url 'revisionTrabajo' publicacion.id_publicacion %}">
-                    <div class="trabajo">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-5 col-lg-3">
-                                    <img
-                                        src="{{ publicacion.foto1.url }}"
-                                        alt=""
-                                        class="img-listado"
-                                    />
-                                </div>
-                                <div class="col-md-7 col-lg-9">
-                                    <div class="container">
-                                        <div class="row">
-                                            Titulo: {{ publicacion.titulo_publicacion }}
-                                        </div>
-                                        <div class="row">
-                                            Trabajo realizado por: {{ publicacion.id_user.first_name}} {{ publicacion.id_user.last_name }}
-                                        </div>
-                                        <div class="row">
-                                            Fecha: {{ publicacion.fecha_publicacion|date:"d/m/Y" }}
-                                        </div>
-                                        <div class="row">
-                                            Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}
+{% extends 'navbar.html' %} {% block title %}Publicaciones Pendientes de Revisar{% endblock %} {% block content %}
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="cuadro">
+                    {% if publicaciones %}
+                        <center><h1>Lista de Publicaciones Pendientes de Revisar</h1></center>
+                    {% else %}
+                        <center><h1>No Hay Publicaciones Por Mostrar</h1></center>
+                    {% endif %}
+                    {% for publicacion in publicaciones %}
+                    <a href="{% url 'revisionTrabajo' publicacion.id_publicacion %}">
+                        <div class="trabajo">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-5 col-lg-4 d-flex justify-content-center">
+                                        <img
+                                            src="{{ publicacion.foto1.url }}"
+                                            alt=""
+                                            class="img-listado"
+                                        />
+                                    </div>
+                                    <div class="col-md-7 col-lg-8">
+                                        <div class="container">
+                                            <div class="row d-flex justify-content-baseline">
+                                                Titulo: {{ publicacion.titulo_publicacion }}
+                                            </div>
+                                            <div class="row d-flex justify-content-baseline">
+                                                Trabajo realizado por: {{ publicacion.id_user.first_name}} {{ publicacion.id_user.last_name }}
+                                            </div>
+                                            <div class="row d-flex justify-content-baseline">
+                                                Fecha: {{ publicacion.fecha_publicacion|date:"d/m/Y" }}
+                                            </div>
+                                            <div class="row d-flex justify-content-baseline">
+                                                Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                      </div>
-                    </a>
-                {% empty %}
-                    <br><br>
-                    <center><p>No tiene trabajos pendientes por revisar.</p></center>
-                {% endfor %}
+                          </div>
+                        </a>
+                    {% empty %}
+                        <br><br>
+                        <center><p>No tiene trabajos pendientes por revisar.</p></center>
+                    {% endfor %}
+                </div>
             </div>
+            <div class="col-md-1"></div>
         </div>
-        <div class="col-md-1"></div>
     </div>
-</div>
+</main>
 {% endblock %}

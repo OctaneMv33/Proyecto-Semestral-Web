@@ -1,33 +1,35 @@
 {% extends 'navbar.html' %} {% block title %}Estadísticas por Mecánico{% endblock %}  {% block content %}
 <!--Vista en grafico o tabla de trabajos aprobados, rechazados o en espera por usuario para el admin-->
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="fondoTabla">
-                <center><h1>Estadísticas por Mecánico</h1></center>
-                <br>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="scope">RUT Mecánico</th>
-                            <th class="scope">Nombre mecánico</th>
-                            <th class="scope">Cant. Publi. Aceptadas</th>
-                            <th class="scope">Cant. Publi. Rechazadas</th>
-                            <th class="scope">Cant. Publi. Pendientes</th>
-                        </tr>
-                        {% for dato in datos %}    
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="fondoTabla">
+                    <center><h1>Estadísticas por Mecánico</h1></center>
+                    <br>
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <td class="datos">{{ dato.RUT }}</td>
-                                <td class="datos">{{ dato.NOMBRE }}</td>
-                                <td class="datos">{{ dato.CANTIDAD_ACEPTADOS }}</td>
-                                <td class="datos">{{ dato.CANTIDAD_RECHAZADOS }}</td>
-                                <td class="datos">{{ dato.CANTIDAD_PENDIENTES }}</td>
+                                <th class="scope">RUT Mecánico</th>
+                                <th class="scope">Nombre mecánico</th>
+                                <th class="scope">Cant. Publi. Aceptadas</th>
+                                <th class="scope">Cant. Publi. Rechazadas</th>
+                                <th class="scope">Cant. Publi. Pendientes</th>
                             </tr>
-                        {% endfor %}    
-                    </thead>
-                </table>
+                            {% for dato in datos %}    
+                                <tr>
+                                    <td class="datos">{{ dato.RUT }}</td>
+                                    <td class="datos">{{ dato.NOMBRE }}</td>
+                                    <td class="datos">{{ dato.CANTIDAD_ACEPTADOS }}</td>
+                                    <td class="datos">{{ dato.CANTIDAD_RECHAZADOS }}</td>
+                                    <td class="datos">{{ dato.CANTIDAD_PENDIENTES }}</td>
+                                </tr>
+                            {% endfor %}    
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</main>
 {% endblock %}

@@ -12,7 +12,7 @@
             <div class="trabajo">
               <div class="container">
                   <div class="row">
-                      <div class="col-md-5 col-lg-4">
+                      <div class="col-md-5 col-lg-4 d-flex justify-content-center">
                           <img
                           src="{{ item.foto1.url }}"
                           alt=""
@@ -21,16 +21,16 @@
                       </div>
                       <div class="col-md-7 col-lg-8">
                         <div class="container">
-                          <div class="row">
+                          <div class="row d-flex justify-content-baseline">
                             Titulo: {{ item.titulo_publicacion }}
                           </div>
-                          <div class="row">
+                          <div class="row d-flex justify-content-baseline">
                             Trabajo realizado por: {{ item.id_user.first_name}} {{ item.id_user.last_name }}
                           </div>
-                          <div class="row">
+                          <div class="row d-flex justify-content-baseline">
                             Fecha: {{ item.fecha_publicacion|date:"d/m/Y" }}
                           </div>
-                          <div class="row">
+                          <div class="row d-flex justify-content-baseline">
                             Categoria: {{ item.id_categoria.nombre_categtrabajo }}
                           </div>
                         </div>
@@ -48,7 +48,5 @@
     </div>
   </div>
 </main>
-<br /><br /><br />
-<footer></footer>
 <br /><br /><br />
 {% endblock %}
