@@ -24,6 +24,9 @@
                         Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}
                       </div>
                     </a>
+                {% empty %}
+                    <br><br>
+                    <center><p>No tiene trabajos pendientes por revisar.</p></center>
                 {% endfor %}
             </div>
         </div>

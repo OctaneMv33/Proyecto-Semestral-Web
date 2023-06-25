@@ -56,7 +56,7 @@ class Publicacion(models.Model):
     foto4 = models.ImageField(upload_to='foto_publicacion/', null=True, blank=True)
     foto5 = models.ImageField(upload_to='foto_publicacion/', null=True, blank=True)
     foto6 = models.ImageField(upload_to='foto_publicacion/', null=True, blank=True)
-    fecha_revision = models.DateField(db_column='fecha_revision', null=True, blank=True)
+    fecha_revision = models.DateTimeField(db_column='fecha_revision', null=True, blank=True)
     cant_rechaz = models.IntegerField(db_column = 'cantidad_rechazos', blank = False, null = False)
     motivo_rechazo = models.CharField(db_column = 'motivo_rechazo', max_length = 500, null=True, blank=True)
     id_categoria = models.ForeignKey(CategoriaTrabajo, db_column='id_categoria', on_delete=models.CASCADE)
@@ -80,3 +80,12 @@ class PublicacionMaterial(models.Model):
     def __str__(self):
         msn = f"{self.id_publicacion} {self.id_material}"
         return str(msn)
+
+class Solicitud(models.Model):
+    id_solicitud = models.AutoField(db_column='id_solicitud', primary_key=True)
+    fecha_solicitud = models.DateField(db_column='fecha_solicitud', null=False, blank=False)
+    descripcion_solicitud = models.CharField(db_column='descripcion_solicitud', null=False, blank=False, max_length=500)
+    id_user = models.ForeignKey(User, db_column='id_user', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.fecha_solicitud + " " + self.descripcion_solicitud)

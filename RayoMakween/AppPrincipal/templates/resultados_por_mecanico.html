@@ -1,0 +1,62 @@
+{% extends 'navbar.html' %} {% block title %}Resultados por Mecánico{% endblock %} {% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="cuadro">
+                <center><h1>Buscar Mantenciones por Mecánico</h1></center>
+                <br>
+                <form action="{% url 'resultados_por_mecanico' %}" method="GET">
+                <div class="container">
+                    <div class="row">
+                            <div class="col-md-11">
+                                <select name="resultados_por_mecanico" id="buscarId" class="form-select">
+                                    <option value="">--- Seleccione una categoría a buscar ---</option>
+                                    {% for mecanico in mecanicos %}
+                                        <option value="{{mecanico.first_name}} {{mecanico.last_name}}">{{mecanico.first_name}} {{mecanico.last_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="submit" class="btn btn-success" id="btnbuscarId">Buscar</button>
+                            </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cuadro">
+          <center><h1 id="resultadoBusqueda">Resultados de búsqueda</h1></center>
+            {% for item in results %}
+            <a href="{% url 'detalle_publicacion' item.id_publicacion %}">
+            <div class="trabajo">
+                <img
+                  src="{{ item.foto1.url }}"
+                  width="65px"
+                  height="40px"
+                  alt=""
+                />
+                Titulo: {{ item.titulo_publicacion }} <br>
+                Trabajo realizado por: {{ item.id_user.first_name}} {{ item.id_user.last_name }},
+                Fecha: {{ item.fecha_publicacion|date:"d/m/Y" }},
+                Categoria: {{ item.id_categoria.nombre_categtrabajo }}
+              </div>
+            </a>
+            {% empty %}
+            <center><p>No se encontraron resultados</p></center>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<br /><br /><br />
+<footer></footer>
+<br /><br /><br />
+{% endblock %}

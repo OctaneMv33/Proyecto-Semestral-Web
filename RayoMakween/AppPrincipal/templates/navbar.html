@@ -50,17 +50,34 @@
                         <li class="nav-item">
                           <a class="nav-link active" href="{% url 'solicitud' %}">Solicitud</a>
                         </li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle active" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Buscar por
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'buscarPorCategoria' %}">Categoria</a></li>
+                            <li><a class="dropdown-item" href="{% url 'buscarPorMecanico' %}">Mecánico</a></li>
+                          </ul>
+                        </li>
                     {% elif group.name == 'Mecanico' %}
                       <li class="nav-item">
                         <a class="nav-link active" href="{% url 'crearTrabajo' %}"
                           >Crear Trabajo</a
                         >
                       </li>
+                      {% if numero_publicaciones == 0 %}
                       <li class="nav-item">
-                        <a href="{% url 'listaTrabajosRechazados' %}" class="nav-link active">
-                          Ver Trabajos Rechazados
+                        <a href="{% url 'listaTrabajosRechazados' %}" class="nav-link active" >
+                          No hay trabajos rechazados
                         </a>
                       </li>
+                      {% else %}
+                      <li class="nav-item parpadeo">
+                        <a href="{% url 'listaTrabajosRechazados' %}" class="nav-link active" >
+                          Ver Trabajos Rechazados ({{ numero_publicaciones }})
+                        </a>
+                      </li>
+                      {% endif %}
                       <li class="nav-item">
                         <a href="{% url 'estadoPublicacion' %}" class="nav-link active">
                           Ver Estado Publicacion

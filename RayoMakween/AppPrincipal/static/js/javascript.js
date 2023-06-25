@@ -524,17 +524,24 @@ $("#motivoId").keyup(function () {
 
 $("#estadoRevisionId").change(function () {
   opcion = $("#estadoRevisionId").val();
+  fechaRevision = new Date()
+  var fechaRevisionFormateada = fechaRevision.toISOString().slice(0, 19).replace('T', ' ');
+
   if (opcion === "") {
     $("#mensajeEstadoMotivoId").text('Debe seleccionar un estado de revisión.')
     vestado = false
   } else if (opcion === "20") {
     $("#mensajeEstadoMotivoId").text('Escriba el motivo de rechazo.')
     vestado = false
+    $("#fechaRevisionId").val(fechaRevisionFormateada)
+    console.log($("#fechaRevisionId").val())
     $("#motivoId").attr('disabled', false)
   } else {
     $("#mensajeEstadoMotivoId").text('Ingreso correcto')
     $("#mensajeMotivoId").text('');
     $("#motivoId").val("");
+    $("#fechaRevisionId").val(fechaRevisionFormateada)
+    console.log($("#fechaRevisionId").val())
     vestado = true
     $("#motivoId").attr('disabled', true)
   }
@@ -558,3 +565,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+/* Mostrar mensaje por pantalla o poner una alerta visual en el ver publicaciones rechazadas, o ver estado publicación 
+   cuando le revisen el trabajo para cumplir con un punto del requerimiento 11
+*/
+

@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'RayoMakween.middleware.Redireccion404Middleware',
 ]
 
 ROOT_URLCONF = 'RayoMakween.urls'
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'AppPrincipal.context_processors.numero_publicaciones_usuario',
             ],
         },
     },
@@ -129,7 +131,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'auth_login'
 LOGOUT_REDIRECT_URL = 'index'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

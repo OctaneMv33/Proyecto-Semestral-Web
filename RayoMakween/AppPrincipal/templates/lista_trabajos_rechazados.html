@@ -4,22 +4,29 @@
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="cuadro">
+                {% if publicaciones %}
                 <center><h1>Lista de Publicaciones Rechazadas</h1></center>
+                {% else %}
+                    <center><h1>No Hay Publicaciones Por Mostrar</h1></center>
+                {% endif %}
                 {% for publicacion in publicaciones %}
-                <a href="{% url 'editarTrabajo' publicacion.id_publicacion %}">
-                    <div class="trabajo">
-                        <img
-                          src="{{ publicacion.foto1.url }}"
-                          width="65px"
-                          height="40px"
-                          alt=""
-                        />
-                        Titulo: {{ publicacion.titulo_publicacion }} <br>
-                        Trabajo realizado por: {{ publicacion.id_user.first_name}} {{ publicacion.id_user.last_name }},
-                        Fecha: {{ publicacion.fecha_publicacion|date:"d/m/Y" }},
-                        Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}
+                    <a href="{% url 'editarTrabajo' publicacion.id_publicacion %}">
+                        <div class="trabajo">
+                            <img
+                            src="{{ publicacion.foto1.url }}"
+                            width="65px"
+                            height="40px"
+                            alt=""
+                            />
+                            Titulo: {{ publicacion.titulo_publicacion }} <br>
+                            Trabajo realizado por: {{ publicacion.id_user.first_name}} {{ publicacion.id_user.last_name }},
+                            Fecha: {{ publicacion.fecha_publicacion|date:"d/m/Y" }},
+                            Categoria: {{ publicacion.id_categoria.nombre_categtrabajo }}
                       </div>
                     </a>
+                {% empty %}
+                    <br><br>
+                    <center><p>No tiene trabajos rechazados.</p></center>
                 {% endfor %}
             </div>
         </div>
