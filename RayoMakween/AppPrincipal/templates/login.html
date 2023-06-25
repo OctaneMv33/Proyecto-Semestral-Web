@@ -35,7 +35,15 @@
                     placeholder="Password"
                   />
                 </div>
-                <div class="col-md-3"></div>
+              {% if error_message %}
+                <div class="alert alert-danger" role="alert">
+               {{ error_message }}
+                </div>
+               {% endif %}
+                <div class="col-md-3">
+
+               
+                </div>
               </div>
             </div>
             <center><p>¿Aún no tiene cuenta? <a href="{% url 'auth_register' %}">Regístrese</a></p></center>

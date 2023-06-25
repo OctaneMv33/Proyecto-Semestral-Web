@@ -365,3 +365,12 @@ class SearchResultsView(ListView):
             Q(last_name__icontains=self.request.GET.get('search_query'))
         )
         return context
+    
+
+    def login_view(request):
+        if request.method == 'POST':
+            if User:
+               error_message = 'Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.'
+            return render(request, 'login.html', {'error_message': error_message})
+
+        return render(request, 'login.html')
