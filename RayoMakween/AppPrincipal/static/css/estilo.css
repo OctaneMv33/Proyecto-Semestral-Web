@@ -1,22 +1,26 @@
-body{
+body {
     background-image: url(../img/62cee2297842d8811cfc2ad5_buen-servicio-en-taller-mecanico.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position-x: center;
-    color: white; /*letras*/
+    color: white;
+    /*letras*/
 }
-a{
+
+a {
     color: white;
     text-decoration: none;
 }
+
 .carousel-item img {
     width: 100%;
     height: 50rem;
     object-fit: fill;
-  }
-.cuadro-login{
+}
+
+.cuadro-login {
     margin-top: 3rem;
-    background-color: 	#931f1f;
+    background-color: #931f1f;
     width: auto;
     height: auto;
     padding: 2rem;
@@ -26,40 +30,40 @@ a{
     padding-bottom: 7rem;
 }
 
-.cuadro-login label{
-    color:white;
+.cuadro-login label {
+    color: white;
     margin-bottom: 0.25rem;
 }
 
-.cuadro-login h1{
+.cuadro-login h1 {
     color: white;
     padding-top: 2rem;
     padding-bottom: 6rem;
 }
 
-.cuadro-login a{
+.cuadro-login a {
     color: rgb(214, 214, 214);
 }
 
-.cuadro-login a:hover{
+.cuadro-login a:hover {
     color: white;
 }
 
-.cuadro-login .form-control{
+.cuadro-login .form-control {
     margin-bottom: 3rem;
 }
 
-.nav-link:hover{
+.nav-link:hover {
     background-color: rgb(100, 100, 100);
 }
 
-.hr-fade{
+.hr-fade {
     height: 3px;
     background: linear-gradient(to right, transparent, #ffffff, transparent);
 }
 
-.cuadro-form{
-    background-color: 	#931f1f;
+.cuadro-form {
+    background-color: #931f1f;
     width: auto;
     height: auto;
     padding: 2rem;
@@ -70,54 +74,54 @@ a{
     margin-bottom: 4rem;
 }
 
-.cuadro-form h1{
+.cuadro-form h1 {
     color: white;
     padding-top: 2rem;
     padding-bottom: 4rem;
 }
 
-.cuadro-form label{
-    color:white;
+.cuadro-form label {
+    color: white;
     margin-bottom: 0.25rem;
 }
 
-.cuadro-form div{
+.cuadro-form div {
     margin-bottom: 2rem;
 }
 
-.formulario{
-    background-color: 	#931f1f;
+.formulario {
+    background-color: #931f1f;
     width: auto;
     height: auto;
     padding: 3rem;
     box-sizing: border-box;
     border: solid rgb(0, 0, 0) 5px;
     border-radius: 30px;
-    padding-bottom: 7rem;
+    padding-bottom: 3rem;
     margin-top: 2rem;
-    margin-bottom: 5rem;
+    margin-bottom: 7rem;
 }
 
 
-.solicitud{
-    background-color: 	#931f1f;
+.solicitud {
+    background-color: #931f1f;
     width: auto;
     height: auto;
     padding: 3rem;
     box-sizing: border-box;
     border: solid rgb(0, 0, 0) 5px;
     border-radius: 30px;
-    padding-bottom: 8rem;
+    padding-bottom: 3rem;
     margin-top: 2rem;
-    margin-bottom: 5rem;
+    margin-bottom: 7rem;
 }
 
-.solicitud h5{
+.solicitud h5 {
     font-size: 18px;
 }
 
-.motivo{
-    background-color: 	#931f1f;
+.motivo {
+    background-color: #931f1f;
     width: auto;
     height: auto;
     padding: 3rem;
@@ -129,16 +133,16 @@ a{
     margin-bottom: 5rem;
 }
 
-.salir{
+.salir {
     color: white;
 }
 
-.salir:hover{
+.salir:hover {
     color: white;
 }
 
-.publicacion{
-    background-color: 	#931f1f;
+.publicacion {
+    background-color: #931f1f;
     width: auto;
     height: auto;
     padding: 3rem;
@@ -151,9 +155,9 @@ a{
 
 .carousel-item-img {
     border-radius: 10%;
-  }
+}
 
-.cuadro{
+.cuadro {
     width: auto;
     height: auto;
     background-color: #931f1f;
@@ -164,7 +168,7 @@ a{
     margin-bottom: 10rem;
 }
 
-.trabajo{
+.trabajo {
     background-color: #520f0f;
     border: solid white 3px;
     padding: 1.5rem;
@@ -175,37 +179,37 @@ a{
     font-size: 15px;
 }
 
-.trabajo:hover{
+.trabajo:hover {
     background-color: whitesmoke;
     border: solid black 3px;
     color: black;
 }
 
-#tituloBusqueda{
+#tituloBusqueda {
     display: block;
     color: white;
     margin-top: 5rem;
 }
 
-#tituloPublicacion{
+#tituloPublicacion {
     display: block;
     color: white;
     margin-top: 5rem;
     margin-bottom: 3rem;
 }
 
-.cuadro-trabajo{
+.cuadro-trabajo {
     width: auto;
     height: auto;
     padding: 2rem;
     text-align: justify;
 }
 
-.cuadro-trabajo p{
+.cuadro-trabajo p {
     font-size: 18px;
 }
 
-.cuadro-detalle{
+.cuadro-detalle {
     background-color: #520f0f;
     border: solid white 3px;
     border-radius: 8px;
@@ -214,7 +218,7 @@ a{
     padding: 1.5rem;
 }
 
-.cuadro-detalle p{
+.cuadro-detalle p {
     margin: 0 auto;
     text-align: center;
     color: white;
@@ -224,40 +228,42 @@ a{
     text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
 }
 
-.pieDePagina{
+.pieDePagina {
+    position: fixed;
+    left: 0;
+    bottom: 0;
     width: 100%;
-    height: 10rem;
-    margin-top: 4rem !important;
+    height: 6rem;
+    margin-top: 2rem !important;
     box-sizing: border-box;
 }
 
-.pieDePagina img{
-    width: 190px;
-    height: 100px;
+.pieDePagina img {
+    width: 65px;
+    height: 40px;
     margin-top: 2rem;
 }
 
-.pieDePagina .derechos{
-    margin-top: 4rem;
-    text-align: center;
-}
-
-.pieDePagina p{
-
-    text-align: center;
-}
-
-.pieDePagina h4{
-    text-align: center;
+.pieDePagina .derechos {
     margin-top: 2rem;
+    text-align: center;
 }
 
-#salirId{
+.pieDePagina p {
+    text-align: center;
+}
+
+.pieDePagina h4 {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+#salirId {
     margin-right: 1rem;
 }
 
-.publicacionRevision{
-    background-color: 	#931f1f;
+.publicacionRevision {
+    background-color: #931f1f;
     width: auto;
     height: auto;
     padding: 3rem;
@@ -267,7 +273,7 @@ a{
     margin-bottom: 3rem;
 }
 
-.fondoTabla{
+.fondoTabla {
     background-color: #520f0f;
     color: white;
     width: auto;
@@ -279,23 +285,23 @@ a{
     border-radius: 8px;
 }
 
-.scope{
+.scope {
     color: white;
     text-align: center;
 }
 
-.datos{
+.datos {
     color: white;
     text-align: center;
 }
 
-.img-listado{
+.img-listado {
     width: 8rem;
     height: 5rem;
     margin-top: 6px;
 }
 
-.cuadroBusquedaCliente{
+.cuadroBusquedaCliente {
     width: auto;
     height: auto;
     background-color: #931f1f;
@@ -306,7 +312,7 @@ a{
     margin-bottom: 30rem;
 }
 
-.cuadroBusquedaClienteAlternativo{
+.cuadroBusquedaClienteAlternativo {
     width: auto;
     height: auto;
     background-color: #931f1f;
@@ -317,8 +323,9 @@ a{
     margin-bottom: 5rem;
 }
 
-.registroexitoso{
-    text-align: center;  background-color: 	#931f1f;
+.registroexitoso {
+    text-align: center;
+    background-color: #931f1f;
     width: auto;
     height: auto;
     padding: 1rem;
@@ -328,14 +335,14 @@ a{
     margin-bottom: 5rem;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px){
+@media only screen and (min-width: 768px) and (max-width: 991px) {
     .carousel-item img {
         width: auto;
         height: 35rem;
         object-fit: fill;
     }
 
-    .trabajo{
+    .trabajo {
         background-color: #520f0f;
         border: solid white 3px;
         padding: 1.5rem;
@@ -346,12 +353,12 @@ a{
         font-size: 14px;
     }
 
-    .img-listado{
+    .img-listado {
         width: 8rem;
         height: 5rem;
     }
 
-    .fondoTabla{
+    .fondoTabla {
         background-color: #520f0f;
         color: white;
         width: auto;
@@ -362,20 +369,20 @@ a{
         margin-bottom: 20rem;
     }
 
-    .formulario{
-        background-color: 	#931f1f;
+    .formulario {
+        background-color: #931f1f;
         width: auto;
         height: auto;
         padding: 2rem;
         box-sizing: border-box;
         border: solid rgb(0, 0, 0) 5px;
         border-radius: 50px;
-        padding-bottom: 7rem;
+        padding-bottom: 3rem;
         margin-top: 2rem;
-        margin-bottom: 5rem;
+        margin-bottom: 7rem;
     }
 
-    .cuadroBusquedaCliente{
+    .cuadroBusquedaCliente {
         width: auto;
         height: auto;
         background-color: #931f1f;
@@ -386,8 +393,8 @@ a{
         margin-bottom: 25rem;
     }
 
-    .publicacionRevision{
-        background-color: 	#931f1f;
+    .publicacionRevision {
+        background-color: #931f1f;
         width: auto;
         height: auto;
         padding: 2rem;
@@ -397,8 +404,8 @@ a{
         margin-bottom: 3rem;
     }
 
-    .publicacion{
-        background-color: 	#931f1f;
+    .publicacion {
+        background-color: #931f1f;
         width: auto;
         height: auto;
         padding: 1.5rem;
@@ -408,12 +415,12 @@ a{
         margin-bottom: 5rem;
     }
 
-    .publicacion p{
+    .publicacion p {
         font-size: 16px;
         color: white;
     }
 
-    .cuadro-detalle{
+    .cuadro-detalle {
         background-color: #520f0f;
         border: solid white 3px;
         border-radius: 8px;
@@ -421,16 +428,16 @@ a{
         margin-bottom: 2rem;
         padding: 1.5rem;
     }
-    
-    .cuadro-detalle p{
+
+    .cuadro-detalle p {
         margin: 0 auto;
         text-align: center;
         color: white;
         font-size: 16px;
     }
 
-    .motivo{
-        background-color: 	#931f1f;
+    .motivo {
+        background-color: #931f1f;
         width: auto;
         height: auto;
         padding: 3rem;
@@ -442,22 +449,25 @@ a{
         margin-bottom: 5rem;
     }
 
-    .pieDePagina{
+    .pieDePagina {
+        position: fixed;
+        left: 0;
+        bottom: 0;
         width: 100%;
-        height: 10rem;
-        margin-top: 4rem !important;
+        height: 6rem;
+        margin-top: 2rem !important;
         box-sizing: border-box;
     }
 
-    .pieDePagina img{
-        width: 190px;
-        height: 120px;
+    .pieDePagina img {
+        width: 65px;
+        height: 40px;
         margin-top: 2rem;
     }
 }
 
-@media only screen and (min-width: 575px) and (max-width: 767px){
-    .fondoTabla{
+@media only screen and (min-width: 575px) and (max-width: 767px) {
+    .fondoTabla {
         background-color: #520f0f;
         color: white;
         width: auto;
@@ -468,27 +478,27 @@ a{
         margin-bottom: 18rem;
     }
 
-    .solicitud h5{
+    .solicitud h5 {
         font-size: 15px;
     }
 
-    .img-listado{
+    .img-listado {
         width: 8rem;
         height: 5rem;
     }
 
-    .scope{
-        color: white;
-        text-align: center;
-    }
-    
-    .datos{
+    .scope {
         color: white;
         text-align: center;
     }
 
-    .publicacionRevision{
-        background-color: 	#931f1f;
+    .datos {
+        color: white;
+        text-align: center;
+    }
+
+    .publicacionRevision {
+        background-color: #931f1f;
         width: auto;
         height: auto;
         padding: 1.5rem;
@@ -498,7 +508,7 @@ a{
         margin-bottom: 3rem;
     }
 
-    .cuadro{
+    .cuadro {
         width: auto;
         height: auto;
         background-color: #931f1f;
@@ -509,7 +519,7 @@ a{
         margin-bottom: 15rem;
     }
 
-    .trabajo{
+    .trabajo {
         background-color: #520f0f;
         border: solid white 3px;
         padding: 1.5rem;
@@ -520,33 +530,33 @@ a{
         font-size: 14px;
         text-align: justify;
     }
-    
-    .trabajo:hover{
+
+    .trabajo:hover {
         background-color: whitesmoke;
         border: solid black 3px;
         color: black;
     }
 
-    .img-listado{
+    .img-listado {
         width: 8rem;
         height: 5rem;
         margin-bottom: 1rem;
     }
 
-    .formulario{
-        background-color: 	#931f1f;
+    .formulario {
+        background-color: #931f1f;
         width: auto;
         height: auto;
         padding: 2rem;
         box-sizing: border-box;
         border: solid rgb(0, 0, 0) 5px;
         border-radius: 50px;
-        padding-bottom: 7rem;
+        padding-bottom: 3rem;
         margin-top: 2rem;
-        margin-bottom: 5rem;
+        margin-bottom: 7rem;
     }
 
-    .cuadroBusquedaCliente{
+    .cuadroBusquedaCliente {
         width: auto;
         height: auto;
         background-color: #931f1f;
@@ -557,7 +567,7 @@ a{
         margin-bottom: 35rem;
     }
 
-    .carousel-caption{
+    .carousel-caption {
         font-size: 12px;
     }
 
@@ -567,8 +577,8 @@ a{
         object-fit: fill;
     }
 
-    .publicacion{
-        background-color: 	#931f1f;
+    .publicacion {
+        background-color: #931f1f;
         width: auto;
         height: auto;
         padding: 1.5rem;
@@ -578,12 +588,12 @@ a{
         margin-bottom: 5rem;
     }
 
-    .publicacion p{
+    .publicacion p {
         font-size: 15px;
         color: white;
     }
 
-    .cuadro-detalle{
+    .cuadro-detalle {
         background-color: #520f0f;
         border: solid white 3px;
         border-radius: 8px;
@@ -591,16 +601,16 @@ a{
         margin-bottom: 2rem;
         padding: 1.5rem;
     }
-    
-    .cuadro-detalle p{
+
+    .cuadro-detalle p {
         margin: 0 auto;
         text-align: center;
         color: white;
         font-size: 15px;
     }
 
-    .motivo{
-        background-color: 	#931f1f;
+    .motivo {
+        background-color: #931f1f;
         width: auto;
         height: auto;
         padding: 2rem;
@@ -612,23 +622,43 @@ a{
         margin-bottom: 5rem;
     }
 
-    .pieDePagina{
+    .pieDePagina {
+        position: fixed;
+        left: 0;
+        bottom: 0;
         width: 100%;
-        height: 25rem;
-        margin-top: 4rem !important;
+        height: 6rem;
+        margin-top: 0.5rem !important;
         box-sizing: border-box;
     }
 
-    .pieDePagina img{
-        width: 190px;
-        height: 100px;
+    .pieDePagina img {
+        width: 62px;
+        height: 30px;
+        margin-top: 2rem;
+    }
+
+    .pieDePagina .derechos {
+        font-size: 12px;
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    .pieDePagina p {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .pieDePagina h4 {
+        font-size: 14px;
+        text-align: center;
         margin-top: 2rem;
     }
 }
 
 
-@media only screen and (min-width: 360px) and (max-width: 574px){
-    .fondoTabla{
+@media only screen and (min-width: 360px) and (max-width: 574px) {
+    .fondoTabla {
         background-color: #520f0f;
         color: white;
         width: auto;
@@ -640,37 +670,37 @@ a{
         font-size: 10px;
     }
 
-    .solicitud{
-        background-color: 	#931f1f;
+    .solicitud {
+        background-color: #931f1f;
         width: auto;
         height: auto;
         padding: 2rem;
         box-sizing: border-box;
         border: solid rgb(0, 0, 0) 5px;
         border-radius: 30px;
-        padding-bottom: 8rem;
+        padding-bottom: 3rem;
         margin-top: 2rem;
-        margin-bottom: 5rem;
+        margin-bottom: 7rem;
     }
 
-    .solicitud h5{
+    .solicitud h5 {
         font-size: 12px;
     }
 
-    .formulario{
-        background-color: 	#931f1f;
+    .formulario {
+        background-color: #931f1f;
         width: auto;
         height: auto;
         padding: 2rem;
         box-sizing: border-box;
         border: solid rgb(0, 0, 0) 5px;
         border-radius: 50px;
-        padding-bottom: 7rem;
+        padding-bottom: 3rem;
         margin-top: 2rem;
-        margin-bottom: 5rem;
+        margin-bottom: 7rem;
     }
 
-    .cuadroBusquedaCliente{
+    .cuadroBusquedaCliente {
         width: auto;
         height: auto;
         background-color: #931f1f;
@@ -681,7 +711,7 @@ a{
         margin-bottom: 40rem;
     }
 
-    .carousel-caption{
+    .carousel-caption {
         font-size: 12px;
     }
 
@@ -689,10 +719,10 @@ a{
         width: auto;
         height: 30rem;
         object-fit: fill;
-      }
-    
-    .publicacionRevision{
-        background-color: 	#931f1f;
+    }
+
+    .publicacionRevision {
+        background-color: #931f1f;
         width: auto;
         height: auto;
         padding: 1.5rem;
@@ -702,12 +732,12 @@ a{
         margin-bottom: 3rem;
     }
 
-    .publicacionRevision h5{
+    .publicacionRevision h5 {
         font-size: 12px;
     }
 
-    .publicacion{
-        background-color: 	#931f1f;
+    .publicacion {
+        background-color: #931f1f;
         width: auto;
         height: auto;
         padding: 1rem;
@@ -717,30 +747,50 @@ a{
         margin-bottom: 5rem;
     }
 
-    .pieDePagina{
+    .pieDePagina {
+        position: fixed;
+        left: 0;
+        bottom: 0;
         width: 100%;
-        height: 25rem;
-        margin-top: 4rem !important;
+        height: 6rem;
+        margin-top: 2rem !important;
         box-sizing: border-box;
     }
 
-    .pieDePagina img{
-        width: 150px;
-        height: 90px;
-        margin-top: 2rem;
+    .pieDePagina img {
+        width: 26px;
+        height: 13px;
+        margin-top: 0.2rem;
     }
-    
-    .publicacion p{
+
+    .pieDePagina .derechos {
+        font-size: 8px;
+        margin-top: 0.2rem;
+        text-align: center;
+    }
+
+    .pieDePagina p {
+        font-size: 6px;
+        text-align: center;
+    }
+
+    .pieDePagina h4 {
+        font-size: 8px;
+        text-align: center;
+        margin-top: 0.2rem;
+    }
+
+    .publicacion p {
         font-size: 14px;
         color: white;
     }
-    
-    .img-listado{
+
+    .img-listado {
         width: 8rem;
         height: 5rem;
     }
 
-    .cuadro-detalle{
+    .cuadro-detalle {
         background-color: #520f0f;
         border: solid white 3px;
         border-radius: 8px;
@@ -748,16 +798,16 @@ a{
         margin-bottom: 2rem;
         padding: 1rem;
     }
-    
-    .cuadro-detalle p{
+
+    .cuadro-detalle p {
         margin: 0 auto;
         text-align: center;
         color: white;
         font-size: 14px;
     }
 
-    .motivo{
-        background-color: 	#931f1f;
+    .motivo {
+        background-color: #931f1f;
         width: auto;
         height: auto;
         padding: 1rem;
@@ -769,24 +819,32 @@ a{
         margin-bottom: 5rem;
     }
 
-    .cuadro-trabajo{
+    .cuadro-trabajo {
         width: auto;
         height: auto;
         padding: 2rem;
         text-align: justify;
     }
-    
-    .cuadro-trabajo p{
+
+    .cuadro-trabajo p {
         font-size: 14px;
     }
 }
 
 @keyframes parpadeo {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-  }
-  
-  .parpadeo {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.parpadeo {
     animation: parpadeo 1s infinite;
-  }
+}

@@ -484,7 +484,7 @@ $(document).ready(function () {
 
 function cargarMaterialesSeleccionados() {
   var materialesSeleccionados = [];
-  $("#eliminadoID option").each(function() {
+  $("#eliminadoID option").each(function () {
     materialesSeleccionados.push($(this).val());
   });
   materiales = materialesSeleccionados.filter(function (material) {
