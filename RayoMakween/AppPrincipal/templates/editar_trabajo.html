@@ -80,19 +80,22 @@
               <center><h3>Título</h3></center>
               <div class="cuadro-trabajo">
                 <p>Modifique en caso de ser necesario</p>
-              <textarea class="form-control" name="titulo_publicacion">{{ publicacion.titulo_publicacion }}</textarea>
+              <textarea class="form-control" id="tituloId" name="titulo_publicacion">{{ publicacion.titulo_publicacion }}</textarea>
+              <div id="mensajeTituloId" style="color: white"></div>
               </div>
               <hr class="hr-fade">
               <center><h3>Diagnóstico</h3></center>
               <div class="cuadro-trabajo">
                     <p>Modifique en caso de ser necesario</p>
-                    <textarea class="form-control" name="diagnostico">{{ publicacion.diagnostico_publicacion }}</textarea>
+                    <textarea class="form-control" id="diagId" name="diagnostico">{{ publicacion.diagnostico_publicacion }}</textarea>
+                    <div id="mensajeDiagnosticoTrabajoId" style="color: white"></div>
               </div>
               <hr class="hr-fade">
               <center><h3>Descripción</h3></center>
               <div class="cuadro-trabajo">
                   <p>Modifique en caso de ser necesario</p>
-                  <textarea class="form-control" name="descripcion">{{ publicacion.descripcion_publicacion }}</textarea>
+                  <textarea class="form-control" id="DesId" name="descripcion">{{ publicacion.descripcion_publicacion }}</textarea>
+                  <div id="mensajeDescripcionTrabajoId" style="color: white"></div>
               </div>
               <hr class="hr-fade">
               <center><h3>Imágenes</h3></center>
@@ -107,6 +110,7 @@
                   accept=".jpg, .jpeg, .png, .webp"
                   max="6"
                   id="input_imagenes" style="display: none;">
+                  <div id="mensajeFotosTrabajoId" style="color: white"></div>
               </div>
               <hr class="hr-fade">
               <center><h3>Categoria</h3></center>

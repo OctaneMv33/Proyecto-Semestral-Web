@@ -327,7 +327,7 @@ $("#descripcionId").keyup(function () {
   var largo = $("#descripcionId").val().length
 
   if (largo < 20 || largo > 500) {
-    $("#mensajeDescripcionId").text("Tiene que ingresar al menos una descripción de 20 caracteres")
+    $("#mensajeDescripcionId").text("Tiene que ingresar una descripción entre 20 y 500 caracteres")
     vdescripcion = false
   } else {
     $("#mensajeDescripcionId").text("Descripción mínima completada")
@@ -377,7 +377,7 @@ $("#diagId").keyup(function () {
   var largo = $("#diagId").val().length
 
   if (largo < 50 || largo > 500) {
-    $("#mensajeDiagnosticoTrabajoId").text("Tiene que ingresar al menos un diagnóstico de 50 caracteres")
+    $("#mensajeDiagnosticoTrabajoId").text("Tiene que ingresar un diagnóstico entre 50 y 500 caracteres")
     vdiagnostico = false
   } else {
     $("#mensajeDiagnosticoTrabajoId").text("Diagnóstico mínimo completado")
@@ -396,7 +396,7 @@ $("#DesId").keyup(function () {
   var largo = $("#DesId").val().length
 
   if (largo < 100 || largo > 1000) {
-    $("#mensajeDescripcionTrabajoId").text("Tiene que ingresar al menos una descripción de 100 caracteres")
+    $("#mensajeDescripcionTrabajoId").text("Tiene que ingresar una descripción entre 100 y 1000 caracteres")
     vdescripcion = false
   } else {
     $("#mensajeDescripcionTrabajoId").text("Descripción mínima completada")
@@ -570,3 +570,124 @@ document.addEventListener("DOMContentLoaded", function () {
    cuando le revisen el trabajo para cumplir con un punto del requerimiento 11
 */
 
+/* -------------- Validacion de Formulario de Editar Trabajo/Publicación -------------- */
+var vdescripcion = false, vtitulo = false, vdiagnostico = false, vfoto = false
+
+/* Validando título del/la trabajo/publicación */
+$(document).ready(function(){
+  var largo = $("#tituloId").val().length
+  var patroncaracteres = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/
+  var caracteres = $("#tituloId").val()
+
+  if (largo < 20 || largo > 80) {
+    $("#mensajeTituloId").text('El largo mínimo es de 20 caractéres y el máximo de 80')
+    vtitulo = false
+  } else if (!patroncaracteres.test(caracteres)) {
+    $("#mensajeTituloId").text('Sólo puede ingresar letras y números')
+    vtitulo = false
+  } else {
+    $("#mensajeTituloId").text('Ingreso correcto')
+    vtitulo = true
+  }
+  $("#tituloId").keyup(function(){
+    var largo = $("#tituloId").val().length
+    var patroncaracteres = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/
+    var caracteres = $("#tituloId").val()
+  
+    if (largo < 20 || largo > 80) {
+      $("#mensajeTituloId").text('El largo mínimo es de 20 caractéres y el máximo de 80')
+      vtitulo = false
+    } else if (!patroncaracteres.test(caracteres)) {
+      $("#mensajeTituloId").text('Sólo puede ingresar letras y números')
+      vtitulo = false
+    } else {
+      $("#mensajeTituloId").text('Ingreso correcto')
+      vtitulo = true
+    }
+  
+    if (vdescripcion && vtitulo && vdiagnostico && vfoto) {
+      $("#Editarid").attr('disabled', false)
+    } else {
+      $("#Editarid").attr('disabled', true)
+    }
+  });
+});
+
+/* Validando diagnóstico de mínimo 50 caractéres y máximo 500*/
+$(document).ready(function(){
+  var largo = $("#diagId").val().length
+  
+  if (largo < 50 || largo > 500) {
+    $("#mensajeDiagnosticoTrabajoId").text("Tiene que ingresar un diagnóstico entre 50 y 500 caracteres")
+    vdiagnostico = false
+  } else {
+    $("#mensajeDiagnosticoTrabajoId").text("Diagnóstico mínimo completado")
+    vdiagnostico = true
+  }
+  $("#diagId").keyup(function () {
+    var largo = $("#diagId").val().length
+  
+    if (largo < 50 || largo > 500) {
+      $("#mensajeDiagnosticoTrabajoId").text("Tiene que ingresar un diagnóstico entre 50 y 500 caracteres")
+      vdiagnostico = false
+    } else {
+      $("#mensajeDiagnosticoTrabajoId").text("Diagnóstico mínimo completado")
+      vdiagnostico = true
+    }
+  
+    if (vdescripcion && vtitulo && vdiagnostico && vfoto) {
+      $("#Editarid").attr('disabled', false)
+    } else {
+      $("#Editarid").attr('disabled', true)
+    }
+  });
+});
+
+/* Validando descripción de mínimo 100 caractéres y máximo 1000*/
+$(document).ready(function(){
+  var largo = $("#DesId").val().length
+  
+  if (largo < 100 || largo > 1000) {
+    $("#mensajeDescripcionTrabajoId").text("Tiene que ingresar una descripción entre 100 y 1000 caracteres")
+    vdescripcion = false
+  } else {
+    $("#mensajeDescripcionTrabajoId").text("Descripción mínima completada")
+    vdescripcion = true
+  }
+  $("#DesId").keyup(function () {
+    var largo = $("#DesId").val().length
+  
+    if (largo < 100 || largo > 1000) {
+      $("#mensajeDescripcionTrabajoId").text("Tiene que ingresar una descripción entre 100 y 1000 caracteres")
+      vdescripcion = false
+    } else {
+      $("#mensajeDescripcionTrabajoId").text("Descripción mínima completada")
+      vdescripcion = true
+    }
+  
+    if (vdescripcion && vtitulo && vdiagnostico && vfoto) {
+      $("#Editarid").attr('disabled', false)
+    } else {
+      $("#Editarid").attr('disabled', true)
+    }
+  });
+});
+
+/* Validando cantidad de fotos */
+$('#input_imagenes').on('change', function () {
+  var files = $(this)[0].files;
+  if (files.length > 6) {
+    $("#mensajeFotosTrabajoId").text('Sólo se permiten como máximo 6 fotos')
+    $(this).val('');
+    vfoto = false
+  } else {
+    $("#mensajeFotosTrabajoId").text('Ingreso correcto')
+    vfoto = true
+  }
+
+  if (vdescripcion && vtitulo && vdiagnostico && vfoto) {
+    $("#Editarid").attr('disabled', false)
+  } else {
+    $("#Editarid").attr('disabled', true)
+  }
+});
