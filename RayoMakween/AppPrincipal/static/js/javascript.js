@@ -304,14 +304,15 @@ $(document).ready(function () {
 $("#fechaId").change(function () {
   var fecha = $("#fechaId").val();
   const dia = new Date();
+  dia.setDate(dia.getDate() - 1);
   const fecha2 = new Date(fecha);
 
-  if (fecha2 < dia) {
-    $("#mensajeFechaId").text("Debes seleccionar una fecha adecuada");
-    vfecha = false;
-  } else {
+  if (fecha2 >= dia) {
     $("#mensajeFechaId").text("Ingreso correcto");
     vfecha = true;
+  } else {
+    $("#mensajeFechaId").text("Debes seleccionar una fecha adecuada");
+    vfecha = false;
   }
 
   if (vfecha && vdescripcion) {
@@ -574,7 +575,7 @@ document.addEventListener("DOMContentLoaded", function () {
 var vdescripcion = false, vtitulo = false, vdiagnostico = false, vfoto = false
 
 /* Validando título del/la trabajo/publicación */
-$(document).ready(function(){
+$(document).ready(function () {
   var largo = $("#tituloId").val().length
   var patroncaracteres = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/
   var caracteres = $("#tituloId").val()
@@ -589,11 +590,11 @@ $(document).ready(function(){
     $("#mensajeTituloId").text('Ingreso correcto')
     vtitulo = true
   }
-  $("#tituloId").keyup(function(){
+  $("#tituloId").keyup(function () {
     var largo = $("#tituloId").val().length
     var patroncaracteres = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/
     var caracteres = $("#tituloId").val()
-  
+
     if (largo < 20 || largo > 80) {
       $("#mensajeTituloId").text('El largo mínimo es de 20 caractéres y el máximo de 80')
       vtitulo = false
@@ -604,7 +605,7 @@ $(document).ready(function(){
       $("#mensajeTituloId").text('Ingreso correcto')
       vtitulo = true
     }
-  
+
     if (vdescripcion && vtitulo && vdiagnostico && vfoto) {
       $("#Editarid").attr('disabled', false)
     } else {
@@ -614,9 +615,9 @@ $(document).ready(function(){
 });
 
 /* Validando diagnóstico de mínimo 50 caractéres y máximo 500*/
-$(document).ready(function(){
+$(document).ready(function () {
   var largo = $("#diagId").val().length
-  
+
   if (largo < 50 || largo > 500) {
     $("#mensajeDiagnosticoTrabajoId").text("Tiene que ingresar un diagnóstico entre 50 y 500 caracteres")
     vdiagnostico = false
@@ -626,7 +627,7 @@ $(document).ready(function(){
   }
   $("#diagId").keyup(function () {
     var largo = $("#diagId").val().length
-  
+
     if (largo < 50 || largo > 500) {
       $("#mensajeDiagnosticoTrabajoId").text("Tiene que ingresar un diagnóstico entre 50 y 500 caracteres")
       vdiagnostico = false
@@ -634,7 +635,7 @@ $(document).ready(function(){
       $("#mensajeDiagnosticoTrabajoId").text("Diagnóstico mínimo completado")
       vdiagnostico = true
     }
-  
+
     if (vdescripcion && vtitulo && vdiagnostico && vfoto) {
       $("#Editarid").attr('disabled', false)
     } else {
@@ -644,9 +645,9 @@ $(document).ready(function(){
 });
 
 /* Validando descripción de mínimo 100 caractéres y máximo 1000*/
-$(document).ready(function(){
+$(document).ready(function () {
   var largo = $("#DesId").val().length
-  
+
   if (largo < 100 || largo > 1000) {
     $("#mensajeDescripcionTrabajoId").text("Tiene que ingresar una descripción entre 100 y 1000 caracteres")
     vdescripcion = false
@@ -656,7 +657,7 @@ $(document).ready(function(){
   }
   $("#DesId").keyup(function () {
     var largo = $("#DesId").val().length
-  
+
     if (largo < 100 || largo > 1000) {
       $("#mensajeDescripcionTrabajoId").text("Tiene que ingresar una descripción entre 100 y 1000 caracteres")
       vdescripcion = false
@@ -664,7 +665,7 @@ $(document).ready(function(){
       $("#mensajeDescripcionTrabajoId").text("Descripción mínima completada")
       vdescripcion = true
     }
-  
+
     if (vdescripcion && vtitulo && vdiagnostico && vfoto) {
       $("#Editarid").attr('disabled', false)
     } else {
