@@ -572,7 +572,7 @@ document.addEventListener("DOMContentLoaded", function () {
 */
 
 /* -------------- Validacion de Formulario de Editar Trabajo/Publicación -------------- */
-var vdescripcion = false, vtitulo = false, vdiagnostico = false, vfoto = false
+var vdescripcion = false, vtitulo = false, vdiagnostico = false, vfoto = true
 
 /* Validando título del/la trabajo/publicación */
 $(document).ready(function () {
