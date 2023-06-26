@@ -75,7 +75,7 @@ def auth_register(request):
 #   En caso de querer logear instantaneamente al usuario. 
 #   Se puede utilizar el siguiente codigo, borrando la linea de arriba y usando las dos de abajo. 
 #   Almacena el formulario que hiciste en un objeto y lo pasa con la funcion login para ingresarte automaticamente
-            return redirect('auth_login')
+            return redirect('registroExitoso')
     else:
         form = RegistrationForm()
     return(render(request,'registro.html'))
@@ -119,7 +119,7 @@ def registro_mecanico(request):
             second_last_name=apmaterno, email=email, phone=phone, password=password, run=rut, dv_run = dvrut)
             group = Group.objects.get(name='Mecanico')
             user.groups.set([group]) 
-            return redirect('registro_mecanico')
+            return redirect('registroExitoso')
     else:
         form = RegistrationForm()
     return(render(request,'registro_mecanico.html'))
@@ -496,4 +496,3 @@ def login_view(request):
         return render(request, 'login.html', {'error_message': error_message})
 
     return render(request, 'login.html')
-

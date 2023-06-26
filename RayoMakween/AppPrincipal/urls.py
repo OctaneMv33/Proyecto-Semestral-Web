@@ -25,5 +25,5 @@ urlpatterns = [
     path('resultados_por_mecanico', SearchResultsViewMechanics.as_view(), name='resultados_por_mecanico'),
     path('dashboardAdmin', dashboardAdmin, name='dashboardAdmin'),
     path('logout',exit,name='exit'),
-    path('registroExitoso', registroExitoso, name='registroExitoso'),
+    path('registroExitoso', registroExitoso, name='registroExitoso')
 ]
