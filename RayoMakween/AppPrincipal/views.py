@@ -338,7 +338,7 @@ def crearTrabajo(request):
             
             # Guarda la instancia de Publicacion nuevamente para guardar las imágenes
             objPublic.save()
-            return redirect('index')
+            return redirect('registroExitoso')
         else:
             print(form.errors)
     return render(request, 'crear_trabajo.html', context)
