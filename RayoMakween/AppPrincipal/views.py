@@ -182,7 +182,7 @@ def dashboardAdmin(request):
         keys = ['RUT', 'NOMBRE', 'CANTIDAD_ACEPTADOS', 'CANTIDAD_RECHAZADOS', 'CANTIDAD_PENDIENTES']
         datos_dict = [dict(zip(keys, row)) for row in datos]
 
-        context={
+        context = {
             'datos':datos_dict
         }
     return render(request, 'dashboard_admin.html', context)
